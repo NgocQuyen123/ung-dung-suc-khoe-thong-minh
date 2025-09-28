@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UngDungSucKhoe">
         <activity
+            android:name=".OtpVerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignInMethodScreen"
+            android:exported="false" />
+        <activity
+            android:name=".OTPMethodSelectionModal"
+            android:exported="false" />
+        <activity
+            android:name=".PhoneAuthScreen"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpMethodScreen"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
