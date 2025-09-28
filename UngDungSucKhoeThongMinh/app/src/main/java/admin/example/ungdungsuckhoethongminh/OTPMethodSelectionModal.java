@@ -1,32 +1,24 @@
-package admin.example.ungdungsuckhoe;
+package admin.example.ungdungsuckhoethongminh;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SignInMethodScreen extends AppCompatActivity {
+public class OTPMethodSelectionModal extends AppCompatActivity {
 
-    ConstraintLayout rootLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_sign_in_method_screen);
+        setContentView(R.layout.activity_otpmethod_selection_modal);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        rootLayout = findViewById(R.id.main);
-
-        rootLayout.setBackgroundColor(Color.parseColor("#F8F7FC"));
     }
-
 }

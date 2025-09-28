@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "admin.example.ungdungsuckhoe"
-    compileSdk = 33
+    namespace = "admin.example.ungdungsuckhoethongminh"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = "admin.example.ungdungsuckhoe"
-        minSdk = 21
-        targetSdk = 33
+        applicationId = "admin.example.ungdungsuckhoethongminh"
+        minSdk = 33
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 

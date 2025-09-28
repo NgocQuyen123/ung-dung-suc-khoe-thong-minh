@@ -1,18 +1,15 @@
-package admin.example.ungdungsuckhoe;
+package admin.example.ungdungsuckhoethongminh;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class SignInMethodScreen extends AppCompatActivity {
 
-    ConstraintLayout rootLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +20,5 @@ public class SignInMethodScreen extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        rootLayout = findViewById(R.id.main);
-
-        rootLayout.setBackgroundColor(Color.parseColor("#F8F7FC"));
     }
-
 }
