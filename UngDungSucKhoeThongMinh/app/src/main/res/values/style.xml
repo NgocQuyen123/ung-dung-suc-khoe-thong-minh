@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //tạo style riêng cho button
+    <style name="MyButtonStyle" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@null</item>
+    </style>
+</resources>

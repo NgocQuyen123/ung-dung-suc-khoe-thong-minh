@@ -15,7 +15,7 @@
             android:name=".SignUpMethodScreen"
             android:exported="false" />
         <activity
-            android:name=".PhoneAuthScreen"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".OtpVerificationActivity"
@@ -27,8 +27,10 @@
             android:name=".SignInMethodScreen"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".PhoneAuthScreen"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
             android:exported="true">
+            <!-- Mở bàn phím ngay lập tức          -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
