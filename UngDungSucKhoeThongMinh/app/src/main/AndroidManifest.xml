@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UngDungSucKhoeThongMinh">
 
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="true" />
+
         <!-- MainActivity có android:exported="true" và intent-filter để làm Activity chính -->
         <activity
             android:name=".MainActivity"
@@ -38,14 +42,34 @@
         <activity
             android:name=".SignInMethodScreen"
             android:exported="false" />
-
+        <activity
+            android:name=".EditNameActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible" />
+        <activity
+            android:name=".PhoneActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize|stateVisible"/>
+        <activity
+            android:name=".EditDearActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateVisible"/>
+        <activity
+            android:name=".EditGenderActivity"
+            android:exported="false" />
         <!-- PhoneAuthScreen không còn là Activity chính -->
+        <activity
+            android:name=".EditHeightActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:label="Chỉnh sửa chiều cao" />
         <activity
             android:name=".PhoneAuthScreen"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
             android:exported="false">
             <!-- Xóa intent-filter khỏi PhoneAuthScreen -->
+
         </activity>
+
 
     </application>
 
