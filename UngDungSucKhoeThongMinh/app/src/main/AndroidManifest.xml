@@ -18,7 +18,7 @@
 
         <!-- MainActivity có android:exported="true" và intent-filter để làm Activity chính -->
         <activity
-            android:name=".MainActivity"
+            android:name=".StepsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,6 +46,11 @@
             android:exported="false">
             <!-- Xóa intent-filter khỏi PhoneAuthScreen -->
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+
+            android:exported="false"/>
 
     </application>
 
