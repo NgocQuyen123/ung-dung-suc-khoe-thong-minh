@@ -1,0 +1,10 @@
+{
+  "users": [
+    { "id": 1, "name": "Quyên", "age": 20 },
+    { "id": 2, "name": "Tính", "age": 21 }
+  ],
+  "products": [
+    { "id": 1, "name": "Vòng tay handmade", "price": 120000 },
+    { "id": 2, "name": "Túi len móc", "price": 90000 }
+  ]
+}
