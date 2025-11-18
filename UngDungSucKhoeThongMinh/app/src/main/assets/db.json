@@ -6,5 +6,72 @@
   "products": [
     { "id": 1, "name": "Vòng tay handmade", "price": 120000 },
     { "id": 2, "name": "Túi len móc", "price": 90000 }
+  ],
+  "thongTinCanNang": [
+    {
+      "id": 1,
+      "canNangHienTai": 65.0,
+      "canNangMucTieu": 60.0,
+      "chieuCaoCm": 165,
+      "namSinh": 2005,
+      "gioiTinh": "Nam",
+      "idMucDoHoatDong": 2,
+      "idTocDoCanNang": "2"
+    }
+  ],
+
+  "mucDoHoatDong": [
+    {
+      "id": 1,
+      "ten": "Rất năng động",
+      "moTa": "Tập luyện trên 7 giờ mỗi tuần",
+      "caloHoatDong": 785
+    },
+    {
+      "id": 2,
+      "ten": "Hoạt động trung bình",
+      "moTa": "Tập luyện 4 - 6 giờ mỗi tuần",
+      "caloHoatDong": 471
+    },
+    {
+      "id": 3,
+      "ten": "Ít hoạt động",
+      "moTa": "Tập luyện 2 - 3 giờ mỗi tuần",
+      "caloHoatDong": 235
+    },
+    {
+      "id": 4,
+      "ten": "Thụ động",
+      "moTa": "Ít hoặc không tập thể dục",
+      "caloHoatDong": 118
+    }
+  ],
+
+  "tocDoCanNang": [
+    {
+      "id": "1",
+      "ten": "Dễ",
+      "tocDoKgTuan": 0.25,
+      "caloThayDoiMoiNgay": 275
+    },
+    {
+      "id": "2",
+      "ten": "Vừa",
+      "tocDoKgTuan": 0.50,
+      "caloThayDoiMoiNgay": 550
+    },
+    {
+      "id": "3",
+      "ten": "Khó",
+      "tocDoKgTuan": 0.75,
+      "caloThayDoiMoiNgay": 825
+    },
+    {
+      "id": "4",
+      "ten": "Tối đa",
+      "tocDoKgTuan": 1.00,
+      "caloThayDoiMoiNgay": 1100
+    }
   ]
 }
+
