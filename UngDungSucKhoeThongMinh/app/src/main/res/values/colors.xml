@@ -2,10 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-<<<<<<< HEAD
-
     <color name="purple_200">#BB86FC</color>
     <color name="purple_700">#3700B3</color>
-=======
->>>>>>> origin/long
+    <color name="purple_E9E8EE">#E9E8EE</color>
 </resources>

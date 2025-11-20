@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:padding="16dp"
+        android:background="@drawable/bg_card"
+        android:clipToPadding="false">
+
+        <!-- ICON GIÀY -->
+        <ImageView
+            android:id="@+id/imgStepIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_shoe"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- TIÊU ĐỀ -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bước chân"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@id/imgStepIcon"
+            app:layout_constraintTop_toTopOf="@id/imgStepIcon"
+            android:layout_marginStart="8dp" />
+
+        <!-- NÚT KẾT NỐI -->
+        <TextView
+            android:id="@+id/btnConnect"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:gravity="center"
+            android:text="RẤT THẤP"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_red_button"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ĐƯỜNG KẺ -->
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            app:layout_constraintTop_toBottomOf="@id/imgStepIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <!-- BÊN TRÁI -->
+        <TextView
+            android:id="@+id/tvNoData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hôm nay"
+            android:textColor="#A0A0A0"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/tvLeftSteps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="439 bước"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            app:layout_constraintStart_toStartOf="@id/tvNoData"
+            app:layout_constraintTop_toBottomOf="@id/tvNoData"
+            android:layout_marginTop="4dp"/>
+
+        <!-- BÊN PHẢI -->
+        <TextView
+            android:id="@+id/tvAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TRUNG BÌNH 30 NGÀY"
+            android:textColor="#A0A0A0"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/tvRightSteps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1000 bước"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            app:layout_constraintEnd_toEndOf="@id/tvAverage"
+            app:layout_constraintTop_toBottomOf="@id/tvAverage"
+            android:layout_marginTop="4dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

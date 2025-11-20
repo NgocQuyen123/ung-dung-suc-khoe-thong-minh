@@ -81,7 +81,7 @@
             style="@style/OtpStyle"
             android:hint="-"
             android:importantForAutofill="no"
-            android:autofillHints="smsOTPCode"
+             android:autofillHints="smsOTPCode"
             tools:ignore="HardcodedText" />
 
         <EditText

@@ -1,10 +1,10 @@
 package admin.example.ungdungsuckhoethongminh;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -15,15 +15,22 @@ public class StepsActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager2 viewPager;
+    ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steps);
 
+        // Ánh xạ các view
+        btnBack = findViewById(R.id.btnBack);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
 
+        // Xử lý nút quay lại
+        btnBack.setOnClickListener(v -> finish()); // Kết thúc StepsActivity, quay lại màn hình trước
+
+        // Thiết lập ViewPager và TabLayout
         viewPager.setAdapter(new StepsPagerAdapter(this));
 
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
@@ -35,13 +42,11 @@ public class StepsActivity extends AppCompatActivity {
                 case 3: title = "Năm"; break;
             }
 
-            // Inflate custom view
             LinearLayout tabView = (LinearLayout) getLayoutInflater()
                     .inflate(R.layout.custom_tab, null, false);
             TextView tabText = tabView.findViewById(R.id.tabText);
             tabText.setText(title);
 
-            // Set màu tab đầu tiên được chọn
             if (position == 0) {
                 tabView.setBackgroundResource(R.drawable.tab_background_selected);
                 tabText.setTextColor(getResources().getColor(android.R.color.white));
@@ -75,8 +80,5 @@ public class StepsActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) { }
         });
-
-
     }
-
 }
