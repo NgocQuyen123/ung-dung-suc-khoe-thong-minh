@@ -21,10 +21,13 @@
             android:exported="false" />
 
         <activity
+            android:name=".CaloActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-
             android:name=".Home"
             android:exported="true">
             <intent-filter>

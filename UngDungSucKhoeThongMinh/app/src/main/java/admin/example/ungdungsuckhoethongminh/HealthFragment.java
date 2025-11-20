@@ -34,6 +34,16 @@ public class HealthFragment extends Fragment {
             startActivity(intent);
         });
 
+        // Lấy TextView
+        TextView btnConnectKcal = view.findViewById(R.id.btnConnectKcal);
+
+        // Set OnClickListener
+        btnConnectKcal.setOnClickListener(v -> {
+            // Mở StepsActivity
+            Intent intent = new Intent(getActivity(), CaloActivity.class);
+            startActivity(intent);
+        });
+
         return view;
     }
 }

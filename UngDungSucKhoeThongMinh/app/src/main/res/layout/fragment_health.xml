@@ -108,4 +108,108 @@
             android:layout_marginTop="4dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:padding="16dp"
+        android:background="@drawable/bg_card"
+        android:clipToPadding="false">
+
+        <!-- ICON GIÀY -->
+        <ImageView
+            android:id="@+id/imgKcalIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/calo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- TIÊU ĐỀ -->
+        <TextView
+            android:id="@+id/tvTitleKcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiêu thụ calo"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@id/imgKcalIcon"
+            app:layout_constraintTop_toTopOf="@id/imgKcalIcon"
+            android:layout_marginStart="8dp" />
+
+        <!-- NÚT KẾT NỐI -->
+        <TextView
+            android:id="@+id/btnConnectKcal"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:gravity="center"
+            android:text="RẤT THẤP"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_red_button"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ĐƯỜNG KẺ -->
+        <View
+            android:id="@+id/dividerKcal"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            app:layout_constraintTop_toBottomOf="@id/imgKcalIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <!-- BÊN TRÁI -->
+        <TextView
+            android:id="@+id/tvNoDataKcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hôm nay"
+            android:textColor="#A0A0A0"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dividerKcal"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/tvLeftStepsKcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="439 calo"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            app:layout_constraintStart_toStartOf="@id/tvNoDataKcal"
+            app:layout_constraintTop_toBottomOf="@id/tvNoDataKcal"
+            android:layout_marginTop="4dp"/>
+
+        <!-- BÊN PHẢI -->
+        <TextView
+            android:id="@+id/tvAverageKcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TRUNG BÌNH 7 NGÀY"
+            android:textColor="#A0A0A0"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dividerKcal"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/tvRightStepsKcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1000 calo"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            app:layout_constraintEnd_toEndOf="@id/tvAverageKcal"
+            app:layout_constraintTop_toBottomOf="@id/tvAverageKcal"
+            android:layout_marginTop="4dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

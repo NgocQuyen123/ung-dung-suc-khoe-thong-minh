@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Nút chuyển ngày -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="25dp">
+
+            <ImageButton
+                android:id="@+id/btnPrevDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chevron_left"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Ngày trước"/>
+
+            <!-- Khoảng cách trước TextView -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <!-- TextView hiển thị số ngày trước -->
+            <TextView
+                android:id="@+id/txtDayInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hôm nay"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Khoảng cách sau TextView -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/btnNextDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chevron_right"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Ngày sau"/>
+        </LinearLayout>
+
+        <!-- Tiêu đề tổng -->
+        <TextView
+            android:text="TỔNG HÀNG TUẦN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#999999"
+            android:layout_marginTop="8dp" />
+
+        <!-- Tổng bước + trung bình -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <!-- Phần bên trái -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/txtTotalSteps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtStepsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="calo"
+                    android:textSize="16sp"
+                    android:layout_marginStart="4dp"/>
+            </LinearLayout>
+
+            <!-- Phần bên phải -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="4dp"
+                android:background="@drawable/border_black">
+
+                <TextView
+                    android:id="@+id/txtAverage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trung bình 439"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="6dp" />
+
+                <ImageView
+                    android:src="@drawable/arrow_down"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- Ngày tháng -->
+        <TextView
+            android:id="@+id/txtWeekRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tháng 9 22-9"
+            android:textSize="14sp"
+            android:textColor="#A0A0A0"
+            android:layout_marginTop="6dp" />
+
+        <!-- Biểu đồ 7 cột -->
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/chartWeek"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:orientation="horizontal"
+            android:gravity="bottom|center"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:weightSum="7"
+            android:background="@android:color/white">
+
+            <!-- ===== CỘT 1 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar1"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar1Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar1Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#8890EA"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 2 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar2"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar2Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar2Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 3 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar3"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar3Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar3Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 4 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar4"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar4Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar4Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 5 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar5"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar5Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar5Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- ===== CỘT 6 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar6"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar6Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar6Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 7 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar7"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar7Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar7Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- Các ô nhỏ: bước, calo, quãng đường, thời gian -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ==================== ITEM 1 ==================== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="40dp"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/imgIcon1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/accessibility" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/txtTitle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tỷ lệ trao đổi chất cơ bản"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtKcal1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="587 Kcal"
+                        android:textSize="14sp"
+                        android:textColor="#666666" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtPercent1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100%"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            <!-- ==================== ITEM 2 ==================== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/imgIcon2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/accessibility" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/txtTitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bóng rổ"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtKcal2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="23 kcal"
+                        android:textSize="14sp"
+                        android:textColor="#666666" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtPercent2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.15%"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
