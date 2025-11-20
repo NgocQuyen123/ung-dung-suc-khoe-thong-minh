@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
 
+
         <activity
             android:name=".SignUpMethodScreen"
             android:exported="false" />
@@ -51,7 +52,6 @@
             android:name=".MainActivity"
 
             android:exported="false"/>
-
     </application>
 
 </manifest>

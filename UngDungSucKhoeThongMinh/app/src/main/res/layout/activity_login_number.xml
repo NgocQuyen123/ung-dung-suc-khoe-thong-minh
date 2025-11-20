@@ -2,10 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    tools:context=".PhoneAuthScreen">
 
+    <!-- Nút quay lại -->
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="32dp"
@@ -17,11 +20,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Tiêu đề -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Nhập mã xác thực Tin\nnhắn SMS"
+        android:text="Đăng nhập bằng số\ndiện thoại"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
@@ -34,11 +38,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Mô tả -->
     <TextView
         android:id="@+id/tvSubtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Chúng tôi đã gửi mã đến +84868007328"
+        android:text="Nhập số điện thoại để đăng nhập"
         android:textSize="14sp"
         android:textColor="#666666"
         android:gravity="center"
@@ -49,66 +54,116 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Ô nhập số điện thoại -->
     <LinearLayout
-        android:id="@+id/otpLayout"
-        android:layout_width="wrap_content"
+        android:id="@+id/phoneContainer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle">
 
-        <EditText
-            android:id="@+id/etOtp1"
-            style="@style/OtpStyle"
-            android:hint="-"
-            android:importantForAutofill="no"
-            android:autofillHints="smsOTPCode"
-            tools:ignore="HardcodedText" />
+        <!-- Cờ và mã quốc gia -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/flagContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/input_bg"
+            android:paddingStart="12dp"
+            android:paddingEnd="8dp"
+            android:clickable="true"
+            android:focusable="true">
 
-        <EditText
-            android:id="@+id/etOtp2"
-            style="@style/OtpStyle"
-            android:hint="-"
-            android:importantForAutofill="no"
-            android:autofillHints="smsOTPCode"
-            tools:ignore="HardcodedText" />
+            <ImageView
+                android:id="@+id/imgFlag"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_flag"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/etOtp3"
-            style="@style/OtpStyle"
-            android:hint="-"
-            android:importantForAutofill="no"
-            android:autofillHints="smsOTPCode"
-            tools:ignore="HardcodedText" />
+            <ImageView
+                android:id="@+id/imgArrow"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/arrow_down"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgFlag"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/etOtp4"
-            style="@style/OtpStyle"
-            android:hint="-"
-            android:importantForAutofill="no"
-            android:autofillHints="smsOTPCode"
-            tools:ignore="HardcodedText" />
+        <!-- Ô nhập số -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/phoneNumber"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/input_bg"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
 
-        <EditText
-            android:id="@+id/etOtp5"
-            style="@style/OtpStyle"
-            android:hint="-"
-            android:importantForAutofill="no"
-            android:autofillHints="smsOTPCode"
-            tools:ignore="HardcodedText" />
+            <!-- Mã quốc gia -->
+            <TextView
+                android:id="@+id/tvCountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+84"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/etOtp6"
-            style="@style/OtpStyle"
-            android:hint="-"
-            android:importantForAutofill="no"
-            android:autofillHints="smsOTPCode"
-            tools:ignore="HardcodedText" />
+            <!-- EditText nhập số điện thoại -->
+            <EditText
+                android:id="@+id/edtPhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@null"
+                android:hint="Số điện thoại"
+                android:textColorHint="#B0B0B0"
+                android:inputType="none"
+                android:focusable="false"
+                android:cursorVisible="true"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvCountryCode"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
+    <!-- Nút tiếp theo -->
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/MyButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/btn_next"
+        android:text="Tiếp theo"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneContainer" />
+
+    <!-- Bàn phím số (giống màn hình OTP) -->
     <LinearLayout
         android:id="@+id/keyboardLayout"
         android:layout_width="match_parent"
@@ -123,16 +178,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/txtFromMsg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:gravity="center"
-            android:textColor="#4A4A4A"
-            android:textSize="13sp"
-            android:lineSpacingExtra="2dp" />
-
+        <!-- Hàng 1: 1, 2, 3 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -198,6 +244,7 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Hàng 2: 4, 5, 6 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -270,6 +317,7 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Hàng 3: 7, 8, 9 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -342,6 +390,7 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Hàng 4: trống, 0, xóa -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

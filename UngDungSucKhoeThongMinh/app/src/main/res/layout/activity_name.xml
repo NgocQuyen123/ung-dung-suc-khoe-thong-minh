@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".UsernameInputScreen">
+
+    <!-- Header với step indicator -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Step 1 - Active -->
+        <TextView
+            android:id="@+id/step1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tài khoản của bạn"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/step_active_bg"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp" />
+
+        <!-- Divider 1 -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="2dp"
+            android:background="#E0E0E0"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp" />
+
+        <!-- Step 2 - Inactive -->
+        <TextView
+            android:id="@+id/step2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông tin"
+            android:textSize="12sp"
+            android:textColor="#999999"
+            android:background="@drawable/step_inactive_bg"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp" />
+
+        <!-- Divider 2 -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="2dp"
+            android:background="#E0E0E0"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp" />
+
+        <!-- Step 3 - Inactive -->
+        <TextView
+            android:id="@+id/step3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🏠"
+            android:textSize="16sp"
+            android:background="@drawable/step_inactive_bg"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp" />
+    </LinearLayout>
+
+    <!-- Icon camera -->
+    <ImageView
+        android:id="@+id/iconCamera"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_camera_user"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tiêu đề -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tên hoặc biệt danh của bạn"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/iconCamera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Mô tả -->
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Chọn cách bạn muốn chúng tôi xưng hô với bạn."
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Ô nhập tên -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/inputContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/input_name_bg"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint=""
+            android:text="Long"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnClear" />
+
+        <ImageButton
+            android:id="@+id/btnClear"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_clear"
+            android:background="@drawable/btn_clear_bg"
+            android:scaleType="center"
+            android:contentDescription="Clear"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Bàn phím QWERTY tiếng Việt -->
+    <LinearLayout
+        android:id="@+id/keyboardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CDD0D5"
+        android:orientation="vertical"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/btnNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Hàng 0: Dấu tiếng Việt -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <Button android:id="@+id/keyAccentA1" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="Á" android:textSize="16sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyAccentA2" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="À" android:textSize="16sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyAccentE" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="Ê" android:textSize="16sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyAccentO" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="Ô" android:textSize="16sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyAccentU" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="Ư" android:textSize="16sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyAccentO2" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="Ơ" android:textSize="16sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyAccent1" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="´" android:textSize="16sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyAccent2" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="`" android:textSize="16sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyQuestion" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="?" android:textSize="16sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyTilde" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="~" android:textSize="16sp" android:textColor="#000000" android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Hàng 1: Q W E R T Y U I O P -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_marginTop="4dp">
+
+            <Button android:id="@+id/keyQ" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="Q" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyW" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="W" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyE" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="E" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyR" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="R" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyT" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="T" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyY" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="Y" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyU" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="U" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyI" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="I" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyO" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="O" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyP" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="P" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Hàng 2: A S D F G H J K L Đ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_marginTop="4dp">
+
+            <Button android:id="@+id/keyA" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="A" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyS" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="S" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyD" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="D" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyF" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="F" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyG" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="G" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyH" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="H" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyJ" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="J" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyK" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="K" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyL" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="L" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyD2" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="Đ" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Hàng 3: Shift Z X C V B N M Backspace -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_marginTop="4dp">
+
+            <Button android:id="@+id/keyShift" android:layout_width="0dp" android:layout_weight="1.3" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_special_key_bg" android:text="⇧" android:textSize="18sp" android:textColor="#5568E5" android:textAllCaps="false" />
+            <Button android:id="@+id/keyZ" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="Z" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyX" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="X" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyC" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="C" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyV" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="V" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyB" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="B" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyN" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="N" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyM" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="M" android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyBackspace" android:layout_width="0dp" android:layout_weight="1.7" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_special_key_bg_dark" android:text="×" android:textSize="24sp" android:textColor="#FFFFFF" android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Hàng 4: !#1, dấu phẩy, Tiếng Việt, dấu chấm, Return -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="7.7"
+            android:layout_marginTop="4dp">
+
+            <Button android:id="@+id/key123" android:layout_width="0dp" android:layout_weight="1.2" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_special_key_bg" android:text="!#1" android:textSize="13sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyComma" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="," android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyLanguage" android:layout_width="0dp" android:layout_weight="3" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_space_key_bg" android:text="◄ Tiếng Việt ►" android:textSize="13sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyDot" android:layout_width="0dp" android:layout_weight="1" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_key_bg" android:text="." android:textSize="18sp" android:textColor="#000000" android:textAllCaps="false" />
+            <Button android:id="@+id/keyReturn" android:layout_width="0dp" android:layout_weight="1.5" android:layout_height="42dp" android:layout_margin="2dp" android:background="@drawable/keyboard_special_key_bg" android:text="↵" android:textSize="20sp" android:textColor="#000000" android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Nút Tiếp theo -->
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:text="Tiếp theo"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_continue"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
