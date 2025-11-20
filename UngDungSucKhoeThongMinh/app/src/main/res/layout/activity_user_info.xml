@@ -80,6 +80,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ngô Tùng Dương"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/txtWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"/>
         </LinearLayout>
 
         <!-- Item: Số điện thoại -->
@@ -98,6 +110,18 @@
 
             <TextView
                 android:id="@+id/txtPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="089992828"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/txtSdt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"/>
@@ -122,6 +146,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nam"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/txtGioiTinh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"/>
         </LinearLayout>
 
         <!-- Item: Chiều cao -->
@@ -136,6 +172,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Chiều cao"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1m65"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/txtChieucao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textSize="16sp"/>
 
             <TextView
@@ -157,6 +205,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Năm sinh"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2005"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/txtDear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textSize="16sp"/>
 
             <TextView
