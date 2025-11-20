@@ -19,9 +19,13 @@
         <activity
             android:name=".StepsActivity"
             android:exported="false" />
-        <activity
-            android:name=".Home"
 
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+
+            android:name=".Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,6 +45,17 @@
         <activity
             android:name=".SignInMethodScreen"
             android:exported="false" />
+        <activity
+            android:name=".EditNameActivity"/>
+        <activity
+            android:name=".EditGenderActivity"/>
+        <activity
+            android:name=".EditHeightActivity"/>
+        <activity
+            android:name=".EditDearActivity"/>
+        <activity
+            android:name=".PhoneActivity"/>
+
 
         <activity
             android:name=".PhoneAuthScreen"

@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp">
     <FrameLayout
+        android:id="@+id/frameProfile"
         android:layout_width="50dp"
         android:layout_height="50dp">
 

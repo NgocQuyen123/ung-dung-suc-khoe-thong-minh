@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:padding="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Back -->
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="37dp"
@@ -15,16 +15,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Avatar -->
     <ImageView
         android:id="@+id/imgAvatar"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/icon_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Title -->
     <TextView
         android:id="@+id/txtTitle"
         android:layout_width="0dp"
@@ -37,17 +38,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnBack"/>
 
+    <!-- Subtitle -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Thêm thông tin của bạn để chúng tôi có thể cá nhân hóa trải nghiệm của bạn"
+        android:text="Thêm thông tin của bạn để chúng tôi có thể cá nhân hóa trải nghiệm"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/txtTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Box -->
     <LinearLayout
         android:id="@+id/layoutInfoBox"
         android:layout_width="0dp"
@@ -60,13 +63,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Item: Tên -->
+        <!-- NAME -->
         <LinearLayout
             android:id="@+id/btnEditName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
@@ -80,21 +82,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Ngô Tùng Dương"
-                android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/txtWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"/>
+                android:text="Ngô Tùng Dương"
+                android:textSize="18sp"/>
         </LinearLayout>
 
-        <!-- Item: Số điện thoại -->
+        <!-- PHONE -->
         <LinearLayout
             android:id="@+id/btnEditPhone"
             android:layout_width="match_parent"
@@ -113,21 +109,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="089992828"
-                android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/txtSdt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"/>
+                android:text="03854898"
+                android:textSize="18sp"/>
         </LinearLayout>
 
-        <!-- Item: Giới tính -->
+        <!-- GENDER -->
         <LinearLayout
             android:id="@+id/btnEditGender"
             android:layout_width="match_parent"
@@ -146,21 +136,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nam"
-                android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/txtGioiTinh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"/>
+                android:text="Nam"
+                android:textSize="18sp"/>
         </LinearLayout>
 
-        <!-- Item: Chiều cao -->
+        <!-- HEIGHT -->
         <LinearLayout
             android:id="@+id/btnEditHeight"
             android:layout_width="match_parent"
@@ -171,19 +155,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Chiều cao"
-                android:textSize="16sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="1m65"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/txtChieucao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:text="Chiều cao (cm)"
                 android:textSize="16sp"/>
 
             <TextView
@@ -191,9 +163,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="178"
+                android:textSize="18sp"/>
         </LinearLayout>
 
-        <!-- Item: Năm sinh -->
+        <!-- BIRTH -->
         <LinearLayout
             android:id="@+id/btnEditBirth"
             android:layout_width="match_parent"
@@ -206,25 +184,20 @@
                 android:layout_weight="1"
                 android:text="Năm sinh"
                 android:textSize="16sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="2005"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/txtDear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/txtBirth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2005"
+                android:textSize="18sp"/>
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
