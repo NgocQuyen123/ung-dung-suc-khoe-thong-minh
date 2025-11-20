@@ -1,15 +1,12 @@
-
 package admin.example.ungdungsuckhoethongminh;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,30 +14,19 @@ import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
-
-import admin.example.ungdungsuckhoethongminh.model.Fitness;
-import admin.example.ungdungsuckhoethongminh.network.ApiClient;
-import admin.example.ungdungsuckhoethongminh.network.ApiService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DayFragment extends Fragment {
 
     private ImageView imgCircle, imgCenterIcon;
-    private TextView  txtSmallSteps, txtSmallCalories, txtSmallDistance, txtSmallTime;
+    private TextView txtSmallSteps, txtSmallCalories, txtSmallDistance, txtSmallTime;
     private TextView txtCenterTop, txtCenterBottom, txtDayInfo;
     private ImageButton btnPrevDay, btnNextDay;
 
     private Calendar calendar = Calendar.getInstance();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-    private Fitness currentFitness; // Lưu dữ liệu hiện tại
 
-    public DayFragment() {
-        // Required empty public constructor
-    }
+    public DayFragment() {}
 
     @Nullable
     @Override
@@ -63,111 +49,60 @@ public class DayFragment extends Fragment {
         btnPrevDay = view.findViewById(R.id.btnPrevDay);
         btnNextDay = view.findViewById(R.id.btnNextDay);
 
-        // Hiển thị dữ liệu ngày hiện tại
-        fetchFitnessData(sdf.format(calendar.getTime()));
+        loadDemoData();
         updateDayInfo();
 
-        // Nút lùi ngày
         btnPrevDay.setOnClickListener(v -> {
             calendar.add(Calendar.DAY_OF_MONTH, -1);
-            fetchFitnessData(sdf.format(calendar.getTime()));
+            loadDemoData();
             updateDayInfo();
         });
 
-        // Nút tiến ngày
         btnNextDay.setOnClickListener(v -> {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
-            fetchFitnessData(sdf.format(calendar.getTime()));
+            loadDemoData();
             updateDayInfo();
         });
 
-        // Sự kiện click các ô nhỏ để hiển thị giữa vòng tròn
+        // Click vào ô nhỏ để đổi nội dung giữa vòng tròn
         txtSmallSteps.setOnClickListener(v -> {
-            if (currentFitness != null) {
-                txtCenterTop.setText(String.valueOf(currentFitness.getSo_buoc()));
-                txtCenterBottom.setText("bước");
-                imgCenterIcon.setImageResource(R.drawable.vector); // icon bước chân
-            }
+            txtCenterTop.setText("6500");
+            txtCenterBottom.setText("bước");
+            imgCenterIcon.setImageResource(R.drawable.buocchan);
         });
 
         txtSmallCalories.setOnClickListener(v -> {
-            if (currentFitness != null) {
-                txtCenterTop.setText(String.valueOf((int) currentFitness.getCalo()));
-                txtCenterBottom.setText("kcal");
-                imgCenterIcon.setImageResource(R.drawable.mdi_fire); // icon calo
-            }
+            txtCenterTop.setText("320");
+            txtCenterBottom.setText("kcal");
+            imgCenterIcon.setImageResource(R.drawable.mdi_fire);
         });
 
         txtSmallDistance.setOnClickListener(v -> {
-            if (currentFitness != null) {
-                txtCenterTop.setText(String.valueOf((int) currentFitness.getQuang_duong_m()));
-                txtCenterBottom.setText("m");
-                imgCenterIcon.setImageResource(R.drawable.arrow_right); // icon quãng đường
-            }
+            txtCenterTop.setText("4500");
+            txtCenterBottom.setText("m");
+            imgCenterIcon.setImageResource(R.drawable.arrow_right);
         });
 
         txtSmallTime.setOnClickListener(v -> {
-            if (currentFitness != null) {
-                int totalMinutes = 0;
-                for (Fitness.Activity act : currentFitness.getHoat_dong()) {
-                    totalMinutes += act.getThoi_gian_phut();
-                }
-                txtCenterTop.setText(String.valueOf(totalMinutes));
-                txtCenterBottom.setText("phút");
-                imgCenterIcon.setImageResource(R.drawable.mdi_light_clock); // icon thời gian
-            }
+            txtCenterTop.setText("35");
+            txtCenterBottom.setText("phút");
+            imgCenterIcon.setImageResource(R.drawable.mdi_light_clock);
         });
-
 
         return view;
     }
 
-    private void fetchFitnessData(String date) {
-        ApiService apiService = ApiClient.getApiService();
-        Call<List<Fitness>> call = apiService.getFitnessByDate(date);
+    // FIX CỨNG DỮ LIỆU DEMO  -------------------------
+    private void loadDemoData() {
 
-        call.enqueue(new Callback<List<Fitness>>() {
-            @Override
-            public void onResponse(Call<List<Fitness>> call, Response<List<Fitness>> response) {
-                if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
-                    currentFitness = response.body().get(0);
+        txtSmallSteps.setText("6500\nbước");
+        txtSmallCalories.setText("320\nkcal");
+        txtSmallDistance.setText("4500\nm");
+        txtSmallTime.setText("35\nphút");
 
-                    txtSmallSteps.setText(currentFitness.getSo_buoc() + "\nbước");
-                    txtSmallCalories.setText((int) currentFitness.getCalo() + "\nkcal");
-                    txtSmallDistance.setText((int) currentFitness.getQuang_duong_m() + "\nm");
-
-                    int totalMinutes = 0;
-                    for (Fitness.Activity act : currentFitness.getHoat_dong()) {
-                        totalMinutes += act.getThoi_gian_phut();
-                    }
-                    txtSmallTime.setText(totalMinutes + "\nphút");
-
-                    // Mặc định hiển thị bước ở giữa vòng tròn
-                    txtCenterTop.setText(String.valueOf(currentFitness.getSo_buoc()));
-                    txtCenterBottom.setText("bước");
-
-                } else {
-                    resetData();
-                    Toast.makeText(getContext(), "Không có dữ liệu cho ngày " + date, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Fitness>> call, Throwable t) {
-                resetData();
-                Toast.makeText(getContext(), "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void resetData() {
-        currentFitness = null;
-        txtSmallSteps.setText("0\nbước");
-        txtSmallCalories.setText("0\nkcal");
-        txtSmallDistance.setText("0\nm");
-        txtSmallTime.setText("0\nphút");
-        txtCenterTop.setText("0");
+        txtCenterTop.setText("6500");
         txtCenterBottom.setText("bước");
+        imgCenterIcon.setImageResource(R.drawable.buocchan);
     }
 
     private void updateDayInfo() {
@@ -186,4 +121,3 @@ public class DayFragment extends Fragment {
         }
     }
 }
-

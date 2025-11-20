@@ -1,13 +1,282 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="GIAO DIỆN THÁNG"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Nút chuyển ngày -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="25dp">
+
+            <ImageButton
+                android:id="@+id/btnPrevDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chevron_left"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Ngày trước"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/txtDayInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hôm nay"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/btnNextDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chevron_right"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Ngày sau"/>
+        </LinearLayout>
+
+        <!-- Tiêu đề tổng -->
+        <TextView
+            android:text="TỔNG HÀNG THÁNG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#999999"
+            android:layout_marginTop="8dp" />
+
+        <!-- Tổng bước + trung bình -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/txtTotalSteps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11,233"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtStepsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="bước"
+                    android:textSize="16sp"
+                    android:layout_marginStart="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="4dp"
+                android:background="@drawable/border_black">
+
+                <TextView
+                    android:id="@+id/txtAverage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trung bình 439"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="6dp" />
+
+                <ImageView
+                    android:src="@drawable/arrow_down"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Ngày tháng -->
+        <TextView
+            android:id="@+id/txtWeekRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tháng 9 2025"
+            android:textSize="14sp"
+            android:textColor="#A0A0A0"
+            android:layout_marginTop="6dp" />
+
+        <!-- Lịch tháng -->
+        <LinearLayout
+            android:id="@+id/calendarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <!-- Hàng thứ trong tuần -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView android:text="T2" android:textColor="#777"
+                    android:gravity="center" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"/>
+                <TextView android:text="T3" android:textColor="#777"
+                    android:gravity="center" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"/>
+                <TextView android:text="T4" android:textColor="#777"
+                    android:gravity="center" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"/>
+                <TextView android:text="T5" android:textColor="#777"
+                    android:gravity="center" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"/>
+                <TextView android:text="T6" android:textColor="#777"
+                    android:gravity="center" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"/>
+                <TextView android:text="T7" android:textColor="#777"
+                    android:gravity="center" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"/>
+                <TextView android:text="CN" android:textColor="#777"
+                    android:gravity="center" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"/>
+            </LinearLayout>
+
+            <!-- 5 dòng ngày -->
+            <LinearLayout
+                android:id="@+id/row1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/row2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/row3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/row4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/row5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+        <!-- Các ô nhỏ: bước, calo, quãng đường, thời gian -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="40dp">
+
+            <!-- Bước -->
+            <TextView
+                android:id="@+id/txtSmallSteps"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="11,223\nbước"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="@drawable/card_bg_colored"
+                android:drawableTop="@drawable/circle_icon_bg"
+                android:drawablePadding="4dp"/>
+
+
+            <!-- Calo -->
+            <TextView
+                android:id="@+id/txtSmallCalories"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="4500\nkcal"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/card_bg_colored"
+                android:drawableTop="@drawable/circle_icon_fire"
+                android:drawablePadding="4dp"/>
+
+
+            <!-- Quãng đường -->
+            <TextView
+                android:id="@+id/txtSmallDistance"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="9 km"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/card_bg_colored"
+                android:drawableTop="@drawable/circle_icon_arrow"
+                android:drawablePadding="4dp"/>
+
+
+            <!-- Thời gian -->
+            <TextView
+                android:id="@+id/txtSmallTime"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="3,2\nphút"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/card_bg_colored"
+                android:drawableTop="@drawable/circle_icon_clock"
+                android:drawablePadding="4dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

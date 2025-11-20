@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Hình tròn nền trắng -->
+    <item android:width="48dp" android:height="48dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Icon đồng hồ -->
+    <item android:gravity="center">
+        <bitmap
+            android:src="@drawable/mdi_light_clock"
+            android:gravity="center"/>
+    </item>
+
+</layer-list>

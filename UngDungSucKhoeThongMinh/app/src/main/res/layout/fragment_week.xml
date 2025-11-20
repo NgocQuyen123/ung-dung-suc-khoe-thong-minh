@@ -106,7 +106,9 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="4dp"
+                android:background="@drawable/border_black">
 
                 <TextView
                     android:id="@+id/txtAverage"
@@ -121,6 +123,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp" />
             </LinearLayout>
+
         </LinearLayout>
 
 
@@ -135,235 +138,309 @@
             android:layout_marginTop="6dp" />
 
         <!-- Biểu đồ 7 cột -->
-        <LinearLayout
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/chartWeek"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             android:orientation="horizontal"
+            android:gravity="bottom|center"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
             android:weightSum="7"
-            android:gravity="bottom"
-            android:layout_marginTop="16dp">
+            android:background="@android:color/white">
 
-            <!-- Cột mẫu (copy 7 lần) -->
-            <FrameLayout
+            <!-- ===== CỘT 1 ===== -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
 
                 <View
                     android:id="@+id/bar1"
-                    android:layout_gravity="bottom"
                     android:layout_width="24dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar1Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
 
                 <TextView
                     android:id="@+id/bar1Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="439"
-                    android:textSize="10sp"
-                    android:gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="bottom|center_horizontal" />
-            </FrameLayout>
+                    android:textColor="#8890EA"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
 
-            <!-- 6 cột còn lại -->
-            <FrameLayout
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 2 ===== -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
 
                 <View
                     android:id="@+id/bar2"
                     android:layout_width="24dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar2Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
                 <TextView
                     android:id="@+id/bar2Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="_"
-                    android:textSize="10sp"
-                    android:gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="bottom|center_horizontal" />
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
 
-            </FrameLayout>
 
-            <FrameLayout
+            <!-- ===== CỘT 3 ===== -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
 
                 <View
                     android:id="@+id/bar3"
                     android:layout_width="24dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar3Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
                 <TextView
                     android:id="@+id/bar3Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="_"
-                    android:textSize="10sp"
-                    android:gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="bottom|center_horizontal" />
-            </FrameLayout>
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
 
-            <FrameLayout
+
+            <!-- ===== CỘT 4 ===== -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
 
                 <View
                     android:id="@+id/bar4"
                     android:layout_width="24dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar4Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
                 <TextView
                     android:id="@+id/bar4Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="_"
-                    android:textSize="10sp"
-                    android:gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="bottom|center_horizontal" />
-            </FrameLayout>
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
 
-            <FrameLayout
+
+            <!-- ===== CỘT 5 ===== -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
 
                 <View
                     android:id="@+id/bar5"
                     android:layout_width="24dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar5Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
                 <TextView
                     android:id="@+id/bar5Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="_"
-                    android:textSize="10sp"
-                    android:gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="bottom|center_horizontal" />
-            </FrameLayout>
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
 
-            <FrameLayout
+            <!-- ===== CỘT 6 ===== -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
 
                 <View
                     android:id="@+id/bar6"
                     android:layout_width="24dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar6Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
                 <TextView
                     android:id="@+id/bar6Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="_"
-                    android:textSize="10sp"
-                    android:gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="bottom|center_horizontal" />
-            </FrameLayout>
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
 
-            <FrameLayout
+
+            <!-- ===== CỘT 7 ===== -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
 
                 <View
                     android:id="@+id/bar7"
                     android:layout_width="24dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar7Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
                 <TextView
                     android:id="@+id/bar7Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="_"
-                    android:textSize="10sp"
-                    android:gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="bottom|center_horizontal" />
-            </FrameLayout>
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
 
         </LinearLayout>
 
-        <!-- 4 ô thông tin -->
+
+        <!-- Các ô nhỏ: bước, calo, quãng đường, thời gian -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="40dp">
 
+            <!-- Bước -->
             <TextView
-                android:id="@+id/infoSteps"
-                android:text="439\nbước"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:background="@drawable/info_selected"
+                android:id="@+id/txtSmallSteps"
                 android:layout_width="80dp"
-                android:layout_height="80dp" />
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="11,223\nbước"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="@drawable/card_bg_colored"
+                android:drawableTop="@drawable/circle_icon_bg"
+                android:drawablePadding="4dp"/>
 
-            <TextView
-                android:id="@+id/infoCalories"
-                android:text="13\nkcal"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:background="@drawable/info_default"
-                android:layout_marginStart="10dp"
-                android:layout_width="80dp"
-                android:layout_height="80dp" />
 
+            <!-- Calo -->
             <TextView
-                android:id="@+id/infoDistance"
-                android:text="140\nm"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:background="@drawable/info_default"
-                android:layout_marginStart="10dp"
+                android:id="@+id/txtSmallCalories"
                 android:layout_width="80dp"
-                android:layout_height="80dp" />
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="4500\nkcal"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/card_bg_colored"
+                android:drawableTop="@drawable/circle_icon_fire"
+                android:drawablePadding="4dp"/>
 
+
+            <!-- Quãng đường -->
             <TextView
-                android:id="@+id/infoTime"
-                android:text="4\nphút"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:background="@drawable/info_default"
-                android:layout_marginStart="10dp"
+                android:id="@+id/txtSmallDistance"
                 android:layout_width="80dp"
-                android:layout_height="80dp" />
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="9 km"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/card_bg_colored"
+                android:drawableTop="@drawable/circle_icon_arrow"
+                android:drawablePadding="4dp"/>
+
+
+            <!-- Thời gian -->
+            <TextView
+                android:id="@+id/txtSmallTime"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="3,2\nphút"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/card_bg_colored"
+                android:drawableTop="@drawable/circle_icon_clock"
+                android:drawablePadding="4dp"/>
+
         </LinearLayout>
 
     </LinearLayout>
