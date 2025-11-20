@@ -1,7 +1,13 @@
 {
   "users": [
-    { "id": 1, "name": "Quyên", "age": 20 },
-    { "id": 2, "name": "Tính", "age": 21 }
+    {
+      "chieuCao": 115,
+      "gioiTinh": "Nam",
+      "id": "1",
+      "namSinh": 9933,
+      "sdt": "222222",
+      "ten": "dng"
+    }
   ],
   "products": [
     { "id": 1, "name": "Vòng tay handmade", "price": 120000 },

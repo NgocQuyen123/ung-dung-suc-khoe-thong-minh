@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6A6D7C">
+
+    <!-- PANEL TRẮNG -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomPanel"
+        android:layout_width="385dp"
+        android:layout_height="514dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.7"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Nút đóng -->
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="41dp"
+            android:layout_height="45dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="40dp"
+            android:src="@drawable/close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Năm sinh của tôi"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- EditText nhập năm sinh -->
+        <EditText
+            android:id="@+id/edtBirthYear"
+            android:layout_width="341dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="24dp"
+            android:background="@null"
+            android:hint="Nhập năm sinh"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtTitle" />
+
+        <!-- Gạch dưới EditText -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="#BDBDBD"
+            app:layout_constraintEnd_toEndOf="@id/edtBirthYear"
+            app:layout_constraintStart_toStartOf="@id/edtBirthYear"
+            app:layout_constraintTop_toBottomOf="@id/edtBirthYear" />
+
+        <!-- Nút lưu -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="354dp"
+            android:layout_height="84dp"
+            android:layout_marginBottom="208dp"
+            android:backgroundTint="#101010"
+            android:text="Lưu"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/edtBirthYear"
+            app:layout_constraintStart_toStartOf="@id/edtBirthYear" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
