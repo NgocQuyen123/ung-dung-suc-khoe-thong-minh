@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="#F5F5FF"
     tools:context=".PhoneAuthScreen">
 
     <!-- Nút quay lại -->
@@ -13,7 +13,7 @@
         android:id="@+id/btnBack"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:src="@drawable/back"
+        android:src="@drawable/ic_back"
         android:contentDescription="@string/back"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
@@ -25,8 +25,8 @@
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Tạo tài khoản bằng số\ndiện thoại"
-        android:textSize="24sp"
+        android:text="Tạo tài khoản bằng số\nđiện thoại"
+        android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:gravity="center"
@@ -39,22 +39,24 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Mô tả -->
+
+    <!-- Ô nhập số điện thoại -->
     <TextView
         android:id="@+id/tvSubtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Nhập số điện thoại để tạo tài khoản"
-        android:textSize="14sp"
-        android:textColor="#666666"
-        android:gravity="center"
-        android:layout_marginTop="12dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        android:gravity="center"
+        android:text="Nhập số điện thoại để tạo tài khoản"
+        android:textColor="#666666"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-    <!-- Ô nhập số điện thoại -->
     <LinearLayout
         android:id="@+id/phoneContainer"
         android:layout_width="0dp"
@@ -130,39 +132,45 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@null"
-                android:hint="Số điện thoại"
-                android:textColorHint="#B0B0B0"
-                android:inputType="none"
-                android:focusable="false"
                 android:cursorVisible="true"
+                android:focusable="false"
+                android:hint="Số điện thoại"
+                android:inputType="none"
                 android:textColor="@android:color/black"
+                android:textColorHint="#B0B0B0"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/tvCountryCode"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.538" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
     <!-- Nút tiếp theo -->
+
+    <!-- Bàn phím số (giống màn hình OTP) -->
+
     <Button
         android:id="@+id/btnNext"
         style="@style/MyButtonStyle"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="236dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginTop="24dp"
         android:background="@drawable/btn_next"
+        android:enabled="false"
         android:text="Tiếp theo"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneContainer" />
 
-    <!-- Bàn phím số (giống màn hình OTP) -->
     <LinearLayout
         android:id="@+id/keyboardLayout"
         android:layout_width="match_parent"
