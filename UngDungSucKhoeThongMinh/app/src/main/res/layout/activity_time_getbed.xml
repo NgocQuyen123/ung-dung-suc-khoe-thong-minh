@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#17182D">
+
+    <!-- Nút đóng -->
+
+    <!-- Panel trắng -->
+
+    <ImageView
+        android:id="@+id/imgClose"
+        android:layout_width="41dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:background="#FFFFFF"
+
+        android:src="@drawable/close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomPanel"
+        android:layout_width="380dp"
+        android:layout_height="536dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="296dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="24dp"
+            android:text="Tính nhất quán khi đi ngủ"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Thời lượng ngủ -->
+
+
+        <!-- Tên các mức trên thanh màu -->
+
+        <TextView
+            android:id="@+id/txtSleepTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text=" · Rất thấp"
+            android:textColor="#E53935"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.576"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtTitle" />
+
+        <TextView
+            android:id="@+id/txtSleepTime1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="31%"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.417"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtTitle" />
+
+        <LinearLayout
+            android:id="@+id/labelAbove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/txtSleepTime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="Rất thấp"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:textColor="#666666" />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Thấp"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:textColor="#666666" />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Vừa"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:textColor="#666666" />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Tốt"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:textColor="#666666" />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Tuyệt vời"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:textColor="#666666" />
+        </LinearLayout>
+
+        <!-- Thanh màu -->
+        <LinearLayout
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/labelAbove"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="10dp"
+                android:background="#FF4E4E" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="8dp"
+                android:background="#FFA726" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="8dp"
+                android:background="#FFCC00" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="8dp"
+                android:background="#4CAF50" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="8dp"
+                android:background="#03A9F4" />
+
+
+        </LinearLayout>
+
+        <!-- Các con số dưới thanh màu -->
+        <LinearLayout
+            android:id="@+id/labelLevels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/ratingBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <!-- 🔵 Nút báo mức (%) -->
+            <!-- Điều chỉnh vị trí -->
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:text="60"
+                android:textColor="#808080"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="38dp"
+                android:layout_height="32dp"
+                android:text="   70"
+                android:textColor="#808080"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="32dp"
+                android:text="   80"
+                android:textColor="#808080"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="53dp"
+                android:layout_height="match_parent"
+                android:text="   90"
+                android:textColor="#808080"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:id="@+id/dividerTop"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/labelLevels"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Nguồn -->
+        <TextView
+            android:id="@+id/txtSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nguồn: Nhóm nguyên cứu Elfle"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/dividerTop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Mô tả -->
+
+        <TextView
+            android:id="@+id/txtDescription"
+            android:layout_width="284dp"
+            android:layout_height="169dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="56dp"
+            android:text="Tính nhất quán giờ đi ngủ đề cập đến việc duy trì lịch trình đi ngủ vào cùng một thời điểm mỗi đêm.
+            Thói quen này giúp cân bằng nhịp sinh học của bạn, cải thiện sự cân bằng hormone, tiêu hóa và điều chỉnh tâm trạng.
+Giờ đi ngủ nhất quán cũng nâng cao chất lượng giấc ngủ, hỗ trợ củng cố ký ức, quản lý căng thẳng và hoạt động tổng thể.
+"
+        android:textColor="#333333"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtSource"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imgxuong"
+            android:layout_width="51dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="468dp"
+            android:background="#FFFFFF"
+
+            android:src="@drawable/chevron_bottom1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
