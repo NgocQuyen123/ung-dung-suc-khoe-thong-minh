@@ -91,7 +91,7 @@ public class OtpVerificationActivity extends AppCompatActivity {
             Toast.makeText(this, "Xác thực thành công!", Toast.LENGTH_SHORT).show();
 
             // → Chuyển về màn Main
-            Intent intent = new Intent(OtpVerificationActivity.this, MainActivity.class);
+            Intent intent = new Intent(OtpVerificationActivity.this, Home.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();

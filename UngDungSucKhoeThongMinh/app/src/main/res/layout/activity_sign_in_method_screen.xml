@@ -21,13 +21,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.991">
 
-        <!-- Nút đen -->
-
-        <!-- Nút xám 1 -->
-
-        <!-- Nút xám 2 -->
-
-        <!-- Nút xám 3 -->
 
         <Button
             android:id="@+id/button"

@@ -136,7 +136,7 @@ public class PhoneAuthScreen extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(PhoneAuthScreen.this, Home.class);
+            Intent intent = new Intent(PhoneAuthScreen.this, RegisterPhoneActivity.class);
             intent.putExtra("phoneNumber", phone);
             startActivity(intent);
 
