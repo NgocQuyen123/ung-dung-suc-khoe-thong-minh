@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh;
+package admin.example.ungdungsuckhoethongminh.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class HealthWeekFragment extends Fragment {
-    public HealthWeekFragment() {}
+import admin.example.ungdungsuckhoethongminh.R;
+
+
+public class WeekFragment extends Fragment {
+
+    public WeekFragment() {}
 
     @Nullable
     @Override
@@ -18,8 +22,10 @@ public class HealthWeekFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_health_week, container, false);
+        View view = inflater.inflate(R.layout.fragment_week, container, false);
 
         return view;
     }
+
+
 }

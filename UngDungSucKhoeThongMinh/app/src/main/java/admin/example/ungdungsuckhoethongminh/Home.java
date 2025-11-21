@@ -9,6 +9,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import androidx.viewpager2.widget.ViewPager2;
 
+import admin.example.ungdungsuckhoethongminh.adapters.HomePagerAdapter;
+
 public class Home extends AppCompatActivity {
 
     private TabLayout tabLayoutHome;

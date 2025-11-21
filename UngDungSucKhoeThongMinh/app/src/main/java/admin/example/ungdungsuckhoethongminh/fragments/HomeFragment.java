@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh;
+package admin.example.ungdungsuckhoethongminh.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import admin.example.ungdungsuckhoethongminh.ProfileActivity;
+import admin.example.ungdungsuckhoethongminh.R;
 
 public class HomeFragment extends Fragment {
 

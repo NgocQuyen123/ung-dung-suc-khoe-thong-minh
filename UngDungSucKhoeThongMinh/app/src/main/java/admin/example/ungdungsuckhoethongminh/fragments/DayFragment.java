@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh;
+package admin.example.ungdungsuckhoethongminh.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import admin.example.ungdungsuckhoethongminh.R;
 
 public class DayFragment extends Fragment {
 

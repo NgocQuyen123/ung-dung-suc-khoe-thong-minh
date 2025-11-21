@@ -1,9 +1,14 @@
-package admin.example.ungdungsuckhoethongminh;
+package admin.example.ungdungsuckhoethongminh.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import admin.example.ungdungsuckhoethongminh.fragments.HealthDayFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.HealthMonthFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.HealthWeekFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.HealthYearFragment;
 
 public class CalosPagerAdapter extends FragmentStateAdapter {
     public CalosPagerAdapter(@NonNull FragmentActivity fa) {

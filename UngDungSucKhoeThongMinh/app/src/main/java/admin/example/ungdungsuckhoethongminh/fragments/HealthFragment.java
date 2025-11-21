@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh;
+package admin.example.ungdungsuckhoethongminh.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import admin.example.ungdungsuckhoethongminh.CaloActivity;
+import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.StepsActivity;
 
 public class HealthFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh;
+package admin.example.ungdungsuckhoethongminh.fragments;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -18,14 +18,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class HealthMonthFragment extends Fragment {
+import admin.example.ungdungsuckhoethongminh.R;
+
+public class MonthFragment extends Fragment {
+
     private LinearLayout row1, row2, row3, row4, row5;
     private TextView txtWeekRange;
 
     private Calendar calendar;
     private TextView selectedDayView = null;
 
-    public HealthMonthFragment() {}
+    public MonthFragment() {}
 
     @Nullable
     @Override
@@ -33,7 +36,7 @@ public class HealthMonthFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_health_month, container, false);
+        View view = inflater.inflate(R.layout.fragment_month, container, false);
 
         // Ánh xạ đúng theo XML bạn gửi
         row1 = view.findViewById(R.id.row1);

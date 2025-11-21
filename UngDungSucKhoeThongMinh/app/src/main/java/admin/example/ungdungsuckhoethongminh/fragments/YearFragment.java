@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh;
+package admin.example.ungdungsuckhoethongminh.fragments;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -14,10 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class HealthYearFragment extends Fragment {
+import admin.example.ungdungsuckhoethongminh.R;
+
+public class YearFragment extends Fragment {
+
     private LinearLayout columnContainer;
 
-    public HealthYearFragment() {}
+    public YearFragment() {}
 
     @Nullable
     @Override
@@ -25,7 +28,7 @@ public class HealthYearFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_health_year, container, false);
+        View view = inflater.inflate(R.layout.fragment_year, container, false);
 
         // lấy container từ XML
         columnContainer = view.findViewById(R.id.columnContainer);
