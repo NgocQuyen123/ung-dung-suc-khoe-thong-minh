@@ -10,31 +10,41 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import admin.example.ungdungsuckhoethongminh.ProfileActivity;
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.adapters.HealthAdapter;
+import admin.example.ungdungsuckhoethongminh.model.HealthItem;
 
 public class HomeFragment extends Fragment {
 
-    public HomeFragment() {
-    }
+    private RecyclerView rvHealthItems;
+    private HealthAdapter adapter;
+    private List<HealthItem> healthItems;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Lấy FrameLayout từ view đã inflate
-        FrameLayout frameProfile = view.findViewById(R.id.frameProfile);
+        rvHealthItems = view.findViewById(R.id.rvHealthItems);
+        rvHealthItems.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Click mở ProfileActivity
-        frameProfile.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), ProfileActivity.class);
-            startActivity(intent);
-        });
+        // Dữ liệu mẫu
+        healthItems = new ArrayList<>();
+        healthItems.add(new HealthItem("Đếm bước chân", "Cấp quyền bước chân", R.drawable.chaybo));
+        healthItems.add(new HealthItem("Dinh dưỡng", "Thiết lập chương trình", R.drawable.ic_dinhduong));
+        healthItems.add(new HealthItem("Mỡ trong máu", "Nhập ngay", R.drawable.ic_motrongmau));
+
+        adapter = new HealthAdapter(healthItems);
+        rvHealthItems.setAdapter(adapter);
 
         return view;
     }

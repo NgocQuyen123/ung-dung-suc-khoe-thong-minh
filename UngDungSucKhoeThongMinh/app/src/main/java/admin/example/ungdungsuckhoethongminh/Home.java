@@ -7,31 +7,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import admin.example.ungdungsuckhoethongminh.adapters.HomePagerAdapter;
+import admin.example.ungdungsuckhoethongminh.fragments.HomeFragment;
 
 public class Home extends AppCompatActivity {
-
-    private TabLayout tabLayoutHome;
-    private ViewPager2 viewPagerHome;
-
-    private final String[] tabTitles = new String[]{"Trang chủ", "Quà tặng", "Sức khỏe", "Thuốc"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        tabLayoutHome = findViewById(R.id.tabLayoutHome);
-        viewPagerHome = findViewById(R.id.viewPagerHome);
+        // Load HomeFragment vào FrameLayout
+        loadFragment(new HomeFragment());
+    }
 
-        HomePagerAdapter adapter = new HomePagerAdapter(this);
-        viewPagerHome.setAdapter(adapter);
-
-        // Kết nối TabLayout và ViewPager2
-        new TabLayoutMediator(tabLayoutHome, viewPagerHome,
-                (tab, position) -> tab.setText(tabTitles[position])
-        ).attach();
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.homeContainer, fragment); // homeContainer là FrameLayout trong XML
+        transaction.commit();
     }
 }

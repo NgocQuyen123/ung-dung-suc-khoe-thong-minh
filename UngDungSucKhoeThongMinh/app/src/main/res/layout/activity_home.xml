@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- ViewPager lên trên -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPagerHome"
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:id="@+id/homeContainer"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginBottom="12dp" />  <!-- cho cách tab chút -->
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- TabLayout xuống dưới -->
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayoutHome"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@drawable/tab_background_rounded"
-        app:tabSelectedTextColor="@color/purple_700"
-        app:tabTextColor="@color/black"
-        app:tabMode="fixed"
-        app:tabGravity="fill"/>
-</LinearLayout>
+    <include
+        android:id="@+id/bottomNav"
+        layout="@layout/bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
