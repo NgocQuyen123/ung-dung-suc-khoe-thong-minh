@@ -17,6 +17,16 @@
         android:usesCleartextTraffic="true">
 
         <activity
+            android:name=".GoalWeightSettingActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".StepsActivity"
             android:exported="false" />
 
@@ -49,26 +59,26 @@
             android:name=".SignInMethodScreen"
             android:exported="false" />
         <activity
-            android:name=".EditNameActivity"/>
+            android:name=".EditNameActivity"
+            android:exported="false"/>
         <activity
-            android:name=".EditGenderActivity"/>
+            android:name=".EditGenderActivity"
+            android:exported="false"/>
         <activity
-            android:name=".EditHeightActivity"/>
+            android:name=".EditHeightActivity"
+            android:exported="false"/>
         <activity
-            android:name=".EditDearActivity"/>
+            android:name=".EditDearActivity"
+            android:exported="false"/>
         <activity
-            android:name=".PhoneActivity"/>
-
+            android:name=".PhoneActivity"
+            android:exported="false" />
 
         <activity
             android:name=".PhoneAuthScreen"
             android:exported="false"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize">
-
-            <!-- Xóa intent-filter khỏi PhoneAuthScreen -->
-
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
