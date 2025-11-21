@@ -78,6 +78,18 @@
         <activity
             android:name=".PhoneActivity"
             android:exported="false" />
+        <activity
+            android:name=".SleepConsistencyActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".TimeSleepActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".GoBedActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <activity
             android:name=".PhoneAuthScreen"
