@@ -15,7 +15,6 @@ import android.widget.TextView;
 import admin.example.ungdungsuckhoethongminh.GoalWeightSettingActivity;
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.model.ThongTinCanNang;
-import admin.example.ungdungsuckhoethongminh.viewmodel.SharedViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +23,9 @@ import admin.example.ungdungsuckhoethongminh.viewmodel.SharedViewModel;
  */
 public class TargetWeightFragment extends Fragment {
 
-    private SharedViewModel vm;
+    private final double CURRENT_WEIGHT = 65.0;
+    private final double TARGET_WEIGHT = 60.0;
+
     private EditText edtCurrent, edtTarget;
     private Button btnNext;
     @Override
@@ -34,25 +35,13 @@ public class TargetWeightFragment extends Fragment {
         edtTarget = root.findViewById(R.id.edtTargetWeight);
         btnNext = root.findViewById(R.id.btnNext);
 
-        vm = ((GoalWeightSettingActivity) getActivity()).getViewModel();
-
-        vm.user.observe(getViewLifecycleOwner(), new Observer<ThongTinCanNang>() {
-            @Override
-            public void onChanged(ThongTinCanNang t) {
-                if (t != null) {
-                    edtCurrent.setText(String.valueOf(t.canNangHienTai));
-                    edtTarget.setText(String.valueOf(t.canNangMucTieu));
-                }
-            }
-        });
+        edtCurrent.setText(String.valueOf(CURRENT_WEIGHT));
+        edtTarget.setText(String.valueOf(TARGET_WEIGHT));
 
         btnNext.setOnClickListener(v -> {
-            String cur = edtCurrent.getText().toString();
-            String tgt = edtTarget.getText().toString();
-            if (!cur.isEmpty()) vm.updateWeight(Double.parseDouble(cur));
-            if (!tgt.isEmpty()) vm.updateTargetWeight(Double.parseDouble(tgt));
-            // go to next fragment
-            ((GoalWeightSettingActivity) getActivity()).navigateTo(new ActivityLevelFragment(), true);
+            if (getActivity() instanceof GoalWeightSettingActivity) {
+                ((GoalWeightSettingActivity) getActivity()).navigateTo(new ActivityLevelFragment(), true);
+            }
         });
 
         return root;

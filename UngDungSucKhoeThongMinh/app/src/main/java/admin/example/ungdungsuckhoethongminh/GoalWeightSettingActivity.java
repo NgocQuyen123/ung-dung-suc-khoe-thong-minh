@@ -9,17 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import admin.example.ungdungsuckhoethongminh.fragments.ActivityLevelFragment;
 import admin.example.ungdungsuckhoethongminh.fragments.SummaryFragment;
 import admin.example.ungdungsuckhoethongminh.fragments.WeightChangeRateFragment;
-import admin.example.ungdungsuckhoethongminh.viewmodel.SharedViewModel;
 import admin.example.ungdungsuckhoethongminh.fragments.TargetWeightFragment;
 
 public class GoalWeightSettingActivity extends AppCompatActivity {
 
-    private SharedViewModel vm;
     private ImageButton btnBack, btnClose;
     private TextView tvProgress;
 
@@ -27,19 +24,21 @@ public class GoalWeightSettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_weight_setting);
+
         btnBack = findViewById(R.id.btn_back);
         btnClose = findViewById(R.id.btn_close);
         TextView tvProgressText = findViewById(R.id.tv_progress_text);
         this.tvProgress = tvProgressText;
-        vm = new ViewModelProvider(this).get(SharedViewModel.class);
+
+
         if (savedInstanceState == null) {
-            vm.loadDataFromAssets();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, new TargetWeightFragment())
                     .commit();
 
             updateProgressIndicator(new TargetWeightFragment());
         }
+
         btnBack.setOnClickListener(v -> {
             if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
                 getSupportFragmentManager().addOnBackStackChangedListener(new androidx.fragment.app.FragmentManager.OnBackStackChangedListener() {
@@ -57,12 +56,12 @@ public class GoalWeightSettingActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         btnClose.setOnClickListener(v -> {
             finish();
         });
     }
 
-    // helper to navigate to fragment by instance
     public void navigateTo(androidx.fragment.app.Fragment frag, boolean addToBackstack) {
         androidx.fragment.app.FragmentTransaction t = getSupportFragmentManager()
                 .beginTransaction()
@@ -71,6 +70,7 @@ public class GoalWeightSettingActivity extends AppCompatActivity {
         t.commit();
         updateProgressIndicator(frag);
     }
+
     private void updateProgressIndicator(androidx.fragment.app.Fragment currentFrag) {
 
         final int TOTAL_STEPS = 4;
@@ -90,5 +90,4 @@ public class GoalWeightSettingActivity extends AppCompatActivity {
             tvProgress.setText(currentStep + "/" + TOTAL_STEPS);
         }
     }
-    public SharedViewModel getViewModel() { return vm; }
 }

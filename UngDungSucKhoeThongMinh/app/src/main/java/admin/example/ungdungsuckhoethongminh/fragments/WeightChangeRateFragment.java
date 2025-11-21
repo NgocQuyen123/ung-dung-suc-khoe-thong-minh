@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,19 +25,32 @@ import admin.example.ungdungsuckhoethongminh.GoalWeightSettingActivity;
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.adapters.PaceAdapter;
 import admin.example.ungdungsuckhoethongminh.model.TocDoCanNang;
-import admin.example.ungdungsuckhoethongminh.viewmodel.SharedViewModel;
 
 /**
  * Fragment để chọn tốc độ tăng/giảm cân.
  */
 public class WeightChangeRateFragment extends Fragment {
 
+    private final double CURRENT_WEIGHT = 65.0;
+    private final double TARGET_WEIGHT = 60.0;
+    private final String SELECTED_PACE_ID = "2";
+    private final boolean IS_LOSING_WEIGHT = TARGET_WEIGHT < CURRENT_WEIGHT;
+
     private TextView tvFinishLabel;
     private TextView tvFinishDate;
-    private SharedViewModel vm;
     private RecyclerView rv;
     private PaceAdapter adapter;
     private Button btnNext;
+
+    // Định nghĩa dữ liệu mẫu cho danh sách tốc độ
+    private List<TocDoCanNang> getPaces() {
+        return Arrays.asList(
+                new TocDoCanNang("1", "Dễ", 0.25, 275),
+                new TocDoCanNang("2", "Vừa", 0.50, 550),
+                new TocDoCanNang("3", "Khó", 0.75, 825),
+                new TocDoCanNang("4", "Tối đa", 1.00, 1100)
+        );
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,41 +61,17 @@ public class WeightChangeRateFragment extends Fragment {
         tvFinishDate = root.findViewById(R.id.tvFinishDate);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        if (getActivity() instanceof GoalWeightSettingActivity) {
-            vm = ((GoalWeightSettingActivity)getActivity()).getViewModel();
-        }
+        List<TocDoCanNang> paces = getPaces();
 
-        if (vm != null) {
-            vm.appData.observe(getViewLifecycleOwner(), data -> {
-                if (data != null && data.tocDoCanNang != null && vm.user.getValue() != null) {
+        adapter = new PaceAdapter(paces, item -> {
+            updateGoalDate(paces, CURRENT_WEIGHT, TARGET_WEIGHT, item.id);
+        }, IS_LOSING_WEIGHT);
+        rv.setAdapter(adapter);
 
-                    double current = vm.user.getValue().canNangHienTai;
-                    double target = vm.user.getValue().canNangMucTieu;
-
-                    boolean isLosingWeight = target < current;
-                    String selectedPaceId = vm.user.getValue().idTocDoCanNang;
-
-                    // Khởi tạo adapter và Listener
-                    adapter = new PaceAdapter(data.tocDoCanNang, item -> {
-                        vm.updatePaceId(item.id);
-                        // Cập nhật ngày khi chọn tốc độ mới
-                        updateGoalDate(data.tocDoCanNang, current, target, item.id);
-                    }, isLosingWeight);
-                    rv.setAdapter(adapter);
-
-                    // Đánh dấu item và cập nhật ngày khi LOAD lần đầu
-                    if (selectedPaceId != null) {
-                        adapter.setSelectedId(selectedPaceId);
-                        updateGoalDate(data.tocDoCanNang, current, target, selectedPaceId);
-                    } else {
-                        tvFinishDate.setText("---");
-                    }
-                }
-            });
-        }
+        adapter.setSelectedId(SELECTED_PACE_ID);
+        updateGoalDate(paces, CURRENT_WEIGHT, TARGET_WEIGHT, SELECTED_PACE_ID);
 
         btnNext.setOnClickListener(v -> {
-            // Lưu ý: Cần thêm public String getSelectedId() vào PaceAdapter để dòng này hoạt động
             if (adapter != null && adapter.getSelectedId() != null) {
                 if (getActivity() instanceof GoalWeightSettingActivity) {
                     ((GoalWeightSettingActivity) getActivity()).navigateTo(new SummaryFragment(), true);
@@ -104,13 +94,13 @@ public class WeightChangeRateFragment extends Fragment {
             tvFinishDate.setText("---");
             return;
         }
+
         TocDoCanNang selectedPace = selectedPaceOpt.get();
 
         double totalWeightDiff = Math.abs(targetWeight - currentWeight);
-        double paceRate = selectedPace.tocDoKgTuan;
+        double paceRate = Math.abs(selectedPace.tocDoKgTuan);
 
         if (paceRate <= 0 || totalWeightDiff == 0) {
-            // Nếu mục tiêu đã đạt hoặc tốc độ bằng 0
             tvFinishDate.setText("Đã đạt mục tiêu");
             return;
         }
@@ -120,7 +110,6 @@ public class WeightChangeRateFragment extends Fragment {
 
         LocalDate goalDate = LocalDate.now().plusDays(daysToAdd);
 
-        // Định dạng tiếng Việt: "d 'tháng' M, yyyy"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d 'tháng' M, yyyy");
         String formattedDate = goalDate.format(formatter);
 

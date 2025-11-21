@@ -17,20 +17,20 @@ import android.widget.Toast;
 import admin.example.ungdungsuckhoethongminh.GoalWeightSettingActivity;
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.model.ThongTinCanNang;
-import admin.example.ungdungsuckhoethongminh.viewmodel.SharedViewModel;
 
 public class SummaryFragment extends Fragment {
 
-    private SharedViewModel vm;
+    private final int BMR_CALORIES = 1586;
+    private final int ACTIVITY_CALORIES = 471;
+    private final int SIGNED_DEFICIT = -550;
+    private final int TOTAL_CALORIES = 1507;
 
-    // Khai báo các TextView chứa giá trị (Giá trị trong item_summary_detail.xml)
     private TextView tvBmrValue;
     private TextView tvActivityValue;
     private TextView tvDeficitValue;
     private TextView tvTarget;
     private Button btnFinish;
 
-    // Khai báo các Container (để tìm TextView bên trong)
     private ConstraintLayout itemBMRContainer;
     private ConstraintLayout itemActivityContainer;
     private ConstraintLayout itemDeficitContainer;
@@ -39,7 +39,6 @@ public class SummaryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_summary, container, false);
 
-        // 1. Ánh xạ các Container và TextView giá trị (Giá trị TV trong các item)
         itemBMRContainer = root.findViewById(R.id.itemBMR);
         itemActivityContainer = root.findViewById(R.id.itemActivity);
         itemDeficitContainer = root.findViewById(R.id.itemDeficit);
@@ -65,43 +64,23 @@ public class SummaryFragment extends Fragment {
         tvTarget = root.findViewById(R.id.tvTarget);
         btnFinish = root.findViewById(R.id.btnFinish);
 
-
-        if (getActivity() instanceof GoalWeightSettingActivity) {
-            vm = ((GoalWeightSettingActivity)getActivity()).getViewModel();
-        }
-
-        if (vm != null) {
-            vm.user.observe(getViewLifecycleOwner(), u -> updateSummary());
-            vm.appData.observe(getViewLifecycleOwner(), d -> updateSummary());
-        }
+        updateSummary();
 
         btnFinish.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Lưu thành công", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Lưu thành công (Test)", Toast.LENGTH_SHORT).show();
         });
 
         return root;
     }
 
     private void updateSummary() {
-        ThongTinCanNang u = vm.user.getValue();
-        if (u == null || vm.appData.getValue() == null) return;
 
-        double bmr = vm.calcBMR(u);
-        int act = vm.getActivityCalories(u);
-        int signedDeficit = vm.getSignedDeficit();
-        int total = vm.calcTargetCalories();
+        if (tvBmrValue != null) tvBmrValue.setText(BMR_CALORIES + " kcal");
 
-        // Gán giá trị BMR
-        if (tvBmrValue != null) tvBmrValue.setText(Math.round(bmr) + " kcal");
+        if (tvActivityValue != null) tvActivityValue.setText(ACTIVITY_CALORIES + " kcal");
 
-        // Gán giá trị Calo Hoạt động
-        if (tvActivityValue != null) tvActivityValue.setText(act + " kcal");
+        if (tvDeficitValue != null) tvDeficitValue.setText(SIGNED_DEFICIT + " kcal");
 
-        // Gán giá trị Thâm hụt (Xử lý dấu +/-)
-        String sign = signedDeficit > 0 ? "+" : "";
-        if (tvDeficitValue != null) tvDeficitValue.setText(sign + signedDeficit + " kcal");
-
-        // Gán giá trị Tổng calo mục tiêu
-        if (tvTarget != null) tvTarget.setText(total + " kcal");
+        if (tvTarget != null) tvTarget.setText(TOTAL_CALORIES + " kcal");
     }
 }

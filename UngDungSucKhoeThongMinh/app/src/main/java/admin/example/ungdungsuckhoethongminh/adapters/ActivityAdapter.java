@@ -28,6 +28,9 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.VH> {
         this.listener = listener;
     }
 
+    public int getSelectedId() {
+        return selectedId;
+    }
     public void setSelectedId(int id) {
         int oldIndex = getIndexById(selectedId);
         selectedId = id;
