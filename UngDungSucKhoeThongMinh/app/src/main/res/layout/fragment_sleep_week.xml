@@ -1,14 +1,486 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Giao diện tuần"
-        tools:layout_editor_absoluteX="108dp"
-        tools:layout_editor_absoluteY="215dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Nút chuyển ngày -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="25dp">
+
+            <ImageButton
+                android:id="@+id/btnPrevDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chevron_left"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Ngày trước"/>
+
+            <!-- Khoảng cách trước TextView -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <!-- TextView hiển thị số ngày trước -->
+            <TextView
+                android:id="@+id/txtDayInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hôm nay"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Khoảng cách sau TextView -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/btnNextDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chevron_right"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Ngày sau"/>
+        </LinearLayout>
+
+        <!-- Tiêu đề tổng -->
+        <TextView
+            android:text="Hồi phục trung bình"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#999999"
+            android:layout_marginTop="8dp" />
+
+        <!-- Tổng bước + trung bình -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <!-- Phần bên trái -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/txtTotalSteps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="51"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtStepsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%"
+                    android:textSize="16sp"
+                    android:layout_marginStart="4dp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <!-- Biểu đồ 7 cột -->
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/chartWeek"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:orientation="horizontal"
+            android:gravity="bottom|center"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:weightSum="7"
+            android:background="@android:color/white">
+
+            <!-- ===== CỘT 1 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar1"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar1Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar1Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#8890EA"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 2 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar2"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar2Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar2Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 3 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar3"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar3Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar3Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 4 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar4"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar4Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar4Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 5 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar5"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar5Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar5Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- ===== CỘT 6 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar6"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar6Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar6Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+
+            <!-- ===== CỘT 7 ===== -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar7"
+                    android:layout_width="24dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bar_bg" />
+
+                <View
+                    android:id="@+id/bar7Circle"
+                    android:layout_width="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-35dp"
+                    android:background="@drawable/bar_circle" />
+
+                <TextView
+                    android:id="@+id/bar7Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="439"
+                    android:textColor="#A0A0A0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- Các ô nhỏ: bước, calo, quãng đường, thời gian -->
+        <!-- CARD: Thời gian ngủ & Mục tiêu -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="20dp">
+
+            <!-- Thời gian ngủ -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:background="@drawable/card_bg"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thời gian ngủ"
+                    android:textSize="14sp"
+                    android:textColor="#555" />
+
+                <TextView
+                    android:id="@+id/txtSleepDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4g 42p"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="6dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rất ngắn"
+                    android:textColor="#D32F2F"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- Mục tiêu giấc ngủ -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:background="@drawable/card_bg"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mục tiêu giấc ngủ"
+                    android:textSize="14sp"
+                    android:textColor="#555" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8g 35p"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="6dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chưa đạt mục tiêu"
+                    android:textColor="#D32F2F"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- GIỜ NGỦ – GIỜ THỨC DẬY -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="20dp">
+
+            <!-- Giờ ngủ -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:background="@drawable/card_bg"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giờ ngủ" />
+
+                <TextView
+                    android:id="@+id/txtBedtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1:13"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="6dp" />
+            </LinearLayout>
+
+            <!-- Giờ thức dậy -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:background="@drawable/card_bg"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giờ thức dậy" />
+
+                <TextView
+                    android:id="@+id/txtWakeTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6:11"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="6dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
