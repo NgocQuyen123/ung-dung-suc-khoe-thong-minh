@@ -16,27 +16,14 @@
         android:theme="@style/Theme.UngDungSucKhoeThongMinh"
         android:usesCleartextTraffic="true">
 
-        <activity
-
-            android:name=".activity.menu.MenuActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+        <!--Auth-->
         <activity
             android:name=".activity.auth.AuthActivity"
             android:exported="false" />
 
+        <!--Dashboard-->
         <activity
-            android:name=".activity.signUp.SignUpPhoneActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activity.signUp.SignUpNumberActivity"
+            android:name=".activity.dashboard.DashboardCaloActivity"
             android:exported="false" />
 
         <activity
@@ -47,63 +34,72 @@
             android:name=".activity.dashboard.DashboardStepActivity"
             android:exported="false" />
 
+        <!--Info-->
         <activity
-            android:name=".activity.dashboard.DashboardCaloActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activity.weight.WeightHeaderActivity"
-
-            android:exported="false" />
-
-        <activity
-            android:name=".activity.info.InfoProfileActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activity.signUp.SignUpMethodScreen"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--            <action android:name="android.intent.action.MAIN" />-->
-<!--            <category android:name="android.intent.category.LAUNCHER" />-->
-<!--        </intent-filter>-->
-        </activity>
-        <activity
-            android:name=".activity.otp.OTPVerificationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.otp.OTPMethodSelectionModal"
-            android:exported="false" />
-        <activity
-            android:name=".activity.singIn.SignInMethodScreen"
-            android:exported="false" />
-        <activity
-            android:name=".activity.info.InfoEditNameActivity"
+            android:name=".activity.info.InfoCreateNameActivity"
             android:exported="false"/>
+
         <activity
             android:name=".activity.info.InfoEditGenderActivity"
             android:exported="false"/>
         <activity
             android:name=".activity.info.InfoEditHeightActivity"
             android:exported="false"/>
+
         <activity
-            android:name=".activity.info.InfoEditYearActivity"
+            android:name=".activity.info.InfoEditNameActivity"
             android:exported="false"/>
+
         <activity
             android:name=".activity.info.InfoEditPhoneActivity"
             android:exported="false" />
+
         <activity
-            android:name=".activity.sleep.SleepTimeGetUpActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:name=".activity.info.InfoEditYearActivity"
+            android:exported="false"/>
+
         <activity
-            android:name=".activity.sleep.SleepTimeActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:name=".activity.info.InfoProfileActivity"
+            android:exported="false" />
+
+        <!--Menu-->
         <activity
-            android:name=".activity.sleep.SleepTimeGetBedActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:name=".activity.menu.MenuActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--OTP-->
+        <activity
+            android:name=".activity.otp.OTPMethodSelectionModal"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.otp.OTPVerificationActivity"
+            android:exported="false" />
+
+        <!--Plan-->
+        <!--Sign Up-->
+        <activity
+            android:name=".activity.signUp.SignUpMethodScreen"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".activity.signUp.SignUpNumberActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.signUp.SignUpPhoneActivity"
+            android:exported="false" />
+
+        <!--Sign In-->
+        <activity
+            android:name=".activity.singIn.SignInMethodScreen"
+            android:exported="false" />
 
         <activity
             android:name=".activity.singIn.SignInNumber"
@@ -111,6 +107,25 @@
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize">
         </activity>
 
-    </application>
+        <!--Sleep-->
+        <activity
+            android:name=".activity.sleep.SleepTimeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
+        <activity
+            android:name=".activity.sleep.SleepTimeGetBedActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity
+            android:name=".activity.sleep.SleepTimeGetUpActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <!--Weight-->
+        <activity
+            android:name=".activity.weight.WeightHeaderActivity"
+            android:exported="false" />
+    </application>
 </manifest>

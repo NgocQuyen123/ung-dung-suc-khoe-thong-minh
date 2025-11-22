@@ -21,13 +21,13 @@ import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardSleepActivity;
 import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardStepActivity;
 import admin.example.ungdungsuckhoethongminh.adapters.HealthPagerAdapter;
-import admin.example.ungdungsuckhoethongminh.model.HealthItem;
+import admin.example.ungdungsuckhoethongminh.model.HealthItemModel;
 
 public class MenuHomeFragment extends Fragment {
 
     private RecyclerView rvHealthItems;
     private HealthPagerAdapter adapter;
-    private List<HealthItem> healthItems;
+    private List<HealthItemModel> healthItems;
 
     @Nullable
     @Override
@@ -41,12 +41,12 @@ public class MenuHomeFragment extends Fragment {
 
         // Dữ liệu mẫu
         healthItems = new ArrayList<>();
-        healthItems.add(new HealthItem("Đếm bước chân", "Cấp quyền bước chân", R.drawable.chaybo));
-        healthItems.add(new HealthItem("Cân nặng", "Thiết lập chương trình", R.drawable.ic_dinhduong));
-        healthItems.add(new HealthItem("Giấc ngủ", "Nhập ngay", R.drawable.ic_motrongmau));
+        healthItems.add(new HealthItemModel("Đếm bước chân", "Cấp quyền bước chân", R.drawable.chaybo));
+        healthItems.add(new HealthItemModel("Cân nặng", "Thiết lập chương trình", R.drawable.ic_dinhduong));
+        healthItems.add(new HealthItemModel("Giấc ngủ", "Nhập ngay", R.drawable.ic_motrongmau));
 
         adapter = new HealthPagerAdapter(healthItems, position -> {
-            HealthItem clickedItem = healthItems.get(position);
+            HealthItemModel clickedItem = healthItems.get(position);
 
             switch (clickedItem.getTitle()) {
                 case "Đếm bước chân":

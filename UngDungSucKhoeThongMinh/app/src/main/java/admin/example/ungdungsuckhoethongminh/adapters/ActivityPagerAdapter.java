@@ -14,16 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import admin.example.ungdungsuckhoethongminh.R;
-import admin.example.ungdungsuckhoethongminh.model.ActivityLever;
+import admin.example.ungdungsuckhoethongminh.model.LeverModel;
 
 public class ActivityPagerAdapter extends RecyclerView.Adapter<ActivityPagerAdapter.VH> {
-    private List<ActivityLever> items;
+    private List<LeverModel> items;
     private int selectedId = -1;
     private final OnItemClick listener;
 
-    public interface OnItemClick { void onClick(ActivityLever item); }
+    public interface OnItemClick { void onClick(LeverModel item); }
 
-    public ActivityPagerAdapter(List<ActivityLever> items, OnItemClick listener) {
+    public ActivityPagerAdapter(List<LeverModel> items, OnItemClick listener) {
         this.items = items;
         this.listener = listener;
     }
@@ -57,7 +57,7 @@ public class ActivityPagerAdapter extends RecyclerView.Adapter<ActivityPagerAdap
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        ActivityLever currentItem = items.get(position);
+        LeverModel currentItem = items.get(position);
         boolean isSelected = selectedId == currentItem.id;
 
         // Đặt Text

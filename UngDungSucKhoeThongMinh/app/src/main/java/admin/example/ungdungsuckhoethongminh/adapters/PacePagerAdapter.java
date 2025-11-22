@@ -12,21 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import admin.example.ungdungsuckhoethongminh.R;
-import admin.example.ungdungsuckhoethongminh.model.SpeedWeight;
+import admin.example.ungdungsuckhoethongminh.model.SpeedWeightModel;
 
 public class PacePagerAdapter extends RecyclerView.Adapter<PacePagerAdapter.VH>{
-    private List<SpeedWeight> items;
+    private List<SpeedWeightModel> items;
     private String selectedId = null;
     private final OnItemClick listener;
     private final boolean isLosingWeight;
 
 
-    public interface OnItemClick { void onClick(SpeedWeight item); }
+    public interface OnItemClick { void onClick(SpeedWeightModel item); }
 
     public String getSelectedId() {
         return selectedId;
     }
-    public PacePagerAdapter(List<SpeedWeight> items, OnItemClick listener, boolean isLosingWeight) {
+    public PacePagerAdapter(List<SpeedWeightModel> items, OnItemClick listener, boolean isLosingWeight) {
         this.items = items;
         this.listener = listener;
         this.isLosingWeight = isLosingWeight;
@@ -59,7 +59,7 @@ public class PacePagerAdapter extends RecyclerView.Adapter<PacePagerAdapter.VH>{
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        SpeedWeight t = items.get(position);
+        SpeedWeightModel t = items.get(position);
         boolean isSelected = selectedId != null && selectedId.equals(t.id);
         Context context = holder.itemView.getContext();
 

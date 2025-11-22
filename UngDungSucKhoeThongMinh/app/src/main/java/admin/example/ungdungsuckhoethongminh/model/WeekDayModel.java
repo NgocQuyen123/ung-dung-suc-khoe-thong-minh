@@ -1,10 +1,10 @@
 package admin.example.ungdungsuckhoethongminh.model;
 
-public class WeekDay {
+public class WeekDayModel {
     private String name;
     private int dayNumber;
 
-    public WeekDay(String name, int dayNumber) {
+    public WeekDayModel(String name, int dayNumber) {
         this.name = name;
         this.dayNumber = dayNumber;
     }

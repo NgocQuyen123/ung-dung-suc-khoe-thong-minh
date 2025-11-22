@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh.activity;
+package admin.example.ungdungsuckhoethongminh.activity.plan;
 
 import android.os.Bundle;
 
@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import admin.example.ungdungsuckhoethongminh.R;
-import admin.example.ungdungsuckhoethongminh.adapters.WeekDayAdapter;
-import admin.example.ungdungsuckhoethongminh.model.WeekDay;
+import admin.example.ungdungsuckhoethongminh.adapters.PlanPagerAdapter;
+import admin.example.ungdungsuckhoethongminh.model.WeekDayModel;
 
-public class ScheduleActivity extends AppCompatActivity {
+public class PlanScheduleListActivity extends AppCompatActivity {
 
     private RecyclerView rvWeekDays;
 
@@ -23,7 +23,7 @@ public class ScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // ⚠️ CHỌN ĐÚNG LAYOUT
-        setContentView(R.layout.activity_demo_schedule_list);
+        setContentView(R.layout.activity_plan_schedule_list);
 
         rvWeekDays = findViewById(R.id.rvWeekDays);
 
@@ -31,12 +31,12 @@ public class ScheduleActivity extends AppCompatActivity {
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         );
 
-        rvWeekDays.setAdapter(new WeekDayAdapter(this, getWeekDays()));
+        rvWeekDays.setAdapter(new PlanPagerAdapter(this, getWeekDays()));
     }
 
     // ⭐ Chỉ Thứ 2 → Thứ 6
-    private List<WeekDay> getWeekDays() {
-        List<WeekDay> list = new ArrayList<>();
+    private List<WeekDayModel> getWeekDays() {
+        List<WeekDayModel> list = new ArrayList<>();
 
         String[] names = {"Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6"};
 
@@ -44,7 +44,7 @@ public class ScheduleActivity extends AppCompatActivity {
         int startDay = today.getDayOfMonth();
 
         for (int i = 0; i < 5; i++) {
-            list.add(new WeekDay(names[i], startDay + i));
+            list.add(new WeekDayModel(names[i], startDay + i));
         }
 
         return list;

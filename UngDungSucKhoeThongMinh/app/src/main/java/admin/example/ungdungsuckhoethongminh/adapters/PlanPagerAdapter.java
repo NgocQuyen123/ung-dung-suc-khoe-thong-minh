@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import admin.example.ungdungsuckhoethongminh.R;
-import admin.example.ungdungsuckhoethongminh.model.WeekDay;
+import admin.example.ungdungsuckhoethongminh.model.WeekDayModel;
 
-public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.DayViewHolder> {
+public class PlanPagerAdapter extends RecyclerView.Adapter<PlanPagerAdapter.DayViewHolder> {
 
     private Context context;
-    private List<WeekDay> list;
+    private List<WeekDayModel> list;
 
-    public WeekDayAdapter(Context context, List<WeekDay> list) {
+    public PlanPagerAdapter(Context context, List<WeekDayModel> list) {
         this.context = context;
         this.list = list;
     }
@@ -28,13 +28,13 @@ public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.DayViewH
     @NonNull
     @Override
     public DayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.demo_item_week_day, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_plan_week_day, parent, false);
         return new DayViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DayViewHolder holder, int position) {
-        WeekDay day = list.get(position);
+        WeekDayModel day = list.get(position);
         holder.tvDayName.setText(day.getName());
         holder.tvDayNumber.setText(String.valueOf(day.getDayNumber()));
     }

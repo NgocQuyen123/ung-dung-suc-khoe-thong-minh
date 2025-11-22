@@ -2,7 +2,7 @@ package admin.example.ungdungsuckhoethongminh.model;
 
 import java.util.List;
 
-public class FitnessWeek {
+public class FitnessWeekModel {
     public String tuan;
     public int thang;
     public String ngay_bat_dau;

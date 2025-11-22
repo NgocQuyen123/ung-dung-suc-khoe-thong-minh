@@ -19,7 +19,7 @@ import java.util.List;
 import admin.example.ungdungsuckhoethongminh.activity.weight.WeightHeaderActivity;
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.adapters.ActivityPagerAdapter;
-import admin.example.ungdungsuckhoethongminh.model.ActivityLever;
+import admin.example.ungdungsuckhoethongminh.model.LeverModel;
 
 public class WeightActivityLeverFragment extends Fragment {
 
@@ -30,12 +30,12 @@ public class WeightActivityLeverFragment extends Fragment {
     private ActivityPagerAdapter adapter;
     private Button btnNext;
 
-    private List<ActivityLever> getActivities() {
+    private List<LeverModel> getActivities() {
         return Arrays.asList(
-                new ActivityLever(1, "Rất năng động", "Tập luyện trên 7 giờ mỗi tuần", 785),
-                new ActivityLever(2, "Hoạt động trung bình", "Tập luyện 4 - 6 giờ mỗi tuần", 471),
-                new ActivityLever(3, "Ít hoạt động", "Tập luyện 2 - 3 giờ mỗi tuần", 235),
-                new ActivityLever(4, "Thụ động", "Ít hoặc không tập thể dục", 118)
+                new LeverModel(1, "Rất năng động", "Tập luyện trên 7 giờ mỗi tuần", 785),
+                new LeverModel(2, "Hoạt động trung bình", "Tập luyện 4 - 6 giờ mỗi tuần", 471),
+                new LeverModel(3, "Ít hoạt động", "Tập luyện 2 - 3 giờ mỗi tuần", 235),
+                new LeverModel(4, "Thụ động", "Ít hoặc không tập thể dục", 118)
         );
     }
 
@@ -47,7 +47,7 @@ public class WeightActivityLeverFragment extends Fragment {
         btnNext = root.findViewById(R.id.btnNext);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<ActivityLever> activities = getActivities();
+        List<LeverModel> activities = getActivities();
 
         adapter = new ActivityPagerAdapter(activities, selected -> {
         });

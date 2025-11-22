@@ -1,6 +1,6 @@
 package admin.example.ungdungsuckhoethongminh.model;
 
-public class InfoWeight {
+public class InfoWeightModel {
     public int id;
     public double canNangHienTai;
     public double canNangMucTieu;

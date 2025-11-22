@@ -1,11 +1,11 @@
 package admin.example.ungdungsuckhoethongminh.model;
 
-public class HealthItem {
+public class HealthItemModel {
     private String title;
     private String subtitle;
     private int iconRes; // drawable resource
 
-    public HealthItem(String title, String subtitle, int iconRes) {
+    public HealthItemModel(String title, String subtitle, int iconRes) {
         this.title = title;
         this.subtitle = subtitle;
         this.iconRes = iconRes;

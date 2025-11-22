@@ -24,7 +24,7 @@ import java.util.Optional;
 import admin.example.ungdungsuckhoethongminh.activity.weight.WeightHeaderActivity;
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.adapters.PacePagerAdapter;
-import admin.example.ungdungsuckhoethongminh.model.SpeedWeight;
+import admin.example.ungdungsuckhoethongminh.model.SpeedWeightModel;
 
 /**
  * Fragment để chọn tốc độ tăng/giảm cân.
@@ -43,12 +43,12 @@ public class WeightPaceFragment extends Fragment {
     private Button btnNext;
 
     // Định nghĩa dữ liệu mẫu cho danh sách tốc độ
-    private List<SpeedWeight> getPaces() {
+    private List<SpeedWeightModel> getPaces() {
         return Arrays.asList(
-                new SpeedWeight("1", "Dễ", 0.25, 275),
-                new SpeedWeight("2", "Vừa", 0.50, 550),
-                new SpeedWeight("3", "Khó", 0.75, 825),
-                new SpeedWeight("4", "Tối đa", 1.00, 1100)
+                new SpeedWeightModel("1", "Dễ", 0.25, 275),
+                new SpeedWeightModel("2", "Vừa", 0.50, 550),
+                new SpeedWeightModel("3", "Khó", 0.75, 825),
+                new SpeedWeightModel("4", "Tối đa", 1.00, 1100)
         );
     }
 
@@ -61,7 +61,7 @@ public class WeightPaceFragment extends Fragment {
         tvFinishDate = root.findViewById(R.id.tvFinishDate);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<SpeedWeight> paces = getPaces();
+        List<SpeedWeightModel> paces = getPaces();
 
         adapter = new PacePagerAdapter(paces, item -> {
             updateGoalDate(paces, CURRENT_WEIGHT, TARGET_WEIGHT, item.id);
@@ -84,9 +84,9 @@ public class WeightPaceFragment extends Fragment {
         return root;
     }
 
-    private void updateGoalDate(List<SpeedWeight> paces, double currentWeight, double targetWeight, String selectedPaceId) {
+    private void updateGoalDate(List<SpeedWeightModel> paces, double currentWeight, double targetWeight, String selectedPaceId) {
 
-        Optional<SpeedWeight> selectedPaceOpt = paces.stream()
+        Optional<SpeedWeightModel> selectedPaceOpt = paces.stream()
                 .filter(p -> p.id.equals(selectedPaceId))
                 .findFirst();
 
@@ -95,7 +95,7 @@ public class WeightPaceFragment extends Fragment {
             return;
         }
 
-        SpeedWeight selectedPace = selectedPaceOpt.get();
+        SpeedWeightModel selectedPace = selectedPaceOpt.get();
 
         double totalWeightDiff = Math.abs(targetWeight - currentWeight);
         double paceRate = Math.abs(selectedPace.tocDoKgTuan);

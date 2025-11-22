@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import admin.example.ungdungsuckhoethongminh.R;
-import admin.example.ungdungsuckhoethongminh.model.HealthItem;
+import admin.example.ungdungsuckhoethongminh.model.HealthItemModel;
 
 public class HealthPagerAdapter extends RecyclerView.Adapter<HealthPagerAdapter.HealthViewHolder> {
-    private List<HealthItem> items;
+    private List<HealthItemModel> items;
     private OnItemClickListener listener;
 
-    public HealthPagerAdapter(List<HealthItem> items, OnItemClickListener listener) {
+    public HealthPagerAdapter(List<HealthItemModel> items, OnItemClickListener listener) {
         this.items = items;
         this.listener = listener;
     }
@@ -33,7 +33,7 @@ public class HealthPagerAdapter extends RecyclerView.Adapter<HealthPagerAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull HealthViewHolder holder, int position) {
-        HealthItem item = items.get(position);
+        HealthItemModel item = items.get(position);
         holder.tvTitle.setText(item.getTitle());
         holder.tvSubtitle.setText(item.getSubtitle());
         holder.icon.setImageResource(item.getIconRes());
