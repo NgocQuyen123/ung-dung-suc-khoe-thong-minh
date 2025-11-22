@@ -17,7 +17,8 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".MainActivity"
+
+            android:name=".activity.menu.MenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,40 +28,40 @@
         </activity>
 
         <activity
-            android:name=".Home"
+            android:name=".activity.auth.AuthActivity"
             android:exported="false" />
 
         <activity
-            android:name=".RegisterPhoneActivity"
+            android:name=".activity.signUp.SignUpPhoneActivity"
             android:exported="false" />
 
         <activity
-            android:name=".RegisterNumberActivity"
+            android:name=".activity.signUp.SignUpNumberActivity"
             android:exported="false" />
 
         <activity
-            android:name=".SleepActivity"
+            android:name=".activity.dashboard.DashboardSleepActivity"
             android:exported="false"/>
 
         <activity
-            android:name=".StepsActivity"
+            android:name=".activity.dashboard.DashboardStepActivity"
             android:exported="false" />
 
         <activity
-            android:name=".CaloActivity"
+            android:name=".activity.dashboard.DashboardCaloActivity"
             android:exported="false" />
 
         <activity
-            android:name=".GoalWeightSettingActivity"
+            android:name=".activity.weight.WeightHeaderActivity"
 
             android:exported="false" />
 
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activity.info.InfoProfileActivity"
             android:exported="false" />
 
         <activity
-            android:name=".SignUpMethodScreen"
+            android:name=".activity.signUp.SignUpMethodScreen"
             android:exported="true">
 <!--            <intent-filter>-->
 <!--            <action android:name="android.intent.action.MAIN" />-->
@@ -68,44 +69,44 @@
 <!--        </intent-filter>-->
         </activity>
         <activity
-            android:name=".OtpVerificationActivity"
+            android:name=".activity.otp.OTPVerificationActivity"
             android:exported="false" />
         <activity
-            android:name=".OTPMethodSelectionModal"
+            android:name=".activity.otp.OTPMethodSelectionModal"
             android:exported="false" />
         <activity
-            android:name=".SignInMethodScreen"
+            android:name=".activity.singIn.SignInMethodScreen"
             android:exported="false" />
         <activity
-            android:name=".EditNameActivity"
+            android:name=".activity.info.InfoEditNameActivity"
             android:exported="false"/>
         <activity
-            android:name=".EditGenderActivity"
+            android:name=".activity.info.InfoEditGenderActivity"
             android:exported="false"/>
         <activity
-            android:name=".EditHeightActivity"
+            android:name=".activity.info.InfoEditHeightActivity"
             android:exported="false"/>
         <activity
-            android:name=".EditDearActivity"
+            android:name=".activity.info.InfoEditYearActivity"
             android:exported="false"/>
         <activity
-            android:name=".PhoneActivity"
+            android:name=".activity.info.InfoEditPhoneActivity"
             android:exported="false" />
         <activity
-            android:name=".SleepConsistencyActivity"
+            android:name=".activity.sleep.SleepTimeGetUpActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
-            android:name=".TimeSleepActivity"
+            android:name=".activity.sleep.SleepTimeActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
-            android:name=".GoBedActivity"
+            android:name=".activity.sleep.SleepTimeGetBedActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <activity
-            android:name=".PhoneAuthScreen"
+            android:name=".activity.singIn.SignInNumber"
             android:exported="false"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize">
         </activity>

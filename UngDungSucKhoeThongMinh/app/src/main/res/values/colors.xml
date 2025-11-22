@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Màu gốc -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple_200">#BB86FC</color>
     <color name="purple_700">#3700B3</color>
     <color name="purple_E9E8EE">#E9E8EE</color>
+
+    <!-- Màu gradient tím hồng cho app -->
+    <color name="purple_gradient_start">#C58BF2</color>
+    <color name="purple_gradient_end">#EEA4CE</color>
+
+    <!-- Màu văn bản -->
+    <color name="gray">#8B8B8B</color>
+    <color name="gray_light">#E5E5E5</color>
+    <color name="gray_dark">#4F4F4F</color>
+    <color name="text_primary">#333333</color>
+    <color name="text_secondary">#666666</color>
+
+    <!-- Màu nhấn -->
+    <color name="orange">#FF6B35</color>
+    <color name="blue">#4A90E2</color>
+    <color name="green">#4CAF50</color>
+    <color name="red">#F44336</color>
+    <color name="yellow">#FFC107</color>
+
+    <!-- Màu nền -->
+    <color name="background_gray">#F5F5F5</color>
+    <color name="background_light">#FAFAFA</color>
+    <color name="card_background">#FFFFFF</color>
+
+    <!-- Màu cho selector ngày trong tuần -->
+    <color name="day_selected_text">#FFFFFF</color>
+    <color name="day_unselected_text">#8B8B8B</color>
+
+    <!-- Màu cho progress bar -->
+    <color name="progress_background">#40FFFFFF</color>
+    <color name="progress_fill">#FFFFFF</color>
+
+    <!-- Màu border/stroke -->
+    <color name="border_light">#E0E0E0</color>
+    <color name="border_gray">#CCCCCC</color>
+
+    <!-- Màu trong suốt -->
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent_black">#80000000</color>
+    <color name="semi_transparent_white">#80FFFFFF</color>
+
 </resources>

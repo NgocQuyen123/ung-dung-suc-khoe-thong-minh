@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import admin.example.ungdungsuckhoethongminh.fragments.WeekFragment;
-import admin.example.ungdungsuckhoethongminh.fragments.YearFragment;
-import admin.example.ungdungsuckhoethongminh.fragments.DayFragment;
-import admin.example.ungdungsuckhoethongminh.fragments.MonthFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.step.StepWeekFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.step.StepYearFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.step.StepDayFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.step.StepMonthFragment;
 
 public class StepsPagerAdapter extends FragmentStateAdapter {
 
@@ -20,11 +20,11 @@ public class StepsPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position) {
-            case 0: return new DayFragment();
-            case 1: return new WeekFragment();
-            case 2: return new MonthFragment();
-            case 3: return new YearFragment();
-            default: return new DayFragment();
+            case 0: return new StepDayFragment();
+            case 1: return new StepWeekFragment();
+            case 2: return new StepMonthFragment();
+            case 3: return new StepYearFragment();
+            default: return new StepDayFragment();
         }
     }
 

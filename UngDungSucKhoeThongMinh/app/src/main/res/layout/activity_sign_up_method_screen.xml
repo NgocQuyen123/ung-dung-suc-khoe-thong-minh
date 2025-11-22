@@ -6,13 +6,13 @@ android:id="@+id/scrollView"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fillViewport="true"
-tools:context=".SignInMethodScreen">
+tools:context=".activity.singIn.SignInMethodScreen">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5FF"
-    tools:context=".SignInMethodScreen">
+    tools:context=".activity.singIn.SignInMethodScreen">
     <ImageView
         android:id="@+id/imgComputerShield"
         android:layout_width="150dp"

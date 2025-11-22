@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import admin.example.ungdungsuckhoethongminh.fragments.SleepDayFragment;
-import admin.example.ungdungsuckhoethongminh.fragments.SleepMonthFragment;
-import admin.example.ungdungsuckhoethongminh.fragments.SleepWeekFragment;
-import admin.example.ungdungsuckhoethongminh.fragments.SleepYearFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.sleep.SleepDayFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.sleep.SleepMonthFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.sleep.SleepWeekFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.sleep.SleepYearFragment;
 
 public class SleepPagerAdapter extends FragmentStateAdapter {
 
