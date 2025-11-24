@@ -21,6 +21,7 @@ import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardSleepActivity;
 import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardStepActivity;
 import admin.example.ungdungsuckhoethongminh.adapters.HealthPagerAdapter;
+import admin.example.ungdungsuckhoethongminh.fragments.weight.WeightCreateFragment;
 import admin.example.ungdungsuckhoethongminh.model.HealthItemModel;
 
 public class MenuHomeFragment extends Fragment {
@@ -54,8 +55,11 @@ public class MenuHomeFragment extends Fragment {
                     startActivity(new Intent(getActivity(), DashboardStepActivity.class));
                     break;
                 case "Cân nặng":
-                    // Mở WeightActivity (tạo layout/activity tương ứng)
-//                    startActivity(new Intent(getActivity(), WeightActivity.class));
+                    // Thay thế fragment với WeightCreateFragment
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, new WeightCreateFragment()) // 'R.id.container' là ID của FrameLayout chứa fragment
+                            .addToBackStack(null) // Thêm vào backstack để người dùng có thể quay lại
+                            .commit();
                     break;
                 case "Giấc ngủ":
                     // Mở SleepActivity

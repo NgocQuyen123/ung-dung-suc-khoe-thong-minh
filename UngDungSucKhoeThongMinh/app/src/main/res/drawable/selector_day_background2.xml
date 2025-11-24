@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Khi ngày được chọn -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="@color/purple_gradient_start"
+                android:endColor="@color/purple_gradient_end"
+                android:type="linear"/>
+            <corners android:radius="12dp"/>
+        </shape>
+    </item>
+
+    <!-- Khi ngày không được chọn -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white"/>
+            <stroke android:width="1dp" android:color="@color/border_light"/>
+            <corners android:radius="12dp"/>
+        </shape>
+    </item>
+
+</selector>
