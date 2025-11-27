@@ -232,6 +232,7 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
+                        android:id="@+id/cardSleepDuration"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -331,6 +332,7 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
+                        android:id="@+id/cardSleepBed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -364,6 +366,7 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
+                        android:id="@+id/cardSleepUp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"

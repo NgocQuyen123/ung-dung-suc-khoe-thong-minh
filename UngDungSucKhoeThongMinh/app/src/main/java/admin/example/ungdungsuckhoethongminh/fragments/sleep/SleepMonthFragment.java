@@ -1,5 +1,6 @@
 package admin.example.ungdungsuckhoethongminh.fragments.sleep;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -19,6 +20,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.activity.sleep.SleepTimeActivity;
+import admin.example.ungdungsuckhoethongminh.activity.sleep.SleepTimeGetBedActivity;
+import admin.example.ungdungsuckhoethongminh.activity.sleep.SleepTimeGetUpActivity;
 
 public class SleepMonthFragment extends Fragment {
     private LinearLayout row1, row2, row3, row4, row5;
@@ -46,7 +50,26 @@ public class SleepMonthFragment extends Fragment {
         calendar = Calendar.getInstance();
 
         renderCalendar();
+        // Bắt sự kiện click vào card "Thời gian ngủ"
+        LinearLayout cardSleep = view.findViewById(R.id.cardSleepDuration);
+        cardSleep.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), SleepTimeActivity.class);
+            startActivity(intent);
+        });
 
+        // Bắt sự kiện click vào card "Giờ ngủ"
+        LinearLayout cardSleepBed = view.findViewById(R.id.cardSleepBed);
+        cardSleepBed.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), SleepTimeGetBedActivity.class);
+            startActivity(intent);
+        });
+
+        // Bắt sự kiện click vào card "Giờ thức dậy"
+        LinearLayout cardSleepUp = view.findViewById(R.id.cardSleepUp);
+        cardSleepUp.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), SleepTimeGetUpActivity.class);
+            startActivity(intent);
+        });
         return view;
     }
 

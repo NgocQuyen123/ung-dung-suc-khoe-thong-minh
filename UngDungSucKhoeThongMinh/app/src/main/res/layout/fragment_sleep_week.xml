@@ -354,6 +354,7 @@
 
             <!-- Thời gian ngủ -->
             <LinearLayout
+                android:id="@+id/cardSleepDuration"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -432,6 +433,7 @@
 
             <!-- Giờ ngủ -->
             <LinearLayout
+                android:id="@+id/cardSleepBed"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -457,6 +459,7 @@
 
             <!-- Giờ thức dậy -->
             <LinearLayout
+                android:id="@+id/cardSleepUp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
