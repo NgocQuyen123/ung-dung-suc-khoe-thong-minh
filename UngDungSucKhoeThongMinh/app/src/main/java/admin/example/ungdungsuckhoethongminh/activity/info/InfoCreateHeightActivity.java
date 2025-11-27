@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh.activity.create;
+package admin.example.ungdungsuckhoethongminh.activity.info;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -17,7 +16,7 @@ import androidx.core.view.WindowCompat;
 
 import admin.example.ungdungsuckhoethongminh.R;
 
-public class CreateHeightActivity extends AppCompatActivity {
+public class InfoCreateHeightActivity extends AppCompatActivity {
 
     private int currentHeight = 165;
     private final int minHeight = 100;
@@ -118,7 +117,7 @@ public class CreateHeightActivity extends AppCompatActivity {
 
         // Lưu và chuyển màn hình
         btnSave.setOnClickListener(v -> {
-            Intent intent = new Intent(CreateHeightActivity.this, CreateYearActivity.class);
+            Intent intent = new Intent(InfoCreateHeightActivity.this, InfoCreateYearActivity.class);
             intent.putExtra("height", currentHeight);
             startActivity(intent);
         });

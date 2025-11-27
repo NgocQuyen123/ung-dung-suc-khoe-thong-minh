@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh.activity.create;
+package admin.example.ungdungsuckhoethongminh.activity.info;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import admin.example.ungdungsuckhoethongminh.R;
 
-public class CreatePhoneActivity extends AppCompatActivity {
+public class InfoCreatePhoneActivity extends AppCompatActivity {
 
     private EditText edtPhone;
 
@@ -54,7 +54,7 @@ public class CreatePhoneActivity extends AppCompatActivity {
         // Nút tiếp theo
         Button btnNext = findViewById(R.id.btnNext);
         btnNext.setOnClickListener(v -> {
-            Intent intent = new Intent(CreatePhoneActivity.this, CreateGenderActivity.class);
+            Intent intent = new Intent(InfoCreatePhoneActivity.this, InfoCreateGenderActivity.class);
             startActivity(intent);
         });
     }

@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh.activity.create;
+package admin.example.ungdungsuckhoethongminh.activity.info;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 
 import admin.example.ungdungsuckhoethongminh.R;
 
-public class CreateGenderActivity extends AppCompatActivity {
+public class InfoCreateGenderActivity extends AppCompatActivity {
 
     private ConstraintLayout flagContainer1; // Nam
     private ConstraintLayout flagContainer2; // Nữ
@@ -58,10 +57,10 @@ public class CreateGenderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (selectedGender.isEmpty()) {
-                    Toast.makeText(CreateGenderActivity.this,
+                    Toast.makeText(InfoCreateGenderActivity.this,
                             "Vui lòng chọn giới tính", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(CreateGenderActivity.this, CreateHeightActivity.class);
+                    Intent intent = new Intent(InfoCreateGenderActivity.this, InfoCreateHeightActivity.class);
                     intent.putExtra("gender", selectedGender);
                     startActivity(intent);
                 }
