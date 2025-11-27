@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
 
 import admin.example.ungdungsuckhoethongminh.R;
 
@@ -32,6 +34,7 @@ public class WeighTargetCaloFragment extends Fragment {
     private ConstraintLayout itemBMRContainer;
     private ConstraintLayout itemActivityContainer;
     private ConstraintLayout itemDeficitContainer;
+    private static final int FRAGMENT_CONTAINER_ID = R.id.container;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,7 +61,14 @@ public class WeighTargetCaloFragment extends Fragment {
         } else {
             tvDeficitValue = root.findViewById(R.id.tvDeficitValue);
         }
-
+        if (itemBMRContainer != null) {
+            itemBMRContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    navigateToBmrDetails();
+                }
+            });
+        }
         tvTarget = root.findViewById(R.id.tvTarget);
         btnFinish = root.findViewById(R.id.btnFinish);
 
@@ -80,5 +90,17 @@ public class WeighTargetCaloFragment extends Fragment {
         if (tvDeficitValue != null) tvDeficitValue.setText(SIGNED_DEFICIT + " kcal");
 
         if (tvTarget != null) tvTarget.setText(TOTAL_CALORIES + " kcal");
+    }
+    private void navigateToBmrDetails() {
+        WeightBmrDetails bmrDetailsFragment = new WeightBmrDetails();
+
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        transaction.replace(FRAGMENT_CONTAINER_ID, bmrDetailsFragment);
+
+        transaction.addToBackStack(null);
+
+        transaction.commit();
     }
 }
