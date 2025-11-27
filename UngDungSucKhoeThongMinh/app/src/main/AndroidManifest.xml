@@ -38,6 +38,13 @@
             android:name=".GoalWeightSettingActivity"
 
             android:exported="false" />
+        <activity
+            android:name=".activity.workout.WorkoutDetailActivity"
+            android:exported="true" />
+        <!--Workout Add Schedule-->
+        <activity
+            android:name=".activity.workout.AddScheduleActivity"
+            android:exported="true" />
 
         <activity
             android:name=".ProfileActivity"

@@ -5,6 +5,9 @@ plugins {
 android {
     namespace = "admin.example.ungdungsuckhoethongminh"
     compileSdk = 36
+    buildFeatures {
+        viewBinding = true  // Lưu ý dấu '='
+    }
 
     defaultConfig {
         applicationId = "admin.example.ungdungsuckhoethongminh"
