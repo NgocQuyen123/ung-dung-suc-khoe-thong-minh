@@ -15,8 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.FragmentManager;
+import android.content.Intent;
 
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.activity.weight.WeightHostActivity;
 
 public class WeighTargetCaloFragment extends Fragment {
 
@@ -75,11 +77,25 @@ public class WeighTargetCaloFragment extends Fragment {
         updateSummary();
 
         btnFinish.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Lưu thành công (Test)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Đã lưu mục tiêu calo và chuyển sang màn hình tổng quan.", Toast.LENGTH_SHORT).show();
+
+            if (getActivity() != null) {
+                // 1. Tạo Intent để chuyển sang WeightHostActivity
+                Intent intent = new Intent(getActivity(), WeightHostActivity.class);
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                // 2. Bắt đầu WeightHostActivity
+                startActivity(intent);
+
+                // 3. Kết thúc WeightHeaderActivity hiện tại
+                getActivity().finish();
+            }
         });
 
         return root;
     }
+
 
     private void updateSummary() {
 

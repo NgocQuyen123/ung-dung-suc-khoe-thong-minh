@@ -1,66 +1,55 @@
 package admin.example.ungdungsuckhoethongminh.fragments.weight;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.activity.weight.WeightHostActivity;
+import admin.example.ungdungsuckhoethongminh.fragments.weight.WeightCreateFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link WeightAddFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class WeightAddFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public WeightAddFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment WeightAddFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static WeightAddFragment newInstance(String param1, String param2) {
-        WeightAddFragment fragment = new WeightAddFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_weight_add, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Ánh xạ View
+        Button btnSave = view.findViewById(R.id.btnSave);
+        ImageView ivBack = view.findViewById(R.id.ivBack);
+
+        // ⭐ Khắc phục lỗi: Kiểm tra null trước khi thiết lập Listener
+        if (btnSave != null) {
+            btnSave.setOnClickListener(v -> {
+                Toast.makeText(getContext(), "Đã lưu cân nặng", Toast.LENGTH_SHORT).show();
+
+                // ⭐ Logic Quay lại đơn giản (popBackStack)
+                if (getActivity() != null) {
+                    requireActivity().getSupportFragmentManager().popBackStack();
+                }
+            });
+        }
+
+        // ⭐ Khắc phục lỗi: Kiểm tra null cho nút Back
+        if (ivBack != null) {
+            ivBack.setOnClickListener(v -> {
+                if (getActivity() != null) {
+                    getActivity().onBackPressed();
+                }
+            });
+        }
     }
 }

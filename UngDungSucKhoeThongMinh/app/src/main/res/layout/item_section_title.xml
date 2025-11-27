@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_button_bg"
+        android:backgroundTint="#141529"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical"
@@ -42,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Chỉnh sửa"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="normal" />
 
@@ -51,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text=">"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
