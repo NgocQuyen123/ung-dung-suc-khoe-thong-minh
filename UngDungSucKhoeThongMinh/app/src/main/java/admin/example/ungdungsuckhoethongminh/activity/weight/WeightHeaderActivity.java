@@ -7,8 +7,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import admin.example.ungdungsuckhoethongminh.R;
-import admin.example.ungdungsuckhoethongminh.fragments.weight.WeightActivityLeverFragment;
 import admin.example.ungdungsuckhoethongminh.fragments.weight.WeighTargetCaloFragment;
+import admin.example.ungdungsuckhoethongminh.fragments.weight.WeightActivityLeverFragment;
 import admin.example.ungdungsuckhoethongminh.fragments.weight.WeightPaceFragment;
 import admin.example.ungdungsuckhoethongminh.fragments.weight.WeightCreateFragment;
 

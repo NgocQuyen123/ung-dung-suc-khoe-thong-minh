@@ -16,7 +16,6 @@
         android:theme="@style/Theme.UngDungSucKhoeThongMinh"
         android:usesCleartextTraffic="true">
 
-
         <!-- Flow Create -->
         <activity
             android:name=".activity.auth.AuthActivity"
@@ -32,47 +31,42 @@
         <activity android:name=".activity.info.InfoCreateHeightActivity" android:exported="false"/>
         <activity android:name=".activity.info.InfoCreateYearActivity" android:exported="false"/>
         <!--Auth-->
+
         <activity
-            android:name=".activity.menu.MenuActivity"
+            android:name=".activity.weight.WeightHostActivity"
             android:exported="false" />
 
-        <!--Dashboard-->
+        <!-- Auth -->
+        <activity
+            android:name=".activity.menu.MenuActivity"
+            android:exported="false" /> <!-- Dashboard -->
         <activity
             android:name=".activity.dashboard.DashboardCaloActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.dashboard.DashboardSleepActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".activity.dashboard.DashboardStepActivity"
-            android:exported="false" />
-
-        <!--Info-->
+            android:exported="false" /> <!-- Info -->
         <activity
             android:name=".activity.info.InfoCreateNameActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".activity.info.InfoEditGenderActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.info.InfoEditHeightActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".activity.info.InfoEditNameActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".activity.info.InfoEditPhoneActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.info.InfoEditYearActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".activity.info.InfoProfileActivity"
             android:exported="false" />
@@ -136,5 +130,7 @@
         <activity
             android:name=".activity.weight.WeightHeaderActivity"
             android:exported="false" />
+
     </application>
+
 </manifest>

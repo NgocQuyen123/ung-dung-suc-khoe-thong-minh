@@ -13,8 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import android.content.Intent;
 
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.activity.weight.WeightHostActivity;
 
 public class WeighTargetCaloFragment extends Fragment {
 
@@ -32,6 +36,7 @@ public class WeighTargetCaloFragment extends Fragment {
     private ConstraintLayout itemBMRContainer;
     private ConstraintLayout itemActivityContainer;
     private ConstraintLayout itemDeficitContainer;
+    private static final int FRAGMENT_CONTAINER_ID = R.id.container;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,18 +63,39 @@ public class WeighTargetCaloFragment extends Fragment {
         } else {
             tvDeficitValue = root.findViewById(R.id.tvDeficitValue);
         }
-
+        if (itemBMRContainer != null) {
+            itemBMRContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    navigateToBmrDetails();
+                }
+            });
+        }
         tvTarget = root.findViewById(R.id.tvTarget);
         btnFinish = root.findViewById(R.id.btnFinish);
 
         updateSummary();
 
         btnFinish.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Lưu thành công (Test)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Đã lưu mục tiêu calo và chuyển sang màn hình tổng quan.", Toast.LENGTH_SHORT).show();
+
+            if (getActivity() != null) {
+                // 1. Tạo Intent để chuyển sang WeightHostActivity
+                Intent intent = new Intent(getActivity(), WeightHostActivity.class);
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                // 2. Bắt đầu WeightHostActivity
+                startActivity(intent);
+
+                // 3. Kết thúc WeightHeaderActivity hiện tại
+                getActivity().finish();
+            }
         });
 
         return root;
     }
+
 
     private void updateSummary() {
 
@@ -80,5 +106,17 @@ public class WeighTargetCaloFragment extends Fragment {
         if (tvDeficitValue != null) tvDeficitValue.setText(SIGNED_DEFICIT + " kcal");
 
         if (tvTarget != null) tvTarget.setText(TOTAL_CALORIES + " kcal");
+    }
+    private void navigateToBmrDetails() {
+        WeightBmrDetails bmrDetailsFragment = new WeightBmrDetails();
+
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        transaction.replace(FRAGMENT_CONTAINER_ID, bmrDetailsFragment);
+
+        transaction.addToBackStack(null);
+
+        transaction.commit();
     }
 }
