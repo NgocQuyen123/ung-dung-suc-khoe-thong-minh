@@ -212,4 +212,108 @@
             android:layout_marginTop="4dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:padding="16dp"
+        android:background="@drawable/bg_card"
+        android:clipToPadding="false">
+
+        <!-- ICON GIÀY -->
+        <ImageView
+            android:id="@+id/imgSleepIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/giacngu"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- TIÊU ĐỀ -->
+        <TextView
+            android:id="@+id/tvTitleSleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giấc ngủ"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@id/imgSleepIcon"
+            app:layout_constraintTop_toTopOf="@id/imgSleepIcon"
+            android:layout_marginStart="8dp" />
+
+        <!-- NÚT KẾT NỐI -->
+        <TextView
+            android:id="@+id/btnConnectSleep"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:gravity="center"
+            android:text="RẤT THẤP"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_red_button"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ĐƯỜNG KẺ -->
+        <View
+            android:id="@+id/dividerSleep"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            app:layout_constraintTop_toBottomOf="@id/imgSleepIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <!-- BÊN TRÁI -->
+        <TextView
+            android:id="@+id/tvNoDataSleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hôm nay"
+            android:textColor="#A0A0A0"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dividerSleep"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/tvLeftStepsSleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 tiếng"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            app:layout_constraintStart_toStartOf="@id/tvNoDataSleep"
+            app:layout_constraintTop_toBottomOf="@id/tvNoDataSleep"
+            android:layout_marginTop="4dp"/>
+
+        <!-- BÊN PHẢI -->
+        <TextView
+            android:id="@+id/tvAverageSleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TRUNG BÌNH 7 NGÀY"
+            android:textColor="#A0A0A0"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dividerSleep"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/tvRightStepsSleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30 tiếng"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            app:layout_constraintEnd_toEndOf="@id/tvAverageSleep"
+            app:layout_constraintTop_toBottomOf="@id/tvAverageSleep"
+            android:layout_marginTop="4dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

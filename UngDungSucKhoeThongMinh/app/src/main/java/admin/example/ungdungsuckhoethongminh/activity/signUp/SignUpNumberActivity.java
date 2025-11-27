@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.activity.auth.AuthActivity;
 
 public class SignUpNumberActivity extends AppCompatActivity {
     Button btnNext;
@@ -26,17 +27,12 @@ public class SignUpNumberActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Lấy reference đến Button
         btnNext = findViewById(R.id.btnNext);
-
-        // Thiết lập sự kiện click
         btnNext.setOnClickListener(v -> {
-            // Mở activity mới
             Intent intent = new Intent(SignUpNumberActivity.this, SignUpPhoneActivity.class);
             startActivity(intent);
-
-            // Optional: thêm animation
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in);
+            // animation chuyển màn (nếu muốn)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.fade_in);
         });
 
     }

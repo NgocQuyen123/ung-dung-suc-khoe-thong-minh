@@ -9,11 +9,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.activity.info.InfoCreateNameActivity;
 import admin.example.ungdungsuckhoethongminh.activity.menu.MenuActivity;
 
 public class OTPVerificationActivity extends AppCompatActivity {
 
     private EditText[] otpInputs = new EditText[6];
+    private String flowType = "signin"; // default
 
     private final String FIXED_OTP = "123456";
 
@@ -21,6 +23,10 @@ public class OTPVerificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_verification);
+
+        flowType = getIntent().getStringExtra("flow");
+        if (flowType == null) flowType = "login";
+
 
         // Gán 6 ô vào mảng
         otpInputs[0] = findViewById(R.id.etOtp1);
@@ -93,10 +99,18 @@ public class OTPVerificationActivity extends AppCompatActivity {
         if (userOtp.toString().equals(FIXED_OTP)) {
             Toast.makeText(this, "Xác thực thành công!", Toast.LENGTH_SHORT).show();
 
-            // → Chuyển về màn Main
-            Intent intent = new Intent(OTPVerificationActivity.this, MenuActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            if (flowType.equals("signup")) {
+                // → Luồng đăng ký → sang InfoCreateNameActivity
+                Intent intent = new Intent(OTPVerificationActivity.this, InfoCreateNameActivity.class);
+                startActivity(intent);
+
+            } else {
+                // → Luồng đăng nhập → sang MenuActivity
+                Intent intent = new Intent(OTPVerificationActivity.this, MenuActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+
             finish();
 
         } else {
@@ -105,7 +119,10 @@ public class OTPVerificationActivity extends AppCompatActivity {
         }
     }
 
+
     private void clearOtpInputs() {
         for (EditText edt : otpInputs) edt.setText("");
     }
+
+
 }

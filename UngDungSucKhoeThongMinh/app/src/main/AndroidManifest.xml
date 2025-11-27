@@ -18,7 +18,7 @@
 
         <!--Auth-->
         <activity
-            android:name=".activity.auth.AuthActivity"
+            android:name=".activity.menu.MenuActivity"
             android:exported="false" />
 
         <!--Dashboard-->
@@ -64,7 +64,7 @@
 
         <!--Menu-->
         <activity
-            android:name=".activity.menu.MenuActivity"
+            android:name=".activity.auth.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -106,6 +106,11 @@
             android:exported="false"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize">
         </activity>
+
+        <activity
+            android:name=".activity.singIn.SignInPhoneActivity"
+            android:exported="false" />
+
 
         <!--Sleep-->
         <activity

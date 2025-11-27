@@ -18,7 +18,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import admin.example.ungdungsuckhoethongminh.R;
-import admin.example.ungdungsuckhoethongminh.activity.signUp.SignUpPhoneActivity;
 
 public class SignInNumber extends AppCompatActivity {
 
@@ -139,7 +138,7 @@ public class SignInNumber extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(SignInNumber.this, SignUpPhoneActivity.class);
+            Intent intent = new Intent(SignInNumber.this, SignInPhoneActivity.class);
             intent.putExtra("phoneNumber", phone);
             startActivity(intent);
 

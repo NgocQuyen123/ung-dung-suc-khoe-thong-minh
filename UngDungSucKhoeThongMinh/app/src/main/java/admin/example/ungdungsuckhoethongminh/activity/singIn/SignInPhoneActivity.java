@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh.activity.signUp;
+package admin.example.ungdungsuckhoethongminh.activity.singIn;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +12,13 @@ import androidx.core.view.WindowInsetsCompat;
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.activity.otp.OTPVerificationActivity;
 
-public class SignUpPhoneActivity extends AppCompatActivity {
+public class SignInPhoneActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_sign_up_phone);
+        setContentView(R.layout.activity_sign_in_phone);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -29,8 +29,8 @@ public class SignUpPhoneActivity extends AppCompatActivity {
         // Lấy view btnOtpSms
         findViewById(R.id.btnOtpSms).setOnClickListener(v -> {
             // Tạo intent để mở OtpVerificationActivity
-            Intent intent = new Intent(SignUpPhoneActivity.this, OTPVerificationActivity.class);
-            intent.putExtra("flow", "signup");
+            Intent intent = new Intent(SignInPhoneActivity.this, OTPVerificationActivity.class);
+            intent.putExtra("flow", "signin");
             startActivity(intent);
         });
     }

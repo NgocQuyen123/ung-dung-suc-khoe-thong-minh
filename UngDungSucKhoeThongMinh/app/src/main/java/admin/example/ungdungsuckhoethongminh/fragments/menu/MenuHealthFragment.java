@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardCaloActivity;
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardSleepActivity;
 import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardStepActivity;
 
 public class MenuHealthFragment extends Fragment {
@@ -45,6 +46,16 @@ public class MenuHealthFragment extends Fragment {
         btnConnectKcal.setOnClickListener(v -> {
             // Mở StepsActivity
             Intent intent = new Intent(getActivity(), DashboardCaloActivity.class);
+            startActivity(intent);
+        });
+
+        // Lấy TextView
+        TextView btnConnectSleep = view.findViewById(R.id.btnConnectSleep);
+
+        // Set OnClickListener
+        btnConnectSleep.setOnClickListener(v -> {
+            // Mở StepsActivity
+            Intent intent = new Intent(getActivity(), DashboardSleepActivity.class);
             startActivity(intent);
         });
 
