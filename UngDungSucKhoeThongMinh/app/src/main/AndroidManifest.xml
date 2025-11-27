@@ -16,6 +16,21 @@
         android:theme="@style/Theme.UngDungSucKhoeThongMinh"
         android:usesCleartextTraffic="true">
 
+
+        <!-- Flow Create -->
+        <activity
+            android:name=".activity.create.CreateNameActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.create.CreatePhoneActivity" android:exported="false"/>
+        <activity android:name=".activity.create.CreateGenderActivity" android:exported="false"/>
+        <activity android:name=".activity.create.CreateHeightActivity" android:exported="false"/>
+        <activity android:name=".activity.create.CreateYearActivity" android:exported="false"/>
         <!--Auth-->
         <activity
             android:name=".activity.menu.MenuActivity"
@@ -66,11 +81,7 @@
         <activity
             android:name=".activity.auth.AuthActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--OTP-->
