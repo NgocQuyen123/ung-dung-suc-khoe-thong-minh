@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class SignInNumber extends AppCompatActivity {
     private TextView tvTitle, tvSubtitle;
     private EditText edtPhone;
     private Button btnNext;
+    private ImageView btnBack;
 
     // Các phím số
     private LinearLayout btnKey0, btnKey1, btnKey2, btnKey3, btnKey4,
@@ -41,6 +43,9 @@ public class SignInNumber extends AppCompatActivity {
         setupNextButtonLogic();
         setupUIType();
         focusAndShowKeyboard();
+
+        btnBack.setOnClickListener(v -> finish());
+
     }
 
     // ============================
@@ -51,7 +56,9 @@ public class SignInNumber extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
         tvSubtitle = findViewById(R.id.tvSubtitle);
         edtPhone = findViewById(R.id.edtPhone);
+
         btnNext = findViewById(R.id.btnNext);
+        btnBack = findViewById(R.id.btnBack);
 
         btnKey0 = findViewById(R.id.btnKey0);
         btnKey1 = findViewById(R.id.btnKey1);
