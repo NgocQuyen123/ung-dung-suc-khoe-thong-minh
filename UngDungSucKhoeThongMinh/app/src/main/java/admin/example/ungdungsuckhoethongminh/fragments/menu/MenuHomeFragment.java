@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -81,6 +83,12 @@ public class MenuHomeFragment extends Fragment {
             Intent intent = new Intent(getActivity(), InfoProfileActivity.class);
             startActivity(intent);
         });
+
+        View card3 = view.findViewById(R.id.card3);
+        TextView txt = card3.findViewById(R.id.text);  // textView con trong include
+        txt.setText("Kế hoạch tập luyện");
+        ImageView icon = card3.findViewById(R.id.icon);
+        icon.setImageResource(R.drawable.kehoachtapluyen); // đổi sang icon mới
 
         return view;
     }
