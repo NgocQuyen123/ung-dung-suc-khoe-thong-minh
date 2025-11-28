@@ -31,7 +31,7 @@ public class SignInNumber extends AppCompatActivity {
     private LinearLayout btnKey0, btnKey1, btnKey2, btnKey3, btnKey4,
             btnKey5, btnKey6, btnKey7, btnKey8, btnKey9;
 
-    private FrameLayout btnDelete; // ❗ KHÔNG ĐƯỢC DÙNG LinearLayout
+    private FrameLayout btnDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +48,7 @@ public class SignInNumber extends AppCompatActivity {
 
     }
 
-    // ============================
-    // 📌 1. ÁNH XẠ VIEW
-    // ============================
+    //ÁNH XẠ VIEW
     private void initViews() {
 
         tvTitle = findViewById(R.id.tvTitle);
@@ -75,9 +73,7 @@ public class SignInNumber extends AppCompatActivity {
         edtPhone.setFocusable(false);
     }
 
-    // ============================
-    // 📌 2. GIAO DIỆN: Login or Register
-    // ============================
+    //GIAO DIỆN: Login or Register
     private void setupUIType() {
         int type = 1; // 1 = đăng nhập, 2 = đăng ký
 
@@ -90,9 +86,7 @@ public class SignInNumber extends AppCompatActivity {
         }
     }
 
-    // ============================
-    // 📌 3. LOGIC BÀN PHÍM SỐ
-    // ============================
+    //LOGIC BÀN PHÍM SỐ
     private void setupKeyboard() {
 
         setKey(btnKey0, "0");
@@ -121,9 +115,7 @@ public class SignInNumber extends AppCompatActivity {
         });
     }
 
-    // ============================
-    // 📌 4. KÍCH HOẠT NÚT "TIẾP THEO"
-    // ============================
+    //KÍCH HOẠT NÚT "TIẾP THEO"
     private void setupNextButtonLogic() {
 
         edtPhone.addTextChangedListener(new TextWatcher() {
@@ -132,7 +124,7 @@ public class SignInNumber extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                btnNext.setEnabled(s.length() >= 9); // Đủ 9 số mới bật
+                btnNext.setEnabled(s.length() >= 9);
             }
         });
 
@@ -153,9 +145,7 @@ public class SignInNumber extends AppCompatActivity {
         });
     }
 
-    // ============================
-    // 📌 5. TỰ ĐỘNG SHOW BÀN PHÍM
-    // ============================
+    //TỰ ĐỘNG SHOW BÀN PHÍM
     private void focusAndShowKeyboard() {
 
         edtPhone.requestFocus();

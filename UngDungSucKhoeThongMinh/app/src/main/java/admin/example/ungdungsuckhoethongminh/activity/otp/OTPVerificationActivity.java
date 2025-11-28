@@ -27,7 +27,6 @@ public class OTPVerificationActivity extends AppCompatActivity {
         flowType = getIntent().getStringExtra("flow");
         if (flowType == null) flowType = "login";
 
-
         // Gán 6 ô vào mảng
         otpInputs[0] = findViewById(R.id.etOtp1);
         otpInputs[1] = findViewById(R.id.etOtp2);

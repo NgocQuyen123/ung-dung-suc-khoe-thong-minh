@@ -19,10 +19,7 @@ import java.util.Locale;
 import admin.example.ungdungsuckhoethongminh.R;
 
 public class CaloDayFragment extends Fragment {
-    private ImageView imgCircle, imgCenterIcon;
-    private TextView txtSmallSteps, txtSmallCalories, txtSmallDistance, txtSmallTime;
-    private TextView txtCenterTop, txtCenterBottom, txtDayInfo;
-    private ImageButton btnPrevDay, btnNextDay;
+    private TextView  txtDayInfo;
 
     private Calendar calendar = Calendar.getInstance();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -35,17 +32,8 @@ public class CaloDayFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calo_day, container, false);
 
-        // Find views
-        imgCircle = view.findViewById(R.id.imgCircle);
-        imgCenterIcon = view.findViewById(R.id.imgCenterIcon);
-        txtCenterTop = view.findViewById(R.id.txtCenterTop);
-        txtCenterBottom = view.findViewById(R.id.txtCenterBottom);
 
         txtDayInfo = view.findViewById(R.id.txtDayInfo);
-
-        btnPrevDay = view.findViewById(R.id.btnPrevDay);
-        btnNextDay = view.findViewById(R.id.btnNextDay);
-
         return view;
     }
 

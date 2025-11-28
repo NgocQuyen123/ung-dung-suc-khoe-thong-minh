@@ -17,7 +17,7 @@ public class InfoCreateNameActivity extends AppCompatActivity {
         Button btnSave = findViewById(R.id.btnSave);
 
         btnSave.setOnClickListener(v -> {
-            Intent intent = new Intent(InfoCreateNameActivity.this, InfoCreateYearActivity.class);
+            Intent intent = new Intent(InfoCreateNameActivity.this, InfoCreatePhoneActivity.class);
             startActivity(intent);
         });
     }

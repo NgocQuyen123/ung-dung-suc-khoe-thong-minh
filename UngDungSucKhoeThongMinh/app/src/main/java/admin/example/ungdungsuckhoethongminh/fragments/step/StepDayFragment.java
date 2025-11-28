@@ -54,42 +54,77 @@ public class StepDayFragment extends Fragment {
         loadDemoData();
         updateDayInfo();
 
-//        btnPrevDay.setOnClickListener(v -> {
-//            calendar.add(Calendar.DAY_OF_MONTH, -1);
-//            loadDemoData();
-//            updateDayInfo();
-//        });
-//
-//        btnNextDay.setOnClickListener(v -> {
-//            calendar.add(Calendar.DAY_OF_MONTH, 1);
-//            loadDemoData();
-//            updateDayInfo();
-//        });
+        btnPrevDay.setOnClickListener(v -> {
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
+            loadDemoData();
+            updateDayInfo();
+        });
 
-        // Click vào ô nhỏ để đổi nội dung giữa vòng tròn
-//        txtSmallSteps.setOnClickListener(v -> {
-//            txtCenterTop.setText("6500");
-//            txtCenterBottom.setText("bước");
-//            imgCenterIcon.setImageResource(R.drawable.buocchan);
-//        });
-//
-//        txtSmallCalories.setOnClickListener(v -> {
-//            txtCenterTop.setText("320");
-//            txtCenterBottom.setText("kcal");
-//            imgCenterIcon.setImageResource(R.drawable.mdi_fire);
-//        });
-//
-//        txtSmallDistance.setOnClickListener(v -> {
-//            txtCenterTop.setText("4500");
-//            txtCenterBottom.setText("m");
-//            imgCenterIcon.setImageResource(R.drawable.arrow_right);
-//        });
-//
-//        txtSmallTime.setOnClickListener(v -> {
-//            txtCenterTop.setText("35");
-//            txtCenterBottom.setText("phút");
-//            imgCenterIcon.setImageResource(R.drawable.mdi_light_clock);
-//        });
+        btnNextDay.setOnClickListener(v -> {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+            loadDemoData();
+            updateDayInfo();
+        });
+
+//         Click vào ô nhỏ để đổi nội dung giữa vòng tròn
+        txtSmallSteps.setOnClickListener(v -> {
+            txtCenterTop.setText("6500");
+            txtCenterBottom.setText("bước");
+            imgCenterIcon.setImageResource(R.drawable.buocchan);
+        });
+
+        txtSmallCalories.setOnClickListener(v -> {
+            txtCenterTop.setText("320");
+            txtCenterBottom.setText("kcal");
+            imgCenterIcon.setImageResource(R.drawable.mdi_fire);
+        });
+
+        txtSmallDistance.setOnClickListener(v -> {
+            txtCenterTop.setText("4500");
+            txtCenterBottom.setText("m");
+            imgCenterIcon.setImageResource(R.drawable.arrow_right);
+        });
+
+        txtSmallTime.setOnClickListener(v -> {
+            txtCenterTop.setText("35");
+            txtCenterBottom.setText("phút");
+            imgCenterIcon.setImageResource(R.drawable.mdi_light_clock);
+        });btnPrevDay.setOnClickListener(v -> {
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
+            loadDemoData();
+            updateDayInfo();
+        });
+
+        btnNextDay.setOnClickListener(v -> {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+            loadDemoData();
+            updateDayInfo();
+        });
+
+//         Click vào ô nhỏ để đổi nội dung giữa vòng tròn
+        txtSmallSteps.setOnClickListener(v -> {
+            txtCenterTop.setText("6500");
+            txtCenterBottom.setText("bước");
+            imgCenterIcon.setImageResource(R.drawable.buocchan);
+        });
+
+        txtSmallCalories.setOnClickListener(v -> {
+            txtCenterTop.setText("320");
+            txtCenterBottom.setText("kcal");
+            imgCenterIcon.setImageResource(R.drawable.mdi_fire);
+        });
+
+        txtSmallDistance.setOnClickListener(v -> {
+            txtCenterTop.setText("4500");
+            txtCenterBottom.setText("m");
+            imgCenterIcon.setImageResource(R.drawable.arrow_right);
+        });
+
+        txtSmallTime.setOnClickListener(v -> {
+            txtCenterTop.setText("35");
+            txtCenterBottom.setText("phút");
+            imgCenterIcon.setImageResource(R.drawable.mdi_light_clock);
+        });
 
         return view;
     }

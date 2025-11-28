@@ -11,7 +11,7 @@ import admin.example.ungdungsuckhoethongminh.R;
 
 public class SignInMethodScreen extends AppCompatActivity {
 
-    private Button btnGoogle, btnFacebook, btnEmail, btnPhone;
+    private Button btnPhone;
     private ImageView btnClose;
 
     @Override
@@ -24,31 +24,11 @@ public class SignInMethodScreen extends AppCompatActivity {
     }
 
     private void initViews() {
-        btnGoogle   = findViewById(R.id.button);   // nút đen — Google
-        btnFacebook = findViewById(R.id.button2);  // Facebook
-        btnEmail    = findViewById(R.id.button3);  // Email
-        btnPhone    = findViewById(R.id.button4);  // Phone
+        btnPhone    = findViewById(R.id.button4);
         btnClose    = findViewById(R.id.imageView);
     }
 
     private void setupEvents() {
-
-        // Google login — bạn xử lý sau
-        btnGoogle.setOnClickListener(v -> {
-            // TODO: login Google
-        });
-
-        // Facebook login — bạn xử lý sau
-        btnFacebook.setOnClickListener(v -> {
-            // TODO: login Facebook
-        });
-
-        // Đăng nhập bằng Email — mở màn hình email nếu bạn có
-        btnEmail.setOnClickListener(v -> {
-            // TODO: login email
-        });
-
-        // ⭐⭐ QUAN TRỌNG: ĐĂNG NHẬP BẰNG PHONE ⭐⭐
         btnPhone.setOnClickListener(v -> {
             Intent intent = new Intent(SignInMethodScreen.this, SignInNumber.class);
             startActivity(intent);
