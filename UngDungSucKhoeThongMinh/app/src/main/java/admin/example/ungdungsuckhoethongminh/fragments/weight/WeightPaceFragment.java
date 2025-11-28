@@ -72,12 +72,15 @@ public class WeightPaceFragment extends Fragment {
         updateGoalDate(paces, CURRENT_WEIGHT, TARGET_WEIGHT, SELECTED_PACE_ID);
 
         btnNext.setOnClickListener(v -> {
-            if (adapter != null && adapter.getSelectedId() != null) {
-                if (getActivity() instanceof WeightHeaderActivity) {
-                    ((WeightHeaderActivity) getActivity()).navigateTo(new WeighTargetCaloFragment(), true);
-                }
-            } else {
-                Toast.makeText(getContext(), "Vui lòng chọn tốc độ cân nặng.", Toast.LENGTH_SHORT).show();
+//            if (adapter != null && adapter.getSelectedId() != null) {
+//                if (getActivity() instanceof WeightHeaderActivity) {
+//                    ((WeightHeaderActivity) getActivity()).navigateTo(new WeighTargetCaloFragment(), true);
+//                }
+//            } else {
+//                Toast.makeText(getContext(), "Vui lòng chọn tốc độ cân nặng.", Toast.LENGTH_SHORT).show();
+//            }
+            if (getActivity() instanceof WeightHeaderActivity) {
+                ((WeightHeaderActivity) getActivity()).navigateTo(new WeighTargetCaloFragment(), true);
             }
         });
 

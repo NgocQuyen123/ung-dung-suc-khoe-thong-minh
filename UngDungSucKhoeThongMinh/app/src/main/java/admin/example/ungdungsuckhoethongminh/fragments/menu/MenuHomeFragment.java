@@ -23,6 +23,7 @@ import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardSleepActivity;
 import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardStepActivity;
 import admin.example.ungdungsuckhoethongminh.activity.plan.PlanWorkoutActivity;
+import admin.example.ungdungsuckhoethongminh.activity.weight.WeightHeaderActivity;
 import admin.example.ungdungsuckhoethongminh.adapters.HealthPagerAdapter;
 import admin.example.ungdungsuckhoethongminh.fragments.weight.WeightCreateFragment;
 import admin.example.ungdungsuckhoethongminh.model.HealthItemModel;
@@ -46,8 +47,8 @@ public class MenuHomeFragment extends Fragment {
         // Dữ liệu mẫu
         healthItems = new ArrayList<>();
         healthItems.add(new HealthItemModel("Đếm bước chân", "Cấp quyền bước chân", R.drawable.chaybo));
-        healthItems.add(new HealthItemModel("Cân nặng", "Thiết lập chương trình", R.drawable.ic_dinhduong));
-        healthItems.add(new HealthItemModel("Giấc ngủ", "Nhập ngay", R.drawable.ic_motrongmau));
+        healthItems.add(new HealthItemModel("Cân nặng", "Thiết lập chương trình", R.drawable.ic_scale));
+        healthItems.add(new HealthItemModel("Giấc ngủ", "Nhập ngay", R.drawable.giacngu));
 
         adapter = new HealthPagerAdapter(healthItems, position -> {
             HealthItemModel clickedItem = healthItems.get(position);
@@ -59,10 +60,7 @@ public class MenuHomeFragment extends Fragment {
                     break;
                 case "Cân nặng":
                     // Thay thế fragment với WeightCreateFragment
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, new WeightCreateFragment()) // 'R.id.container' là ID của FrameLayout chứa fragment
-                            .addToBackStack(null) // Thêm vào backstack để người dùng có thể quay lại
-                            .commit();
+                    startActivity(new Intent(getActivity(), WeightHeaderActivity.class));
                     break;
                 case "Giấc ngủ":
                     // Mở SleepActivity

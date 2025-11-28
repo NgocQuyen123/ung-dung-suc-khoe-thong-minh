@@ -143,6 +143,9 @@
         <activity
             android:name=".activity.weight.WeightHeaderActivity"
             android:exported="false" />
+        <!--Chỉnh sửa kế hoạch tập luyện-->
+        <activity android:name=".activity.plan.PlanGinalEdit"
+            android:exported="false" />
 
     </application>
 

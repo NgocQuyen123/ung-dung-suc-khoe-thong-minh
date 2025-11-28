@@ -83,8 +83,6 @@ public class WeighTargetCaloFragment extends Fragment {
                 // 1. Tạo Intent để chuyển sang WeightHostActivity
                 Intent intent = new Intent(getActivity(), WeightHostActivity.class);
 
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
                 // 2. Bắt đầu WeightHostActivity
                 startActivity(intent);
 

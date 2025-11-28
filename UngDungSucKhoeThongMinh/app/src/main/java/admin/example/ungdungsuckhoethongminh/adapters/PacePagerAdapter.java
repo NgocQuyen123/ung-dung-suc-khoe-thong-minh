@@ -85,8 +85,8 @@ public class PacePagerAdapter extends RecyclerView.Adapter<PacePagerAdapter.VH>{
 
         // 4. Xử lý click
         holder.clPaceContainer.setOnClickListener(v -> {
-            listener.onClick(t);
-            setSelectedId(t.id);
+//            listener.onClick(t);
+//            setSelectedId(t.id);
         });
 
     }

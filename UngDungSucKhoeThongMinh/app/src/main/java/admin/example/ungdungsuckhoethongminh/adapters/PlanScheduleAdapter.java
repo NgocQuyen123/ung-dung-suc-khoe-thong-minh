@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.content.Context;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.activity.plan.PlanGinalEdit;
 import admin.example.ungdungsuckhoethongminh.model.PlanScheduleModel;
 
 public class PlanScheduleAdapter extends RecyclerView.Adapter<PlanScheduleAdapter.ViewHolder> {
@@ -43,9 +46,13 @@ public class PlanScheduleAdapter extends RecyclerView.Adapter<PlanScheduleAdapte
         holder.tvProgress.setText(item.progress + "%");
 
         // Nút Chỉnh sửa
-        holder.btnEdit.setOnClickListener(v ->
-                System.out.println("Chỉnh sửa: " + item.workoutName)
-        );
+        holder.btnEdit.setOnClickListener(v -> {
+            Context context = v.getContext();
+
+            Intent intent = new Intent(context, PlanGinalEdit.class);
+
+            context.startActivity(intent);
+        });
 
         // Nút Hoàn thành
         holder.btnMarkDone.setOnClickListener(v ->

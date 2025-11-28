@@ -56,12 +56,16 @@ public class WeightActivityLeverFragment extends Fragment {
         adapter.setSelectedId(SELECTED_ACTIVITY_ID);
 
         btnNext.setOnClickListener(v -> {
-            if (adapter != null && adapter.getSelectedId() != -1) {
-                if (getActivity() instanceof WeightHeaderActivity) {
-                    ((WeightHeaderActivity)getActivity()).navigateTo(new WeightPaceFragment(), true);
-                }
-            } else {
-                Toast.makeText(getContext(), "Vui lòng chọn mức độ hoạt động.", Toast.LENGTH_SHORT).show();
+//            if (adapter != null && adapter.getSelectedId() != -1) {
+//                if (getActivity() instanceof WeightHeaderActivity) {
+//                    ((WeightHeaderActivity)getActivity()).navigateTo(new WeightPaceFragment(), true);
+//                }
+//            }
+//            else {
+//                Toast.makeText(getContext(), "Vui lòng chọn mức độ hoạt động.", Toast.LENGTH_SHORT).show();
+//            }
+            if (getActivity() instanceof WeightHeaderActivity) {
+                ((WeightHeaderActivity)getActivity()).navigateTo(new WeightPaceFragment(), true);
             }
         });
 

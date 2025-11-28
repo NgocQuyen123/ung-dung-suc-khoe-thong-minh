@@ -50,35 +50,35 @@ public class InfoProfileActivity extends AppCompatActivity {
         // Mở từng activity chỉnh sửa
         // ============================
 
-        btnEditName.setOnClickListener(v -> {
-            Intent i = new Intent(this, InfoEditNameActivity.class);
-            i.putExtra("ten", txtName.getText().toString().replace(" >", ""));
-            startActivityForResult(i, REQUEST_EDIT_NAME);
-        });
-
-        btnEditPhone.setOnClickListener(v -> {
-            Intent i = new Intent(this, InfoEditPhoneActivity.class);
-            i.putExtra("sdt", txtPhone.getText().toString().replace(" >", ""));
-            startActivityForResult(i, REQUEST_EDIT_PHONE);
-        });
-
-        btnEditGender.setOnClickListener(v -> {
-            Intent i = new Intent(this, InfoEditGenderActivity.class);
-            i.putExtra("gioiTinh", txtGender.getText().toString().replace(" >", ""));
-            startActivityForResult(i, REQUEST_EDIT_GENDER);
-        });
-
-        btnEditHeight.setOnClickListener(v -> {
-            Intent i = new Intent(this, InfoEditHeightActivity.class);
-            i.putExtra("chieuCao", txtHeight.getText().toString().replace(" cm >", ""));
-            startActivityForResult(i, REQUEST_EDIT_HEIGHT);
-        });
-
-        btnEditBirth.setOnClickListener(v -> {
-            Intent i = new Intent(this, InfoEditYearActivity.class);
-            i.putExtra("namSinh", txtBirth.getText().toString().replace(" >", ""));
-            startActivityForResult(i, REQUEST_EDIT_BIRTH);
-        });
+//        btnEditName.setOnClickListener(v -> {
+//            Intent i = new Intent(this, InfoEditNameActivity.class);
+//            i.putExtra("ten", txtName.getText().toString().replace(" >", ""));
+//            startActivityForResult(i, REQUEST_EDIT_NAME);
+//        });
+//
+//        btnEditPhone.setOnClickListener(v -> {
+//            Intent i = new Intent(this, InfoEditPhoneActivity.class);
+//            i.putExtra("sdt", txtPhone.getText().toString().replace(" >", ""));
+//            startActivityForResult(i, REQUEST_EDIT_PHONE);
+//        });
+//
+//        btnEditGender.setOnClickListener(v -> {
+//            Intent i = new Intent(this, InfoEditGenderActivity.class);
+//            i.putExtra("gioiTinh", txtGender.getText().toString().replace(" >", ""));
+//            startActivityForResult(i, REQUEST_EDIT_GENDER);
+//        });
+//
+//        btnEditHeight.setOnClickListener(v -> {
+//            Intent i = new Intent(this, InfoEditHeightActivity.class);
+//            i.putExtra("chieuCao", txtHeight.getText().toString().replace(" cm >", ""));
+//            startActivityForResult(i, REQUEST_EDIT_HEIGHT);
+//        });
+//
+//        btnEditBirth.setOnClickListener(v -> {
+//            Intent i = new Intent(this, InfoEditYearActivity.class);
+//            i.putExtra("namSinh", txtBirth.getText().toString().replace(" >", ""));
+//            startActivityForResult(i, REQUEST_EDIT_BIRTH);
+//        });
     }
 
     // =============================

@@ -2,6 +2,8 @@ package admin.example.ungdungsuckhoethongminh.activity.plan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,12 +22,16 @@ import admin.example.ungdungsuckhoethongminh.model.WeekDayModel;
 public class PlanScheduleListActivity extends AppCompatActivity {
 
     private RecyclerView rvWeekDays, rvSchedule;
-
+    private ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_schedule_list);
 
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            finish();
+        });
         // WEEK DAYS
         rvWeekDays = findViewById(R.id.rvWeekDays);
         rvWeekDays.setLayoutManager(

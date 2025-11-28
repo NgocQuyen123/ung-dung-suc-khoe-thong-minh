@@ -3,18 +3,23 @@ package admin.example.ungdungsuckhoethongminh.activity.plan;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
+import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import admin.example.ungdungsuckhoethongminh.R;
 
 public class PlanWorkoutActivity extends AppCompatActivity {
 
+    private ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_workout);
 
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            finish();
+        });
         // Xử lý nút XEM CHI TIẾT
         TextView btnWeekly = findViewById(R.id.btnWeekly);
 

@@ -73,8 +73,8 @@ public class ActivityPagerAdapter extends RecyclerView.Adapter<ActivityPagerAdap
 
         // Xử lý click
         holder.clItemContainer.setOnClickListener(v -> {
-            listener.onClick(currentItem);
-            setSelectedId(currentItem.id);
+//            listener.onClick(currentItem);
+//            setSelectedId(currentItem.id);
         });
     }
 

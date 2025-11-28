@@ -3,31 +3,30 @@ package admin.example.ungdungsuckhoethongminh.activity.plan;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView; // Import ImageView
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import admin.example.ungdungsuckhoethongminh.R;
 
-public class PlanScheduleAdd extends AppCompatActivity {
+public class PlanGinalEdit extends AppCompatActivity {
 
-    private ImageView imgClose;
     private Button btnSave;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_schedule);
+        setContentView(R.layout.activity_edit_ginal);
 
-        // 1. Ánh xạ (tìm kiếm) ImageView
-        imgClose = findViewById(R.id.imgClose);
+        ImageView btnBack = findViewById(R.id.btnBack);
 
-        // 2. Thiết lập OnClickListener
-        imgClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        if (btnBack != null) {
+            btnBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
         btnSave = findViewById(R.id.btnSave);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
