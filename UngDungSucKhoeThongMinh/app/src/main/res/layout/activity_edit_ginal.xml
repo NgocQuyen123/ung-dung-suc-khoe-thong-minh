@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C2235">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomPanel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+        <!-- BACK -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tập luyện toàn thân "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Tập luyện toàn thân "
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.112"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnEdit"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="56dp"
+            android:src="@drawable/icon_edit"
+            app:layout_constraintBottom_toTopOf="@+id/flagContainer3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:tint="#0E0F0F" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/flagContainer1"
+            android:layout_width="111dp"
+            android:layout_height="73dp"
+
+            android:layout_marginTop="96dp"
+            android:background="#2D2E4F"
+            app:layout_constraintEnd_toStartOf="@+id/flagContainer2"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtExercisesCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="12"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Bài tập"
+                android:textColor="#F7F7FA"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtExercisesCount"
+                app:layout_constraintVertical_bias="0.384" />
+
+
+            <!-- EDIT ICON -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/flagContainer2"
+            android:layout_width="111dp"
+            android:layout_height="73dp"
+
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="132dp"
+            android:background="#2D2E4F"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="30:00"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Thời gian"
+                android:textColor="#F7F7FA"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTime"
+                app:layout_constraintVertical_bias="0.38" />
+
+
+            <!-- EDIT ICON -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/flagContainer3"
+            android:layout_width="111dp"
+            android:layout_height="73dp"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="16dp"
+            android:background="#2D2E4F"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/flagContainer2"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="260"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Năng lượng"
+                android:textColor="#FDFAFA"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtCalories"
+                app:layout_constraintVertical_bias="0.65999997" />
+
+
+            <!-- EDIT ICON -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- CHOOSE EQUIPMENT -->
+
+
+        <LinearLayout
+            android:id="@+id/statsContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="460dp"
+            android:background="#0D0C0C"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"></LinearLayout>
+
+        <TextView
+            android:id="@+id/txtEquipmentLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="208dp"
+            android:text="Chọn thiết bị"
+            android:textColor="#161616"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtEquipmentValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="205dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="20dp"
+            android:text="Thứ hai ,3,2025"
+            android:textColor="#8E8E93"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtFocusValue"
+            app:layout_constraintEnd_toStartOf="@+id/imgEquipmentArrow"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtEquipmentLabel" />
+
+        <ImageView
+            android:id="@+id/imgEquipmentArrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="208dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_arrow_forward"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#8E8E93" />
+
+        <TextView
+            android:id="@+id/txtFocusLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="244dp"
+            android:text="Chọn khu vực tập trung"
+            android:textColor="#141414"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgFocusArrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="244dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_arrow_forward"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#8E8E93" />
+
+        <TextView
+            android:id="@+id/txtFocusValue"
+            android:layout_width="100dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginBottom="436dp"
+            android:text="hòa khánh"
+            android:textColor="#8E8E93"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imgFocusArrow"
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintStart_toEndOf="@+id/txtFocusLabel" />
+
+        <TextView
+            android:id="@+id/txtWarmupTitle1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="Tập luyện"
+            android:textColor="#141414"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtFocusLabel"
+            app:layout_constraintVertical_bias="0.525" />
+
+        <TextView
+            android:id="@+id/btnWarmupEdit1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="388dp"
+            android:text="chỉnh sửa"
+            android:textColor="#7B61FF"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgFocusArrow"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutWarmup3"
+            android:layout_width="348dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="104dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_bg_nocl"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtWarmupTitle">
+
+            <ImageView
+                android:id="@+id/imgWarmup8"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="4dp"
+                android:background="#2C3347"
+                android:scaleType="centerCrop"
+                android:src="@drawable/exercise"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btnWarmup1Info2"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circle_button_bg"
+                android:padding="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:tint="#8E8E93" />
+
+            <TextView
+                android:id="@+id/txtWarmup1Name16"
+                android:layout_width="211dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="4dp"
+                android:text="Gặp bụng"
+                android:textColor="#0B0B0B"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgWarmup8"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/txtWarmup1Duration14"
+                android:layout_width="27dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="7dp"
+                android:text="0:30"
+                android:textColor="#070707"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgWarmup8"
+                app:layout_constraintTop_toBottomOf="@+id/txtWarmup1Name16" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtWarmupTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="Làm nóng"
+            android:textColor="#141414"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtFocusLabel"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutWarmup5"
+            android:layout_width="348dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/input_bg_nocl"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtWarmupTitle">
+
+            <TextView
+                android:id="@+id/txtWarmup1Name"
+                android:layout_width="211dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="12dp"
+                android:text="Nâng tạ"
+                android:textColor="#0B0B0B"
+                android:textSize="14sp"
+                android:textStyle="bold"
+
+                app:layout_constraintEnd_toStartOf="@id/btnWarmup1Info13"
+                app:layout_constraintStart_toEndOf="@+id/imgWarmup2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtWarmup1Duration13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:text="0:30"
+                android:textColor="#070707"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgWarmup2"
+                app:layout_constraintTop_toBottomOf="@+id/txtWarmup1Name" />
+
+            <ImageView
+                android:id="@+id/btnWarmup1Info13"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circle_button_bg"
+                android:padding="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.19"
+                app:tint="#8E8E93" />
+
+            <ImageView
+                android:id="@+id/imgWarmup2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="4dp"
+                android:background="#2C3347"
+                android:scaleType="centerCrop"
+                android:src="@drawable/exercise"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutWarmup2"
+            android:layout_width="348dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/input_bg_nocl"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtWarmupTitle1">
+
+            <ImageView
+                android:id="@+id/imgWarmup1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="#2C3347"
+                android:scaleType="centerCrop"
+                android:src="@drawable/exercise"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtWarmup1Name1"
+                android:layout_width="211dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:text="Căng người"
+                android:textColor="#0B0B0B"
+                android:textSize="14sp"
+
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgWarmup1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/btnWarmup1Info1"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circle_button_bg"
+                android:padding="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.04"
+                app:tint="#8E8E93" />
+
+            <TextView
+                android:id="@+id/txtWarmup1Duration12"
+                android:layout_width="27dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="6dp"
+                android:text="0:30"
+                android:textColor="#070707"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgWarmup1"
+                app:layout_constraintTop_toBottomOf="@+id/txtWarmup1Name1" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/btnWarmupEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="16dp"
+            android:text="chỉnh sửa"
+            android:textColor="#7B61FF"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/layoutWarmup2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutWarmup3"
+            app:layout_constraintVertical_bias="0.23" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="325dp"
+            android:layout_height="58dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#87AADF"
+            android:text="Lưu và Bắt Đầu"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.537"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

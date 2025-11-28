@@ -22,6 +22,7 @@ import admin.example.ungdungsuckhoethongminh.activity.info.InfoProfileActivity;
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardSleepActivity;
 import admin.example.ungdungsuckhoethongminh.activity.dashboard.DashboardStepActivity;
+import admin.example.ungdungsuckhoethongminh.activity.plan.PlanWorkoutActivity;
 import admin.example.ungdungsuckhoethongminh.adapters.HealthPagerAdapter;
 import admin.example.ungdungsuckhoethongminh.fragments.weight.WeightCreateFragment;
 import admin.example.ungdungsuckhoethongminh.model.HealthItemModel;
@@ -90,6 +91,10 @@ public class MenuHomeFragment extends Fragment {
         ImageView icon = card3.findViewById(R.id.icon);
         icon.setImageResource(R.drawable.kehoachtapluyen); // đổi sang icon mới
 
+        card3.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), PlanWorkoutActivity.class);
+            startActivity(intent);
+        });
         return view;
     }
 }

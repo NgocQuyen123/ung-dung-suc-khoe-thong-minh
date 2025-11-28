@@ -81,6 +81,19 @@
             android:exported="false" />
 
         <!--Plan-->
+        <activity
+            android:name=".activity.plan.PlanScheduleListActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".activity.plan.PlanWorkoutActivity"
+            android:exported="false" />
+
+        <activity android:name=".activity.plan.PlanScheduleAdd"
+            android:exported="false" />
+
+
         <!--Sign Up-->
         <activity
             android:name=".activity.signUp.SignUpMethodScreen"
