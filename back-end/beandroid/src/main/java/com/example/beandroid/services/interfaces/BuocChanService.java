@@ -1,29 +1,34 @@
 package com.example.beandroid.services.interfaces;
 
-import com.example.beandroid.DTO.BuocChanTheoNgayDTO;
-import com.example.beandroid.DTO.BuocChanTheoThangDTO;
+import com.example.beandroid.DTO.BuocChanNgayPointDTO;
+import com.example.beandroid.DTO.BuocChanThangPointDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Service xử lý logic thời gian cho API bước chân (REST).
+ * Chỉ giữ API mới theo yêu cầu.
+ */
 public interface BuocChanService {
 
     /**
-     * Lấy dữ liệu bước chân theo ngày hiện tại.
+     * type=day: trả 1 phần tử (đúng ngày), nếu không có data thì soBuoc=0.
      */
-    List<BuocChanTheoNgayDTO> layTheoNgay(Integer idTaiKhoan);
+    List<BuocChanNgayPointDTO> getDay(Integer idTaiKhoan, LocalDate date);
 
     /**
-     * Lấy dữ liệu 7 ngày gần nhất (bao gồm hôm nay), trả về theo từng ngày.
+     * type=week: trả 7 ngày (Thứ 2 -> CN) chứa date truyền vào; zero-fill ngày thiếu.
      */
-    List<BuocChanTheoNgayDTO> layTheoTuan(Integer idTaiKhoan);
+    List<BuocChanNgayPointDTO> getWeek(Integer idTaiKhoan, LocalDate anyDateInWeek);
 
     /**
-     * Lấy dữ liệu 30 ngày gần nhất (bao gồm hôm nay), trả về theo từng ngày.
+     * type=month: trả tất cả ngày trong tháng; zero-fill ngày thiếu.
      */
-    List<BuocChanTheoNgayDTO> layTheoThang(Integer idTaiKhoan);
+    List<BuocChanNgayPointDTO> getMonth(Integer idTaiKhoan, int year, int month);
 
     /**
-     * Lấy dữ liệu 12 tháng gần nhất, tổng hợp theo tháng.
+     * type=year: trả 12 tháng; zero-fill tháng thiếu.
      */
-    List<BuocChanTheoThangDTO> layTheoNam(Integer idTaiKhoan);
+    List<BuocChanThangPointDTO> getYear(Integer idTaiKhoan, int year);
 }
