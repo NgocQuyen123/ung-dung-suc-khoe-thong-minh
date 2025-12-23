@@ -154,3 +154,94 @@ VALUES
 (4, '2025-01-02', 21600, 7200, 9600, 4800, 2400, '2025-01-02 23:30:00', '2025-01-03 05:30:00'),
 (5, '2025-01-03', 27000, 10800, 10200, 6000, 1500, '2025-01-03 22:15:00', '2025-01-04 06:15:00');
 GO
+/* =====================================================
+   DỮ LIỆU BỔ SUNG PHỤC VỤ API BƯỚC CHÂN
+   ===================================================== */
+   USE QLSUCKHOE;
+GO
+/* ---------- API: LẤY BƯỚC CHÂN THEO NGÀY ---------- */
+IF NOT EXISTS (
+    SELECT 1 FROM BuocChanNgay
+    WHERE idTaiKhoan = 1 AND Ngay = '2025-01-15'
+)
+BEGIN
+    INSERT INTO BuocChanNgay
+    (idTaiKhoan, Ngay, SoBuoc, Kcal, QuangDuong, ThoiGianGiay)
+    VALUES
+    (1, '2025-01-15', 8200, 330, 6.2, 4200);
+END
+GO
+/* ---------- API: LẤY BƯỚC CHÂN THEO TUẦN ---------- */
+DECLARE @WeekData TABLE (Ngay DATE, SoBuoc INT, Kcal FLOAT, QuangDuong FLOAT, ThoiGianGiay INT);
+
+INSERT INTO @WeekData VALUES
+('2025-01-13', 7000, 280, 5.3, 3900),
+('2025-01-14', 7600, 300, 5.8, 4100),
+('2025-01-15', 8200, 330, 6.2, 4200),
+('2025-01-16', 8800, 350, 6.7, 4600),
+('2025-01-17', 9200, 370, 7.0, 4800),
+('2025-01-18', 10000, 400, 7.5, 5400),
+('2025-01-19', 8500, 340, 6.4, 4500);
+
+INSERT INTO BuocChanNgay
+(idTaiKhoan, Ngay, SoBuoc, Kcal, QuangDuong, ThoiGianGiay)
+SELECT
+    1, Ngay, SoBuoc, Kcal, QuangDuong, ThoiGianGiay
+FROM @WeekData wd
+WHERE NOT EXISTS (
+    SELECT 1 FROM BuocChanNgay b
+    WHERE b.idTaiKhoan = 1 AND b.Ngay = wd.Ngay
+);
+GO
+/* ---------- API: LẤY BƯỚC CHÂN THEO THÁNG ---------- */
+DECLARE @d DATE = '2025-01-01';
+
+WHILE @d <= '2025-01-31'
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM BuocChanNgay
+        WHERE idTaiKhoan = 2 AND Ngay = @d
+    )
+    BEGIN
+        INSERT INTO BuocChanNgay
+        (idTaiKhoan, Ngay, SoBuoc, Kcal, QuangDuong, ThoiGianGiay)
+        VALUES
+        (
+            2,
+            @d,
+            6000 + ABS(CHECKSUM(NEWID())) % 5000,
+            250  + ABS(CHECKSUM(NEWID())) % 200,
+            4.5  + (ABS(CHECKSUM(NEWID())) % 30) / 10.0,
+            3500 + ABS(CHECKSUM(NEWID())) % 2500
+        );
+    END;
+
+    SET @d = DATEADD(DAY, 1, @d);
+END;
+GO
+/* ---------- API: LẤY BƯỚC CHÂN THEO NĂM ---------- */
+DECLARE @MonthData TABLE (Ngay DATE, SoBuoc INT, Kcal FLOAT, QuangDuong FLOAT, ThoiGianGiay INT);
+
+INSERT INTO @MonthData VALUES
+('2025-02-15', 9000, 360, 6.8, 4800),
+('2025-03-15', 8500, 340, 6.3, 4600),
+('2025-04-15', 10000, 400, 7.5, 5400),
+('2025-05-15', 11000, 440, 8.2, 5800),
+('2025-06-15', 9500, 380, 7.0, 5000),
+('2025-07-15', 12000, 480, 9.0, 6200),
+('2025-08-15', 10500, 420, 7.9, 5600),
+('2025-09-15', 9800, 390, 7.3, 5100),
+('2025-10-15', 10200, 410, 7.6, 5400),
+('2025-11-15', 8800, 350, 6.5, 4700),
+('2025-12-15', 11500, 460, 8.6, 6000);
+
+INSERT INTO BuocChanNgay
+(idTaiKhoan, Ngay, SoBuoc, Kcal, QuangDuong, ThoiGianGiay)
+SELECT
+    1, Ngay, SoBuoc, Kcal, QuangDuong, ThoiGianGiay
+FROM @MonthData md
+WHERE NOT EXISTS (
+    SELECT 1 FROM BuocChanNgay b
+    WHERE b.idTaiKhoan = 1 AND b.Ngay = md.Ngay
+);
+GO
