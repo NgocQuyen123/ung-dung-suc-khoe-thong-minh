@@ -100,11 +100,11 @@ CREATE TABLE SleepNgay (
 
 INSERT INTO TaiKhoan (Sdt, TenTK, GioiTinh, ChieuCao, NamSinh, CanNang)
 VALUES
-('0912345678', N'Nguyễn Văn An', N'Nam', 170, 2000, 65.5),
-('0987654321', N'Trần Thị Bình', N'Nữ', 160, 1999, 50.2),
-('0901122334', N'Lê Văn Cường', N'Nam', 175, 1998, 70.0),
-('0977888999', N'Phạm Thị Duyên', N'Nữ', 158, 2001, 48.5),
-('0933445566', N'Hoàng Văn Em', N'Nam', 180, 1997, 78.3);
+('23456789', N'Nguyễn Văn An', N'Nam', 170, 2000, 65.5),
+('12345678', N'Trần Thị Bình', N'Nữ', 160, 1999, 50.2),
+('2345678', N'Lê Văn Cường', N'Nam', 175, 1998, 70.0),
+('1234567', N'Phạm Thị Duyên', N'Nữ', 158, 2001, 48.5),
+('234567', N'Hoàng Văn Em', N'Nam', 180, 1997, 78.3);
 GO
 
 INSERT INTO MucDoHoatDong (TenMDHD, MoTa, CaloHD)

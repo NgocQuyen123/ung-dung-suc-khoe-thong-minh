@@ -18,7 +18,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import admin.example.ungdungsuckhoethongminh.DTO.LoginRequest;
+import admin.example.ungdungsuckhoethongminh.DTO.LoginResponse;
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.model.TaiKhoan;
+import admin.example.ungdungsuckhoethongminh.network.ApiClient;
+import admin.example.ungdungsuckhoethongminh.network.TaiKhoanApi;
+import retrofit2.Call;
 
 public class SignInNumber extends AppCompatActivity {
 
@@ -129,6 +135,20 @@ public class SignInNumber extends AppCompatActivity {
         });
 
         // Nhấn Tiếp theo
+//        btnNext.setOnClickListener(v -> {
+//            String phone = edtPhone.getText().toString().trim();
+//
+//            if (phone.length() < 9) {
+//                Toast.makeText(this, "Số điện thoại không hợp lệ!", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//
+//            Intent intent = new Intent(SignInNumber.this, SignInPhoneActivity.class);
+//            intent.putExtra("phoneNumber", phone);
+//            startActivity(intent);
+//
+//            overridePendingTransition(R.anim.slide_in_right, R.anim.fade_out);
+//        });
         btnNext.setOnClickListener(v -> {
             String phone = edtPhone.getText().toString().trim();
 
@@ -137,12 +157,39 @@ public class SignInNumber extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(SignInNumber.this, SignInPhoneActivity.class);
-            intent.putExtra("phoneNumber", phone);
-            startActivity(intent);
+            // Gọi API đăng nhập
+            TaiKhoanApi apiService = ApiClient.getApiService();
+            LoginRequest request = new LoginRequest(phone);
 
-            overridePendingTransition(R.anim.slide_in_right, R.anim.fade_out);
+            apiService.login(request).enqueue(new retrofit2.Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        LoginResponse loginResponse = response.body();
+                        if (loginResponse.isSuccess()) {
+                            TaiKhoan user = loginResponse.getTaiKhoan();
+                            Toast.makeText(SignInNumber.this, "Đăng nhập thành công: " + user.getTenTK(), Toast.LENGTH_SHORT).show();
+
+                            // Chuyển sang màn hình tiếp theo
+                            Intent intent = new Intent(SignInNumber.this, SignInPhoneActivity.class);
+//                            intent.putExtra("taiKhoan", user); // hoặc lưu SharedPreferences
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.fade_out);
+                        } else {
+                            Toast.makeText(SignInNumber.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(SignInNumber.this, "Lỗi server!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+                    Toast.makeText(SignInNumber.this, "Không thể kết nối server!", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
+
     }
 
     //TỰ ĐỘNG SHOW BÀN PHÍM

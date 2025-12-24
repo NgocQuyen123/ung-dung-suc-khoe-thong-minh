@@ -1,6 +1,7 @@
 package admin.example.ungdungsuckhoethongminh.activity.info;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -60,12 +61,19 @@ public class InfoCreateGenderActivity extends AppCompatActivity {
                     Toast.makeText(InfoCreateGenderActivity.this,
                             "Vui lòng chọn giới tính", Toast.LENGTH_SHORT).show();
                 } else {
+                    // 1️⃣ Lưu giới tính vào SharedPreferences
+                    SharedPreferences prefs = getSharedPreferences("MyAppData", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("gender", selectedGender);
+                    editor.apply(); // lưu dữ liệu
+
+                    // 2️⃣ Chuyển sang màn hình tiếp theo
                     Intent intent = new Intent(InfoCreateGenderActivity.this, InfoCreateHeightActivity.class);
-                    intent.putExtra("gender", selectedGender);
                     startActivity(intent);
                 }
             }
         });
+
     }
 
     // Hàm xử lý chọn giới tính
