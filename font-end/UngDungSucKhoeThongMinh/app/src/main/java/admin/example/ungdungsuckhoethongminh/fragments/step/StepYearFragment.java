@@ -37,11 +37,8 @@ public class StepYearFragment extends Fragment {
     public StepYearFragment() {}
 
     private int getTaiKhoanId() {
-        Bundle args = getArguments();
-        if (args != null && args.containsKey("idTaiKhoan")) {
-            return args.getInt("idTaiKhoan", 1);
-        }
-        return admin.example.ungdungsuckhoethongminh.steps.session.StepsUserSession.getIdTaiKhoan(requireContext());
+        return admin.example.ungdungsuckhoethongminh.steps.util.StepsUserResolver
+                .resolveIdTaiKhoan(requireContext(), getArguments());
     }
 
     @Nullable
@@ -101,33 +98,22 @@ public class StepYearFragment extends Fragment {
     }
 
     private void renderYear(@NonNull List<BuocChanThangPoint> months) {
-        long totalSteps = 0;
-        double totalMeters = 0;
-        long totalSeconds = 0;
+        admin.example.ungdungsuckhoethongminh.steps.util.StepsStats.MonthStats s =
+                admin.example.ungdungsuckhoethongminh.steps.util.StepsStats.sumMonths(months);
 
         long maxSteps = 0;
         for (BuocChanThangPoint m : months) {
-            if (m == null) continue;
-            long s = (m.soBuoc == null ? 0 : m.soBuoc);
-            totalSteps += s;
-            totalMeters += (m.quangDuong == null ? 0 : m.quangDuong);
-            totalSeconds += (m.thoiGianGiay == null ? 0 : m.thoiGianGiay);
-            if (s > maxSteps) maxSteps = s;
+            if (m == null || m.soBuoc == null) continue;
+            if (m.soBuoc > maxSteps) maxSteps = m.soBuoc;
         }
 
-        long avg = months.isEmpty() ? 0 : Math.round(totalSteps / (double) months.size());
+        txtTotalSteps.setText(String.valueOf(s.totalSteps));
+        txtAverage.setText(String.valueOf(s.avgSteps(months.size())));
 
-        txtTotalSteps.setText(String.valueOf(totalSteps));
-        txtAverage.setText(String.valueOf(avg));
-
-        txtSmallSteps.setText(totalSteps + "\nbước");
-        long totalKcal = 0;
-        for (BuocChanThangPoint m : months) {
-            if (m != null && m.kcal != null) totalKcal += Math.round(m.kcal);
-        }
-        txtSmallCalories.setText(totalKcal + "\nkcal");
-        txtSmallDistance.setText(StepsFormat.formatKmFromMeters((float) totalMeters));
-        txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds((int) totalSeconds));
+        txtSmallSteps.setText(s.totalSteps + "\nbước");
+        txtSmallCalories.setText(s.totalKcal + "\nkcal");
+        txtSmallDistance.setText(StepsFormat.formatKmFromMeters((float) s.totalMeters));
+        txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds((int) s.totalSeconds));
 
         columnContainer.removeAllViews();
         long finalMaxSteps = maxSteps;

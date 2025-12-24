@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.steps.model.BuocChanNgayPoint;
 import admin.example.ungdungsuckhoethongminh.steps.repository.StepsRepository;
@@ -37,11 +36,8 @@ public class StepWeekFragment extends Fragment {
     public StepWeekFragment() {}
 
     private int getTaiKhoanId() {
-        Bundle args = getArguments();
-        if (args != null && args.containsKey("idTaiKhoan")) {
-            return args.getInt("idTaiKhoan", 1);
-        }
-        return admin.example.ungdungsuckhoethongminh.steps.session.StepsUserSession.getIdTaiKhoan(requireContext());
+        return admin.example.ungdungsuckhoethongminh.steps.util.StepsUserResolver
+                .resolveIdTaiKhoan(requireContext(), getArguments());
     }
 
     @Nullable
@@ -99,21 +95,11 @@ public class StepWeekFragment extends Fragment {
     }
 
     private void renderWeek(@NonNull List<BuocChanNgayPoint> points) {
-        long totalSteps = 0;
-        double totalMeters = 0;
-        long totalSeconds = 0;
+        admin.example.ungdungsuckhoethongminh.steps.util.StepsStats.DayStats s =
+                admin.example.ungdungsuckhoethongminh.steps.util.StepsStats.sumDays(points);
 
-        for (BuocChanNgayPoint p : points) {
-            if (p == null) continue;
-            totalSteps += (p.soBuoc == null ? 0 : p.soBuoc);
-            totalMeters += (p.quangDuong == null ? 0 : p.quangDuong);
-            totalSeconds += (p.thoiGianGiay == null ? 0 : p.thoiGianGiay);
-        }
-
-        long avg = points.isEmpty() ? 0 : Math.round(totalSteps / (double) points.size());
-
-        txtTotalSteps.setText(String.valueOf(totalSteps));
-        txtAverage.setText(String.valueOf(avg));
+        txtTotalSteps.setText(String.valueOf(s.totalSteps));
+        txtAverage.setText(String.valueOf(s.avgSteps(points.size())));
 
         Calendar start = (Calendar) anchorDay.clone();
         start.setFirstDayOfWeek(Calendar.MONDAY);
@@ -122,20 +108,15 @@ public class StepWeekFragment extends Fragment {
         end.add(Calendar.DAY_OF_MONTH, 6);
         txtWeekRange.setText(sdfShort.format(start.getTime()) + " - " + sdfShort.format(end.getTime()));
 
-        txtSmallSteps.setText(totalSteps + "\nbước");
-        // backend currently stores kcal at day-level; week = sum
-        long totalKcal = 0;
-        for (BuocChanNgayPoint p : points) {
-            if (p != null && p.kcal != null) totalKcal += Math.round(p.kcal);
-        }
-        txtSmallCalories.setText(totalKcal + "\nkcal");
-        txtSmallDistance.setText(StepsFormat.formatKmFromMeters((float) totalMeters));
-        txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds((int) totalSeconds));
+        txtSmallSteps.setText(s.totalSteps + "\nbước");
+        txtSmallCalories.setText(s.totalKcal + "\nkcal");
+        txtSmallDistance.setText(StepsFormat.formatKmFromMeters((float) s.totalMeters));
+        txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds((int) s.totalSeconds));
 
         int maxSteps = 0;
         for (BuocChanNgayPoint p : points) {
-            int s = (p == null || p.soBuoc == null) ? 0 : p.soBuoc;
-            if (s > maxSteps) maxSteps = s;
+            int stepsVal = (p == null || p.soBuoc == null) ? 0 : p.soBuoc;
+            if (stepsVal > maxSteps) maxSteps = stepsVal;
         }
 
         for (int i = 1; i <= 7; i++) {

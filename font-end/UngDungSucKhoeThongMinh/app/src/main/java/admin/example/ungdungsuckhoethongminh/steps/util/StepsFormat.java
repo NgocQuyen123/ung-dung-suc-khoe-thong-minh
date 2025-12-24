@@ -22,4 +22,12 @@ public final class StepsFormat {
         if (steps == null) steps = 0;
         return steps + "\nbước";
     }
+
+    public static String formatKcalTile(float kcal) {
+        return String.format(Locale.getDefault(), "%.0f\nkcal", kcal);
+    }
+
+    public static String formatKcalTile(long kcal) {
+        return kcal + "\nkcal";
+    }
 }

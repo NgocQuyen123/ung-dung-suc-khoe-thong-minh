@@ -24,6 +24,13 @@ import admin.example.ungdungsuckhoethongminh.steps.util.StepsFormat;
 
 public class StepDayFragment extends Fragment {
 
+    private enum CenterMetric {
+        STEPS,
+        KCAL,
+        DISTANCE,
+        TIME
+    }
+
     private ImageView imgCenterIcon;
     private TextView txtSmallSteps, txtSmallCalories, txtSmallDistance, txtSmallTime;
     private TextView txtCenterTop, txtCenterBottom, txtDayInfo;
@@ -34,16 +41,14 @@ public class StepDayFragment extends Fragment {
 
     private final StepsRepository repository = new StepsRepository();
 
+    private @Nullable BuocChanNgayPoint currentPoint;
+    private CenterMetric selectedMetric = CenterMetric.STEPS;
+
     public StepDayFragment() {}
 
     private int getTaiKhoanId() {
-        // TODO: wire real account id when login/account flow is available
-        Bundle args = getArguments();
-        if (args != null && args.containsKey("idTaiKhoan")) {
-            return args.getInt("idTaiKhoan", 1);
-        }
-        // fallback to session
-        return admin.example.ungdungsuckhoethongminh.steps.session.StepsUserSession.getIdTaiKhoan(requireContext());
+        return admin.example.ungdungsuckhoethongminh.steps.util.StepsUserResolver
+                .resolveIdTaiKhoan(requireContext(), getArguments());
     }
 
     @Nullable
@@ -78,20 +83,20 @@ public class StepDayFragment extends Fragment {
 
         // Click tiles -> show in center
         txtSmallSteps.setOnClickListener(v -> {
-            txtCenterBottom.setText("bước");
-            imgCenterIcon.setImageResource(R.drawable.buocchan);
+            selectedMetric = CenterMetric.STEPS;
+            showCenter(selectedMetric);
         });
         txtSmallCalories.setOnClickListener(v -> {
-            txtCenterBottom.setText("kcal");
-            imgCenterIcon.setImageResource(R.drawable.mdi_fire);
+            selectedMetric = CenterMetric.KCAL;
+            showCenter(selectedMetric);
         });
         txtSmallDistance.setOnClickListener(v -> {
-            txtCenterBottom.setText("quãng đường");
-            imgCenterIcon.setImageResource(R.drawable.arrow_right);
+            selectedMetric = CenterMetric.DISTANCE;
+            showCenter(selectedMetric);
         });
         txtSmallTime.setOnClickListener(v -> {
-            txtCenterBottom.setText("thời gian");
-            imgCenterIcon.setImageResource(R.drawable.mdi_light_clock);
+            selectedMetric = CenterMetric.TIME;
+            showCenter(selectedMetric);
         });
 
         updateDayInfo();
@@ -114,33 +119,71 @@ public class StepDayFragment extends Fragment {
             @Override
             public void onSuccess(@NonNull List<BuocChanNgayPoint> data) {
                 if (!isAdded()) return;
-                BuocChanNgayPoint p = (data != null && !data.isEmpty()) ? data.get(0) : null;
-                renderPoint(p);
+                currentPoint = (data != null && !data.isEmpty()) ? data.get(0) : null;
+                renderTiles(currentPoint);
+                showCenter(selectedMetric);
             }
 
             @Override
             public void onError(@NonNull Throwable t) {
                 if (!isAdded()) return;
-                renderPoint(null);
+                currentPoint = null;
+                renderTiles(null);
+                showCenter(selectedMetric);
             }
         });
     }
 
-    private void renderPoint(@Nullable BuocChanNgayPoint p) {
+    private void renderTiles(@Nullable BuocChanNgayPoint p) {
         int steps = (p == null || p.soBuoc == null) ? 0 : p.soBuoc;
         float meters = (p == null || p.quangDuong == null) ? 0f : p.quangDuong;
         int seconds = (p == null || p.thoiGianGiay == null) ? 0 : p.thoiGianGiay;
+        float kcal = (p == null || p.kcal == null) ? 0f : p.kcal;
 
         txtSmallSteps.setText(StepsFormat.formatStepsTile(steps));
-        float kcal = (p == null || p.kcal == null) ? 0f : p.kcal;
-        txtSmallCalories.setText(String.format(java.util.Locale.getDefault(), "%.0f\nkcal", kcal));
+        txtSmallCalories.setText(StepsFormat.formatKcalTile(kcal));
         txtSmallDistance.setText(StepsFormat.formatKmFromMeters(meters));
         txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds(seconds));
+    }
 
-        // Center defaults to steps
-        txtCenterTop.setText(String.valueOf(steps));
-        txtCenterBottom.setText("bước");
-        imgCenterIcon.setImageResource(R.drawable.buocchan);
+    private void showCenter(@NonNull CenterMetric metric) {
+        BuocChanNgayPoint p = currentPoint;
+
+        int steps = (p == null || p.soBuoc == null) ? 0 : p.soBuoc;
+        float meters = (p == null || p.quangDuong == null) ? 0f : p.quangDuong;
+        int seconds = (p == null || p.thoiGianGiay == null) ? 0 : p.thoiGianGiay;
+        float kcal = (p == null || p.kcal == null) ? 0f : p.kcal;
+
+        switch (metric) {
+            case KCAL:
+                txtCenterTop.setText(String.format(Locale.getDefault(), "%.0f", kcal));
+                txtCenterBottom.setText("kcal");
+                imgCenterIcon.setImageResource(R.drawable.mdi_fire);
+                break;
+            case DISTANCE:
+                // show as meters or km (without unit duplication from tile)
+                if (meters < 1000f) {
+                    txtCenterTop.setText(String.format(Locale.getDefault(), "%.0f", meters));
+                    txtCenterBottom.setText("m");
+                } else {
+                    txtCenterTop.setText(String.format(Locale.getDefault(), "%.1f", (meters / 1000f)));
+                    txtCenterBottom.setText("km");
+                }
+                imgCenterIcon.setImageResource(R.drawable.arrow_right);
+                break;
+            case TIME:
+                int minutes = Math.round(seconds / 60f);
+                txtCenterTop.setText(String.valueOf(minutes));
+                txtCenterBottom.setText("phút");
+                imgCenterIcon.setImageResource(R.drawable.mdi_light_clock);
+                break;
+            case STEPS:
+            default:
+                txtCenterTop.setText(String.valueOf(steps));
+                txtCenterBottom.setText("bước");
+                imgCenterIcon.setImageResource(R.drawable.buocchan);
+                break;
+        }
     }
 
     private void updateDayInfo() {

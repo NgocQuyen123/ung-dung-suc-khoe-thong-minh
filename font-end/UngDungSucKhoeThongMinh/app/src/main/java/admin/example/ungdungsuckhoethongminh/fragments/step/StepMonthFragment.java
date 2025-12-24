@@ -44,11 +44,8 @@ public class StepMonthFragment extends Fragment {
     public StepMonthFragment() {}
 
     private int getTaiKhoanId() {
-        Bundle args = getArguments();
-        if (args != null && args.containsKey("idTaiKhoan")) {
-            return args.getInt("idTaiKhoan", 1);
-        }
-        return admin.example.ungdungsuckhoethongminh.steps.session.StepsUserSession.getIdTaiKhoan(requireContext());
+        return admin.example.ungdungsuckhoethongminh.steps.util.StepsUserResolver
+                .resolveIdTaiKhoan(requireContext(), getArguments());
     }
 
     @Nullable
@@ -126,30 +123,16 @@ public class StepMonthFragment extends Fragment {
     }
 
     private void renderMonthStats(@NonNull List<BuocChanNgayPoint> points) {
-        long totalSteps = 0;
-        double totalMeters = 0;
-        long totalSeconds = 0;
+        admin.example.ungdungsuckhoethongminh.steps.util.StepsStats.DayStats s =
+                admin.example.ungdungsuckhoethongminh.steps.util.StepsStats.sumDays(points);
 
-        for (BuocChanNgayPoint p : points) {
-            if (p == null) continue;
-            totalSteps += (p.soBuoc == null ? 0 : p.soBuoc);
-            totalMeters += (p.quangDuong == null ? 0 : p.quangDuong);
-            totalSeconds += (p.thoiGianGiay == null ? 0 : p.thoiGianGiay);
-        }
+        txtTotalSteps.setText(String.valueOf(s.totalSteps));
+        txtAverage.setText(String.valueOf(s.avgSteps(points.size())));
 
-        long avg = points.isEmpty() ? 0 : Math.round(totalSteps / (double) points.size());
-
-        txtTotalSteps.setText(String.valueOf(totalSteps));
-        txtAverage.setText(String.valueOf(avg));
-
-        txtSmallSteps.setText(totalSteps + "\nbước");
-        long totalKcal = 0;
-        for (BuocChanNgayPoint p : points) {
-            if (p != null && p.kcal != null) totalKcal += Math.round(p.kcal);
-        }
-        txtSmallCalories.setText(totalKcal + "\nkcal");
-        txtSmallDistance.setText(StepsFormat.formatKmFromMeters((float) totalMeters));
-        txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds((int) totalSeconds));
+        txtSmallSteps.setText(s.totalSteps + "\nbước");
+        txtSmallCalories.setText(s.totalKcal + "\nkcal");
+        txtSmallDistance.setText(StepsFormat.formatKmFromMeters((float) s.totalMeters));
+        txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds((int) s.totalSeconds));
     }
 
     private void renderCalendar() {
@@ -237,7 +220,7 @@ public class StepMonthFragment extends Fragment {
             if (p != null) {
                 txtSmallSteps.setText(StepsFormat.formatStepsTile(p.soBuoc));
                 float kcal = (p.kcal == null ? 0f : p.kcal);
-                txtSmallCalories.setText(String.format(java.util.Locale.getDefault(), "%.0f\nkcal", kcal));
+                txtSmallCalories.setText(StepsFormat.formatKcalTile(kcal));
                 txtSmallDistance.setText(StepsFormat.formatKmFromMeters(p.quangDuong == null ? 0f : p.quangDuong));
                 txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds(p.thoiGianGiay == null ? 0 : p.thoiGianGiay));
             }

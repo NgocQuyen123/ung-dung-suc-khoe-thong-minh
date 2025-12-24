@@ -37,7 +37,7 @@
                 android:id="@+id/txtDayInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hôm nay"
+                android:text="@string/steps_total_week"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="16dp"
@@ -60,12 +60,12 @@
 
         <!-- Tiêu đề tổng -->
         <TextView
-            android:text="TỔNG HÀNG TUẦN"
+            android:text="@string/steps_total_week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="#999999"
+            android:textColor="@color/text_secondary"
             android:layout_marginTop="8dp" />
 
         <!-- Tổng bước + trung bình -->
@@ -88,7 +88,7 @@
                     android:id="@+id/txtTotalSteps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="0"
                     android:textSize="34sp"
                     android:textStyle="bold" />
 
@@ -114,7 +114,7 @@
                     android:id="@+id/txtAverage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Trung bình 439"
+                    android:text="@string/steps_average"
                     android:textSize="14sp"
                     android:layout_marginEnd="6dp" />
 
@@ -132,9 +132,9 @@
             android:id="@+id/txtWeekRange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tháng 9 22-9"
+            android:text="--"
             android:textSize="14sp"
-            android:textColor="#A0A0A0"
+            android:textColor="@color/text_secondary"
             android:layout_marginTop="6dp" />
 
         <!-- Biểu đồ 7 cột -->
@@ -174,7 +174,7 @@
                     android:id="@+id/bar1Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="0"
                     android:textColor="#8890EA"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -207,7 +207,7 @@
                     android:id="@+id/bar2Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="0"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -239,7 +239,7 @@
                     android:id="@+id/bar3Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="0"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -271,7 +271,7 @@
                     android:id="@+id/bar4Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="0"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -303,7 +303,7 @@
                     android:id="@+id/bar5Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="0"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -334,7 +334,7 @@
                     android:id="@+id/bar6Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="0"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -366,7 +366,7 @@
                     android:id="@+id/bar7Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="0"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -386,60 +386,72 @@
             <!-- Bước -->
             <TextView
                 android:id="@+id/txtSmallSteps"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="11,223\nbước"
-                android:textSize="14sp"
+                android:paddingVertical="10dp"
+                android:text="0\nbước"
+                android:textSize="13sp"
                 android:textStyle="bold"
+                android:lineSpacingExtra="2dp"
                 android:background="@drawable/card_bg_colored"
                 android:drawableTop="@drawable/circle_icon_bg"
-                android:drawablePadding="4dp"/>
+                android:drawablePadding="6dp"/>
 
 
             <!-- Calo -->
             <TextView
                 android:id="@+id/txtSmallCalories"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
                 android:gravity="center"
+                android:paddingVertical="10dp"
                 android:text="0\nkcal"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:textStyle="bold"
-                android:layout_marginStart="8dp"
+                android:lineSpacingExtra="2dp"
                 android:background="@drawable/card_bg_colored"
                 android:drawableTop="@drawable/circle_icon_fire"
-                android:drawablePadding="4dp"/>
+                android:drawablePadding="6dp"/>
 
 
             <!-- Quãng đường -->
             <TextView
                 android:id="@+id/txtSmallDistance"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
                 android:gravity="center"
+                android:paddingVertical="10dp"
                 android:text="0 m"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:textStyle="bold"
-                android:layout_marginStart="8dp"
+                android:lineSpacingExtra="2dp"
                 android:background="@drawable/card_bg_colored"
                 android:drawableTop="@drawable/circle_icon_arrow"
-                android:drawablePadding="4dp"/>
+                android:drawablePadding="6dp"/>
 
 
             <!-- Thời gian -->
             <TextView
                 android:id="@+id/txtSmallTime"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
                 android:gravity="center"
+                android:paddingVertical="10dp"
                 android:text="0\nphút"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:textStyle="bold"
-                android:layout_marginStart="8dp"
+                android:lineSpacingExtra="2dp"
                 android:background="@drawable/card_bg_colored"
                 android:drawableTop="@drawable/circle_icon_clock"
-                android:drawablePadding="4dp"/>
+                android:drawablePadding="6dp"/>
 
         </LinearLayout>
 
