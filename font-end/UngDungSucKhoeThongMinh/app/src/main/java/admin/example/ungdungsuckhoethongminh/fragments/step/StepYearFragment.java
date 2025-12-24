@@ -121,7 +121,11 @@ public class StepYearFragment extends Fragment {
         txtAverage.setText(String.valueOf(avg));
 
         txtSmallSteps.setText(totalSteps + "\nbước");
-        txtSmallCalories.setText("0\nkcal");
+        long totalKcal = 0;
+        for (BuocChanThangPoint m : months) {
+            if (m != null && m.kcal != null) totalKcal += Math.round(m.kcal);
+        }
+        txtSmallCalories.setText(totalKcal + "\nkcal");
         txtSmallDistance.setText(StepsFormat.formatKmFromMeters((float) totalMeters));
         txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds((int) totalSeconds));
 

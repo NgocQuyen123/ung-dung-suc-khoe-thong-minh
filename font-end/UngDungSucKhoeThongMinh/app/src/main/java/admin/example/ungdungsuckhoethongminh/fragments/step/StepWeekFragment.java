@@ -123,7 +123,12 @@ public class StepWeekFragment extends Fragment {
         txtWeekRange.setText(sdfShort.format(start.getTime()) + " - " + sdfShort.format(end.getTime()));
 
         txtSmallSteps.setText(totalSteps + "\nbước");
-        txtSmallCalories.setText("0\nkcal");
+        // backend currently stores kcal at day-level; week = sum
+        long totalKcal = 0;
+        for (BuocChanNgayPoint p : points) {
+            if (p != null && p.kcal != null) totalKcal += Math.round(p.kcal);
+        }
+        txtSmallCalories.setText(totalKcal + "\nkcal");
         txtSmallDistance.setText(StepsFormat.formatKmFromMeters((float) totalMeters));
         txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds((int) totalSeconds));
 

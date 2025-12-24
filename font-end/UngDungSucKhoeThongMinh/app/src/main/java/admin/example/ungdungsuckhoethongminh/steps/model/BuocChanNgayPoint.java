@@ -6,6 +6,7 @@ package admin.example.ungdungsuckhoethongminh.steps.model;
 public class BuocChanNgayPoint {
     public String ngay; // yyyy-MM-dd
     public Integer soBuoc;
+    public Float kcal;
     public Float quangDuong;
     public Integer thoiGianGiay;
 }

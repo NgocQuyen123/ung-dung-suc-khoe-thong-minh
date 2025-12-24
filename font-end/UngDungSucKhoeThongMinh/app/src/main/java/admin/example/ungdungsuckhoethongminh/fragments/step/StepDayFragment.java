@@ -132,8 +132,8 @@ public class StepDayFragment extends Fragment {
         int seconds = (p == null || p.thoiGianGiay == null) ? 0 : p.thoiGianGiay;
 
         txtSmallSteps.setText(StepsFormat.formatStepsTile(steps));
-        // Backend buocchan currently doesn't provide calories
-        txtSmallCalories.setText("0\nkcal");
+        float kcal = (p == null || p.kcal == null) ? 0f : p.kcal;
+        txtSmallCalories.setText(String.format(java.util.Locale.getDefault(), "%.0f\nkcal", kcal));
         txtSmallDistance.setText(StepsFormat.formatKmFromMeters(meters));
         txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds(seconds));
 

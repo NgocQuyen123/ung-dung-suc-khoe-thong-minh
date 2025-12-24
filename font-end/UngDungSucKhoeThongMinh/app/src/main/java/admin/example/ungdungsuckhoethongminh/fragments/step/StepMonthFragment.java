@@ -143,7 +143,11 @@ public class StepMonthFragment extends Fragment {
         txtAverage.setText(String.valueOf(avg));
 
         txtSmallSteps.setText(totalSteps + "\nbước");
-        txtSmallCalories.setText("0\nkcal");
+        long totalKcal = 0;
+        for (BuocChanNgayPoint p : points) {
+            if (p != null && p.kcal != null) totalKcal += Math.round(p.kcal);
+        }
+        txtSmallCalories.setText(totalKcal + "\nkcal");
         txtSmallDistance.setText(StepsFormat.formatKmFromMeters((float) totalMeters));
         txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds((int) totalSeconds));
     }
@@ -232,7 +236,8 @@ public class StepMonthFragment extends Fragment {
             BuocChanNgayPoint p = dayToPoint.get(d);
             if (p != null) {
                 txtSmallSteps.setText(StepsFormat.formatStepsTile(p.soBuoc));
-                txtSmallCalories.setText("0\nkcal");
+                float kcal = (p.kcal == null ? 0f : p.kcal);
+                txtSmallCalories.setText(String.format(java.util.Locale.getDefault(), "%.0f\nkcal", kcal));
                 txtSmallDistance.setText(StepsFormat.formatKmFromMeters(p.quangDuong == null ? 0f : p.quangDuong));
                 txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds(p.thoiGianGiay == null ? 0 : p.thoiGianGiay));
             }
