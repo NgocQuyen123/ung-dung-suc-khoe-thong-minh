@@ -7,15 +7,17 @@ package com.example.beandroid.DTO;
 public class BuocChanThangPointDTO {
     private Integer thang;
     private Long soBuoc;
+    private Double kcal;
     private Double quangDuong; // Tổng quãng đường (km) trong tháng
     private Long thoiGianGiay; // Tổng thời gian (giây) trong tháng
 
     public BuocChanThangPointDTO() {
     }
 
-    public BuocChanThangPointDTO(Integer thang, Long soBuoc, Double quangDuong, Long thoiGianGiay) {
+    public BuocChanThangPointDTO(Integer thang, Long soBuoc, Double kcal, Double quangDuong, Long thoiGianGiay) {
         this.thang = thang;
         this.soBuoc = soBuoc;
+        this.kcal = kcal;
         this.quangDuong = quangDuong;
         this.thoiGianGiay = thoiGianGiay;
     }
@@ -34,6 +36,14 @@ public class BuocChanThangPointDTO {
 
     public void setSoBuoc(Long soBuoc) {
         this.soBuoc = soBuoc;
+    }
+
+    public Double getKcal() {
+        return kcal;
+    }
+
+    public void setKcal(Double kcal) {
+        this.kcal = kcal;
     }
 
     public Double getQuangDuong() {

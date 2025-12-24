@@ -9,15 +9,17 @@ import java.time.LocalDate;
 public class BuocChanNgayPointDTO {
     private LocalDate ngay;
     private Integer soBuoc;
+    private Float kcal;
     private Float quangDuong; // km
     private Integer thoiGianGiay; // giây
 
     public BuocChanNgayPointDTO() {
     }
 
-    public BuocChanNgayPointDTO(LocalDate ngay, Integer soBuoc, Float quangDuong, Integer thoiGianGiay) {
+    public BuocChanNgayPointDTO(LocalDate ngay, Integer soBuoc, Float kcal, Float quangDuong, Integer thoiGianGiay) {
         this.ngay = ngay;
         this.soBuoc = soBuoc;
+        this.kcal = kcal;
         this.quangDuong = quangDuong;
         this.thoiGianGiay = thoiGianGiay;
     }
@@ -36,6 +38,14 @@ public class BuocChanNgayPointDTO {
 
     public void setSoBuoc(Integer soBuoc) {
         this.soBuoc = soBuoc;
+    }
+
+    public Float getKcal() {
+        return kcal;
+    }
+
+    public void setKcal(Float kcal) {
+        this.kcal = kcal;
     }
 
     public Float getQuangDuong() {

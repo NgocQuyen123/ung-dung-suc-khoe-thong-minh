@@ -6,6 +6,7 @@ package com.example.beandroid.DTO.projections;
 public interface BuocChanThangSoBuocProjection {
     Integer getThang();
     Long getTongSoBuoc();
+    Double getTongKcal();
     Double getTongQuangDuong();
     Long getTongThoiGianGiay();
 }

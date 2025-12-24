@@ -23,6 +23,7 @@ public interface BuocChanNgayRepository extends JpaRepository<BuocChanNgay, Inte
     @Query("""
             select b.Ngay as ngay,
                    b.SoBuoc as soBuoc,
+                   b.Kcal as kcal,
                    b.QuangDuong as quangDuong,
                    b.ThoiGianGiay as thoiGianGiay
             from BuocChanNgay b
@@ -42,6 +43,7 @@ public interface BuocChanNgayRepository extends JpaRepository<BuocChanNgay, Inte
     @Query("""
             select function('month', b.Ngay) as thang,
                    sum(b.SoBuoc) as tongSoBuoc,
+                   sum(b.Kcal) as tongKcal,
                    sum(b.QuangDuong) as tongQuangDuong,
                    sum(b.ThoiGianGiay) as tongThoiGianGiay
             from BuocChanNgay b

@@ -245,3 +245,73 @@ WHERE NOT EXISTS (
     WHERE b.idTaiKhoan = 1 AND b.Ngay = md.Ngay
 );
 GO
+/* =====================================================
+   DỮ LIỆU BỔ SUNG PHỤC VỤ API BƯỚC CHÂN
+   ===================================================== */
+   USE QLSUCKHOE;
+GO
+
+DECLARE @StartDate DATE = '2025-01-01';
+DECLARE @EndDate   DATE = '2025-12-31';
+
+DECLARE @UserId INT;
+DECLARE @CurrentDate DATE;
+
+-- Cursor duyệt từng tài khoản
+DECLARE user_cursor CURSOR FOR
+SELECT id FROM TaiKhoan;
+
+OPEN user_cursor;
+FETCH NEXT FROM user_cursor INTO @UserId;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    SET @CurrentDate = @StartDate;
+
+    WHILE @CurrentDate <= @EndDate
+    BEGIN
+        -- Nếu chưa có dữ liệu ngày đó thì insert
+        IF NOT EXISTS (
+            SELECT 1 FROM BuocChanNgay
+            WHERE idTaiKhoan = @UserId
+              AND Ngay = @CurrentDate
+        )
+        BEGIN
+            DECLARE @SoBuoc INT =
+                3000 + ABS(CHECKSUM(NEWID())) % 12000; -- 3000–15000
+
+            DECLARE @Kcal FLOAT = ROUND(@SoBuoc * 0.04, 1);
+            DECLARE @QuangDuong FLOAT = ROUND(@SoBuoc * 0.00075, 2);
+            DECLARE @ThoiGianGiay INT =
+                1800 + ABS(CHECKSUM(NEWID())) % 3600; -- 30–90 phút
+
+            INSERT INTO BuocChanNgay
+            (
+                idTaiKhoan,
+                Ngay,
+                SoBuoc,
+                Kcal,
+                QuangDuong,
+                ThoiGianGiay
+            )
+            VALUES
+            (
+                @UserId,
+                @CurrentDate,
+                @SoBuoc,
+                @Kcal,
+                @QuangDuong,
+                @ThoiGianGiay
+            );
+        END
+
+        SET @CurrentDate = DATEADD(DAY, 1, @CurrentDate);
+    END
+
+    FETCH NEXT FROM user_cursor INTO @UserId;
+END
+
+CLOSE user_cursor;
+DEALLOCATE user_cursor;
+GO
+

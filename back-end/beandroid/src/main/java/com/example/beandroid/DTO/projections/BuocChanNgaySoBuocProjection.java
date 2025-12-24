@@ -8,6 +8,7 @@ import java.time.LocalDate;
 public interface BuocChanNgaySoBuocProjection {
     LocalDate getNgay();
     Integer getSoBuoc();
+    Float getKcal();
     Float getQuangDuong();
     Integer getThoiGianGiay();
 }
