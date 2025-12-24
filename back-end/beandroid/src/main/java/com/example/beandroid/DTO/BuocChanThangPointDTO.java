@@ -1,19 +1,23 @@
 package com.example.beandroid.DTO;
 
 /**
- * Response DTO cho biểu đồ theo tháng (tổng bước chân mỗi tháng).
- * Format: { "thang": 1..12, "soBuoc": number }
+ * Response DTO cho biểu đồ theo tháng (tổng bước chân, quãng đường, thời gian mỗi tháng).
+ * Format: { "thang": 1..12, "soBuoc": number, "quangDuong": number, "thoiGianGiay": number }
  */
 public class BuocChanThangPointDTO {
     private Integer thang;
     private Long soBuoc;
+    private Double quangDuong; // Tổng quãng đường (km) trong tháng
+    private Long thoiGianGiay; // Tổng thời gian (giây) trong tháng
 
     public BuocChanThangPointDTO() {
     }
 
-    public BuocChanThangPointDTO(Integer thang, Long soBuoc) {
+    public BuocChanThangPointDTO(Integer thang, Long soBuoc, Double quangDuong, Long thoiGianGiay) {
         this.thang = thang;
         this.soBuoc = soBuoc;
+        this.quangDuong = quangDuong;
+        this.thoiGianGiay = thoiGianGiay;
     }
 
     public Integer getThang() {
@@ -30,5 +34,21 @@ public class BuocChanThangPointDTO {
 
     public void setSoBuoc(Long soBuoc) {
         this.soBuoc = soBuoc;
+    }
+
+    public Double getQuangDuong() {
+        return quangDuong;
+    }
+
+    public void setQuangDuong(Double quangDuong) {
+        this.quangDuong = quangDuong;
+    }
+
+    public Long getThoiGianGiay() {
+        return thoiGianGiay;
+    }
+
+    public void setThoiGianGiay(Long thoiGianGiay) {
+        this.thoiGianGiay = thoiGianGiay;
     }
 }

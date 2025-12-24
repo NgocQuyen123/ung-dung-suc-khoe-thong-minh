@@ -33,8 +33,16 @@ public class BuocChanServiceImpl implements BuocChanService {
     @Override
     public List<BuocChanNgayPointDTO> getDay(Integer idTaiKhoan, LocalDate ngay) {
         List<BuocChanNgaySoBuocProjection> rows = buocChanNgayRepository.findSoBuocTheoKhoangNgay(idTaiKhoan, ngay, ngay);
-        int steps = rows.isEmpty() || rows.get(0).getSoBuoc() == null ? 0 : rows.get(0).getSoBuoc();
-        return List.of(new BuocChanNgayPointDTO(ngay, steps));
+        if (rows.isEmpty()) {
+            return List.of(new BuocChanNgayPointDTO(ngay, 0, 0f, 0));
+        }
+        BuocChanNgaySoBuocProjection r = rows.get(0);
+        return List.of(new BuocChanNgayPointDTO(
+                ngay,
+                r.getSoBuoc() == null ? 0 : r.getSoBuoc(),
+                r.getQuangDuong() == null ? 0f : r.getQuangDuong(),
+                r.getThoiGianGiay() == null ? 0 : r.getThoiGianGiay()
+        ));
     }
 
     @Override
@@ -59,16 +67,30 @@ public class BuocChanServiceImpl implements BuocChanService {
         LocalDate end = LocalDate.of(nam, 12, 31);
 
         List<BuocChanThangSoBuocProjection> rows = buocChanNgayRepository.tongSoBuocTheoThangTrongNam(idTaiKhoan, start, end);
-        Map<Integer, Long> thangToSteps = new HashMap<>();
+        
+        // Map để lưu dữ liệu theo tháng
+        Map<Integer, BuocChanThangSoBuocProjection> thangToData = new HashMap<>();
         for (BuocChanThangSoBuocProjection r : rows) {
             if (r.getThang() != null) {
-                thangToSteps.put(r.getThang(), r.getTongSoBuoc() == null ? 0L : r.getTongSoBuoc());
+                thangToData.put(r.getThang(), r);
             }
         }
 
+        // Zero-fill tất cả 12 tháng
         List<BuocChanThangPointDTO> result = new ArrayList<>(12);
         for (int m = 1; m <= 12; m++) {
-            result.add(new BuocChanThangPointDTO(m, thangToSteps.getOrDefault(m, 0L)));
+            BuocChanThangSoBuocProjection data = thangToData.get(m);
+            if (data != null) {
+                result.add(new BuocChanThangPointDTO(
+                        m,
+                        data.getTongSoBuoc() == null ? 0L : data.getTongSoBuoc(),
+                        data.getTongQuangDuong() == null ? 0.0 : data.getTongQuangDuong(),
+                        data.getTongThoiGianGiay() == null ? 0L : data.getTongThoiGianGiay()
+                ));
+            } else {
+                // Tháng không có dữ liệu - zero fill
+                result.add(new BuocChanThangPointDTO(m, 0L, 0.0, 0L));
+            }
         }
         return result;
     }
@@ -79,17 +101,30 @@ public class BuocChanServiceImpl implements BuocChanService {
     private List<BuocChanNgayPointDTO> getRangeDaysZeroFill(Integer idTaiKhoan, LocalDate start, LocalDate end) {
         List<BuocChanNgaySoBuocProjection> rows = buocChanNgayRepository.findSoBuocTheoKhoangNgay(idTaiKhoan, start, end);
 
-        Map<LocalDate, Integer> dateToSteps = new HashMap<>();
+        // Map để lưu dữ liệu theo ngày
+        Map<LocalDate, BuocChanNgaySoBuocProjection> dateToData = new HashMap<>();
         for (BuocChanNgaySoBuocProjection r : rows) {
             if (r.getNgay() != null) {
-                dateToSteps.put(r.getNgay(), r.getSoBuoc() == null ? 0 : r.getSoBuoc());
+                dateToData.put(r.getNgay(), r);
             }
         }
 
+        // Zero-fill tất cả các ngày trong khoảng
         List<BuocChanNgayPointDTO> result = new ArrayList<>();
         LocalDate d = start;
         while (!d.isAfter(end)) {
-            result.add(new BuocChanNgayPointDTO(d, dateToSteps.getOrDefault(d, 0)));
+            BuocChanNgaySoBuocProjection data = dateToData.get(d);
+            if (data != null) {
+                result.add(new BuocChanNgayPointDTO(
+                        d,
+                        data.getSoBuoc() == null ? 0 : data.getSoBuoc(),
+                        data.getQuangDuong() == null ? 0f : data.getQuangDuong(),
+                        data.getThoiGianGiay() == null ? 0 : data.getThoiGianGiay()
+                ));
+            } else {
+                // Ngày không có dữ liệu - zero fill
+                result.add(new BuocChanNgayPointDTO(d, 0, 0f, 0));
+            }
             d = d.plusDays(1);
         }
         return result;

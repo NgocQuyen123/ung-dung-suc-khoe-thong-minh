@@ -17,12 +17,14 @@ import java.util.List;
 public interface BuocChanNgayRepository extends JpaRepository<BuocChanNgay, Integer> {
 
     /**
-     * Query nhẹ: chỉ lấy Ngày + Số bước trong khoảng.
+     * Query: lấy Ngày + Số bước + Quãng đường + Thời gian trong khoảng.
      * Service sẽ zero-fill các ngày bị thiếu.
      */
     @Query("""
             select b.Ngay as ngay,
-                   b.SoBuoc as soBuoc
+                   b.SoBuoc as soBuoc,
+                   b.QuangDuong as quangDuong,
+                   b.ThoiGianGiay as thoiGianGiay
             from BuocChanNgay b
             where b.taiKhoan.id = :idTaiKhoan
               and b.Ngay between :fromDate and :toDate
@@ -35,11 +37,13 @@ public interface BuocChanNgayRepository extends JpaRepository<BuocChanNgay, Inte
     );
 
     /**
-     * Tổng hợp số bước theo tháng trong một năm cụ thể.
+     * Tổng hợp số bước, quãng đường, thời gian theo tháng trong một năm cụ thể.
      */
     @Query("""
             select function('month', b.Ngay) as thang,
-                   sum(b.SoBuoc) as tongSoBuoc
+                   sum(b.SoBuoc) as tongSoBuoc,
+                   sum(b.QuangDuong) as tongQuangDuong,
+                   sum(b.ThoiGianGiay) as tongThoiGianGiay
             from BuocChanNgay b
             where b.taiKhoan.id = :idTaiKhoan
               and b.Ngay between :fromDate and :toDate

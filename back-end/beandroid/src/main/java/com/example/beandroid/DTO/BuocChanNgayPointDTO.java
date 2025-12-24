@@ -4,18 +4,22 @@ import java.time.LocalDate;
 
 /**
  * Response DTO cho biểu đồ theo ngày.
- * Format giữ đơn giản để không phá frontend: { "ngay": "YYYY-MM-DD", "soBuoc": number }
+ * Bao gồm: ngày, số bước, quãng đường (km), thời gian (giây)
  */
 public class BuocChanNgayPointDTO {
     private LocalDate ngay;
     private Integer soBuoc;
+    private Float quangDuong; // km
+    private Integer thoiGianGiay; // giây
 
     public BuocChanNgayPointDTO() {
     }
 
-    public BuocChanNgayPointDTO(LocalDate ngay, Integer soBuoc) {
+    public BuocChanNgayPointDTO(LocalDate ngay, Integer soBuoc, Float quangDuong, Integer thoiGianGiay) {
         this.ngay = ngay;
         this.soBuoc = soBuoc;
+        this.quangDuong = quangDuong;
+        this.thoiGianGiay = thoiGianGiay;
     }
 
     public LocalDate getNgay() {
@@ -32,5 +36,21 @@ public class BuocChanNgayPointDTO {
 
     public void setSoBuoc(Integer soBuoc) {
         this.soBuoc = soBuoc;
+    }
+
+    public Float getQuangDuong() {
+        return quangDuong;
+    }
+
+    public void setQuangDuong(Float quangDuong) {
+        this.quangDuong = quangDuong;
+    }
+
+    public Integer getThoiGianGiay() {
+        return thoiGianGiay;
+    }
+
+    public void setThoiGianGiay(Integer thoiGianGiay) {
+        this.thoiGianGiay = thoiGianGiay;
     }
 }

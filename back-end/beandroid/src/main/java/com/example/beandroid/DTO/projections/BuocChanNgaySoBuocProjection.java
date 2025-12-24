@@ -3,9 +3,11 @@ package com.example.beandroid.DTO.projections;
 import java.time.LocalDate;
 
 /**
- * Projection nhẹ: chỉ lấy Ngày + Số bước, phục vụ vẽ biểu đồ.
+ * Projection: lấy Ngày + Số bước + Quãng đường + Thời gian, phục vụ vẽ biểu đồ.
  */
 public interface BuocChanNgaySoBuocProjection {
     LocalDate getNgay();
     Integer getSoBuoc();
+    Float getQuangDuong();
+    Integer getThoiGianGiay();
 }
