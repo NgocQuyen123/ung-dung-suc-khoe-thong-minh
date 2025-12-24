@@ -14,21 +14,42 @@ import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.steps.model.BuocChanNgayPoint;
+import admin.example.ungdungsuckhoethongminh.steps.repository.StepsRepository;
+import admin.example.ungdungsuckhoethongminh.steps.util.StepsFormat;
 
 public class StepDayFragment extends Fragment {
 
-    private ImageView imgCircle, imgCenterIcon;
+    private enum CenterMetric {
+        STEPS,
+        KCAL,
+        DISTANCE,
+        TIME
+    }
+
+    private ImageView imgCenterIcon;
     private TextView txtSmallSteps, txtSmallCalories, txtSmallDistance, txtSmallTime;
     private TextView txtCenterTop, txtCenterBottom, txtDayInfo;
     private ImageButton btnPrevDay, btnNextDay;
 
-    private Calendar calendar = Calendar.getInstance();
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    private final Calendar calendar = Calendar.getInstance();
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+    private final StepsRepository repository = new StepsRepository();
+
+    private @Nullable BuocChanNgayPoint currentPoint;
+    private CenterMetric selectedMetric = CenterMetric.STEPS;
 
     public StepDayFragment() {}
+
+    private int getTaiKhoanId() {
+        return admin.example.ungdungsuckhoethongminh.steps.util.StepsUserResolver
+                .resolveIdTaiKhoan(requireContext(), getArguments());
+    }
 
     @Nullable
     @Override
@@ -36,8 +57,6 @@ public class StepDayFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step_day, container, false);
 
-        // Find views
-        imgCircle = view.findViewById(R.id.imgCircle);
         imgCenterIcon = view.findViewById(R.id.imgCenterIcon);
         txtCenterTop = view.findViewById(R.id.txtCenterTop);
         txtCenterBottom = view.findViewById(R.id.txtCenterBottom);
@@ -51,95 +70,120 @@ public class StepDayFragment extends Fragment {
         btnPrevDay = view.findViewById(R.id.btnPrevDay);
         btnNextDay = view.findViewById(R.id.btnNextDay);
 
-        loadDemoData();
-        updateDayInfo();
-
         btnPrevDay.setOnClickListener(v -> {
             calendar.add(Calendar.DAY_OF_MONTH, -1);
-            loadDemoData();
             updateDayInfo();
+            fetchAndRender();
         });
-
         btnNextDay.setOnClickListener(v -> {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
-            loadDemoData();
             updateDayInfo();
+            fetchAndRender();
         });
 
-//         Click vào ô nhỏ để đổi nội dung giữa vòng tròn
+        // Click tiles -> show in center
         txtSmallSteps.setOnClickListener(v -> {
-            txtCenterTop.setText("6500");
-            txtCenterBottom.setText("bước");
-            imgCenterIcon.setImageResource(R.drawable.buocchan);
+            selectedMetric = CenterMetric.STEPS;
+            showCenter(selectedMetric);
         });
-
         txtSmallCalories.setOnClickListener(v -> {
-            txtCenterTop.setText("320");
-            txtCenterBottom.setText("kcal");
-            imgCenterIcon.setImageResource(R.drawable.mdi_fire);
+            selectedMetric = CenterMetric.KCAL;
+            showCenter(selectedMetric);
         });
-
         txtSmallDistance.setOnClickListener(v -> {
-            txtCenterTop.setText("4500");
-            txtCenterBottom.setText("m");
-            imgCenterIcon.setImageResource(R.drawable.arrow_right);
+            selectedMetric = CenterMetric.DISTANCE;
+            showCenter(selectedMetric);
         });
-
         txtSmallTime.setOnClickListener(v -> {
-            txtCenterTop.setText("35");
-            txtCenterBottom.setText("phút");
-            imgCenterIcon.setImageResource(R.drawable.mdi_light_clock);
-        });btnPrevDay.setOnClickListener(v -> {
-            calendar.add(Calendar.DAY_OF_MONTH, -1);
-            loadDemoData();
-            updateDayInfo();
+            selectedMetric = CenterMetric.TIME;
+            showCenter(selectedMetric);
         });
 
-        btnNextDay.setOnClickListener(v -> {
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-            loadDemoData();
-            updateDayInfo();
-        });
-
-//         Click vào ô nhỏ để đổi nội dung giữa vòng tròn
-        txtSmallSteps.setOnClickListener(v -> {
-            txtCenterTop.setText("6500");
-            txtCenterBottom.setText("bước");
-            imgCenterIcon.setImageResource(R.drawable.buocchan);
-        });
-
-        txtSmallCalories.setOnClickListener(v -> {
-            txtCenterTop.setText("320");
-            txtCenterBottom.setText("kcal");
-            imgCenterIcon.setImageResource(R.drawable.mdi_fire);
-        });
-
-        txtSmallDistance.setOnClickListener(v -> {
-            txtCenterTop.setText("4500");
-            txtCenterBottom.setText("m");
-            imgCenterIcon.setImageResource(R.drawable.arrow_right);
-        });
-
-        txtSmallTime.setOnClickListener(v -> {
-            txtCenterTop.setText("35");
-            txtCenterBottom.setText("phút");
-            imgCenterIcon.setImageResource(R.drawable.mdi_light_clock);
-        });
+        updateDayInfo();
+        fetchAndRender();
 
         return view;
     }
 
-    // FIX CỨNG DỮ LIỆU DEMO  -------------------------
-    private void loadDemoData() {
+    private void fetchAndRender() {
+        String ngay = sdf.format(calendar.getTime());
+        int idTaiKhoan = getTaiKhoanId();
 
-        txtSmallSteps.setText("6500\nbước");
-        txtSmallCalories.setText("320\nkcal");
-        txtSmallDistance.setText("4500\nm");
-        txtSmallTime.setText("35\nphút");
+        // simple loading
+        txtSmallSteps.setText("...\nbước");
+        txtSmallCalories.setText("...\nkcal");
+        txtSmallDistance.setText("...\n...");
+        txtSmallTime.setText("...\nphút");
 
-        txtCenterTop.setText("6500");
-        txtCenterBottom.setText("bước");
-        imgCenterIcon.setImageResource(R.drawable.buocchan);
+        repository.getNgay(idTaiKhoan, ngay, new StepsRepository.ResultCallback<List<BuocChanNgayPoint>>() {
+            @Override
+            public void onSuccess(@NonNull List<BuocChanNgayPoint> data) {
+                if (!isAdded()) return;
+                currentPoint = (data != null && !data.isEmpty()) ? data.get(0) : null;
+                renderTiles(currentPoint);
+                showCenter(selectedMetric);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable t) {
+                if (!isAdded()) return;
+                currentPoint = null;
+                renderTiles(null);
+                showCenter(selectedMetric);
+            }
+        });
+    }
+
+    private void renderTiles(@Nullable BuocChanNgayPoint p) {
+        int steps = (p == null || p.soBuoc == null) ? 0 : p.soBuoc;
+        float meters = (p == null || p.quangDuong == null) ? 0f : p.quangDuong;
+        int seconds = (p == null || p.thoiGianGiay == null) ? 0 : p.thoiGianGiay;
+        float kcal = (p == null || p.kcal == null) ? 0f : p.kcal;
+
+        txtSmallSteps.setText(StepsFormat.formatStepsTile(steps));
+        txtSmallCalories.setText(StepsFormat.formatKcalTile(kcal));
+        txtSmallDistance.setText(StepsFormat.formatKmFromMeters(meters));
+        txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds(seconds));
+    }
+
+    private void showCenter(@NonNull CenterMetric metric) {
+        BuocChanNgayPoint p = currentPoint;
+
+        int steps = (p == null || p.soBuoc == null) ? 0 : p.soBuoc;
+        float meters = (p == null || p.quangDuong == null) ? 0f : p.quangDuong;
+        int seconds = (p == null || p.thoiGianGiay == null) ? 0 : p.thoiGianGiay;
+        float kcal = (p == null || p.kcal == null) ? 0f : p.kcal;
+
+        switch (metric) {
+            case KCAL:
+                txtCenterTop.setText(String.format(Locale.getDefault(), "%.0f", kcal));
+                txtCenterBottom.setText("kcal");
+                imgCenterIcon.setImageResource(R.drawable.mdi_fire);
+                break;
+            case DISTANCE:
+                // show as meters or km (without unit duplication from tile)
+                if (meters < 1000f) {
+                    txtCenterTop.setText(String.format(Locale.getDefault(), "%.0f", meters));
+                    txtCenterBottom.setText("m");
+                } else {
+                    txtCenterTop.setText(String.format(Locale.getDefault(), "%.1f", (meters / 1000f)));
+                    txtCenterBottom.setText("km");
+                }
+                imgCenterIcon.setImageResource(R.drawable.arrow_right);
+                break;
+            case TIME:
+                int minutes = Math.round(seconds / 60f);
+                txtCenterTop.setText(String.valueOf(minutes));
+                txtCenterBottom.setText("phút");
+                imgCenterIcon.setImageResource(R.drawable.mdi_light_clock);
+                break;
+            case STEPS:
+            default:
+                txtCenterTop.setText(String.valueOf(steps));
+                txtCenterBottom.setText("bước");
+                imgCenterIcon.setImageResource(R.drawable.buocchan);
+                break;
+        }
     }
 
     private void updateDayInfo() {

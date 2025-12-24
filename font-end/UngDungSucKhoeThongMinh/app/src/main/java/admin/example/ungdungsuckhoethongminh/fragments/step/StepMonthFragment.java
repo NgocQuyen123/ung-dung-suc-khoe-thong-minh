@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,19 +17,36 @@ import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.steps.model.BuocChanNgayPoint;
+import admin.example.ungdungsuckhoethongminh.steps.repository.StepsRepository;
+import admin.example.ungdungsuckhoethongminh.steps.util.StepsFormat;
 
 public class StepMonthFragment extends Fragment {
 
     private LinearLayout row1, row2, row3, row4, row5;
     private TextView txtWeekRange;
+    private TextView txtTotalSteps, txtAverage;
+    private TextView txtSmallSteps, txtSmallCalories, txtSmallDistance, txtSmallTime;
+    private ImageButton btnPrevDay, btnNextDay;
 
     private Calendar calendar;
-    private TextView selectedDayView = null;
+    private TextView selectedDayView;
+
+    private final StepsRepository repository = new StepsRepository();
+    private final Map<Integer, BuocChanNgayPoint> dayToPoint = new HashMap<>();
 
     public StepMonthFragment() {}
+
+    private int getTaiKhoanId() {
+        return admin.example.ungdungsuckhoethongminh.steps.util.StepsUserResolver
+                .resolveIdTaiKhoan(requireContext(), getArguments());
+    }
 
     @Nullable
     @Override
@@ -38,7 +56,9 @@ public class StepMonthFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_step_month, container, false);
 
-        // Ánh xạ đúng theo XML bạn gửi
+        btnPrevDay = view.findViewById(R.id.btnPrevDay);
+        btnNextDay = view.findViewById(R.id.btnNextDay);
+
         row1 = view.findViewById(R.id.row1);
         row2 = view.findViewById(R.id.row2);
         row3 = view.findViewById(R.id.row3);
@@ -46,20 +66,80 @@ public class StepMonthFragment extends Fragment {
         row5 = view.findViewById(R.id.row5);
 
         txtWeekRange = view.findViewById(R.id.txtWeekRange);
+        txtTotalSteps = view.findViewById(R.id.txtTotalSteps);
+        txtAverage = view.findViewById(R.id.txtAverage);
+
+        txtSmallSteps = view.findViewById(R.id.txtSmallSteps);
+        txtSmallCalories = view.findViewById(R.id.txtSmallCalories);
+        txtSmallDistance = view.findViewById(R.id.txtSmallDistance);
+        txtSmallTime = view.findViewById(R.id.txtSmallTime);
 
         calendar = Calendar.getInstance();
 
+        btnPrevDay.setOnClickListener(v -> {
+            calendar.add(Calendar.MONTH, -1);
+            renderCalendar();
+            fetchMonth();
+        });
+
+        btnNextDay.setOnClickListener(v -> {
+            calendar.add(Calendar.MONTH, 1);
+            renderCalendar();
+            fetchMonth();
+        });
+
         renderCalendar();
+        fetchMonth();
 
         return view;
+    }
+
+    private void fetchMonth() {
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+
+        repository.getThang(getTaiKhoanId(), year, month, new StepsRepository.ResultCallback<List<BuocChanNgayPoint>>() {
+            @Override
+            public void onSuccess(@NonNull List<BuocChanNgayPoint> data) {
+                if (!isAdded()) return;
+                dayToPoint.clear();
+                for (BuocChanNgayPoint p : data) {
+                    if (p == null || p.ngay == null || p.ngay.length() < 10) continue;
+                    try {
+                        int d = Integer.parseInt(p.ngay.substring(8, 10));
+                        dayToPoint.put(d, p);
+                    } catch (Exception ignored) {}
+                }
+                renderMonthStats(data);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable t) {
+                if (!isAdded()) return;
+                dayToPoint.clear();
+                renderMonthStats(new ArrayList<>());
+            }
+        });
+    }
+
+    private void renderMonthStats(@NonNull List<BuocChanNgayPoint> points) {
+        admin.example.ungdungsuckhoethongminh.steps.util.StepsStats.DayStats s =
+                admin.example.ungdungsuckhoethongminh.steps.util.StepsStats.sumDays(points);
+
+        txtTotalSteps.setText(String.valueOf(s.totalSteps));
+        txtAverage.setText(String.valueOf(s.avgSteps(points.size())));
+
+        txtSmallSteps.setText(s.totalSteps + "\nbước");
+        txtSmallCalories.setText(s.totalKcal + "\nkcal");
+        txtSmallDistance.setText(StepsFormat.formatKmFromMeters((float) s.totalMeters));
+        txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds((int) s.totalSeconds));
     }
 
     private void renderCalendar() {
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
 
-        // Hiển thị tháng theo XML
-        txtWeekRange.setText("Tháng " + (month + 1) + " " + year);
+        txtWeekRange.setText(String.format(Locale.getDefault(), "Tháng %d %d", (month + 1), year));
 
         List<LinearLayout> rows = new ArrayList<>();
         rows.add(row1);
@@ -68,7 +148,6 @@ public class StepMonthFragment extends Fragment {
         rows.add(row4);
         rows.add(row5);
 
-        // Xóa cũ
         for (LinearLayout row : rows) {
             row.removeAllViews();
         }
@@ -77,22 +156,18 @@ public class StepMonthFragment extends Fragment {
         tempCal.set(year, month, 1);
 
         int daysInMonth = tempCal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        int startDayOfWeek = tempCal.get(Calendar.DAY_OF_WEEK) - 1; // Chủ nhật = 1
-
-        if (startDayOfWeek == 0) startDayOfWeek = 7; // Đưa về thứ 2 = 1
+        int startDayOfWeek = tempCal.get(Calendar.DAY_OF_WEEK) - 1; // Sunday = 1
+        if (startDayOfWeek == 0) startDayOfWeek = 7; // Monday = 1
 
         int day = 1;
-
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
         for (int i = 0; i < 5; i++) {
             LinearLayout row = rows.get(i);
 
             for (int col = 1; col <= 7; col++) {
-
                 TextView dayView = (TextView) inflater.inflate(R.layout.item_month_circle, row, false);
 
-                // Trước ngày 1 → để trống
                 if (i == 0 && col < startDayOfWeek) {
                     dayView.setText("");
                     row.addView(dayView);
@@ -107,7 +182,6 @@ public class StepMonthFragment extends Fragment {
 
                 dayView.setText(String.valueOf(day));
 
-                // ---- Đánh dấu hôm nay ----
                 Calendar now = Calendar.getInstance();
                 int today = now.get(Calendar.DAY_OF_MONTH);
                 int thisMonth = now.get(Calendar.MONTH);
@@ -118,8 +192,6 @@ public class StepMonthFragment extends Fragment {
                     dayView.setTypeface(Typeface.DEFAULT_BOLD);
                 }
 
-                // ---- Click chọn ngày ----
-                int finalDay = day;
                 dayView.setOnClickListener(v -> onDaySelected((TextView) v));
 
                 row.addView(dayView);
@@ -129,18 +201,29 @@ public class StepMonthFragment extends Fragment {
     }
 
     private void onDaySelected(TextView dayView) {
-        // Bỏ chọn cũ
+        if (dayView.getText() == null || dayView.getText().toString().trim().isEmpty()) return;
+
         if (selectedDayView != null) {
             selectedDayView.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_circle_normal));
             selectedDayView.setTextColor(Color.BLACK);
             selectedDayView.setTypeface(Typeface.DEFAULT);
         }
 
-        // Chọn mới
         dayView.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_circle_selected));
         dayView.setTextColor(Color.WHITE);
         dayView.setTypeface(Typeface.DEFAULT_BOLD);
-
         selectedDayView = dayView;
+
+        try {
+            int d = Integer.parseInt(dayView.getText().toString());
+            BuocChanNgayPoint p = dayToPoint.get(d);
+            if (p != null) {
+                txtSmallSteps.setText(StepsFormat.formatStepsTile(p.soBuoc));
+                float kcal = (p.kcal == null ? 0f : p.kcal);
+                txtSmallCalories.setText(StepsFormat.formatKcalTile(kcal));
+                txtSmallDistance.setText(StepsFormat.formatKmFromMeters(p.quangDuong == null ? 0f : p.quangDuong));
+                txtSmallTime.setText(StepsFormat.formatMinutesFromSeconds(p.thoiGianGiay == null ? 0 : p.thoiGianGiay));
+            }
+        } catch (Exception ignored) {}
     }
 }

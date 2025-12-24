@@ -1,5 +1,7 @@
 package admin.example.ungdungsuckhoethongminh.adapters;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -12,20 +14,40 @@ import admin.example.ungdungsuckhoethongminh.fragments.step.StepMonthFragment;
 
 public class StepsPagerAdapter extends FragmentStateAdapter {
 
-    public StepsPagerAdapter(@NonNull FragmentActivity fa) {
+    private final int idTaiKhoan;
+
+    public StepsPagerAdapter(@NonNull FragmentActivity fa, int idTaiKhoan) {
         super(fa);
+        this.idTaiKhoan = idTaiKhoan;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+        Fragment fragment;
         switch (position) {
-            case 0: return new StepDayFragment();
-            case 1: return new StepWeekFragment();
-            case 2: return new StepMonthFragment();
-            case 3: return new StepYearFragment();
-            default: return new StepDayFragment();
+            case 0:
+                fragment = new StepDayFragment();
+                break;
+            case 1:
+                fragment = new StepWeekFragment();
+                break;
+            case 2:
+                fragment = new StepMonthFragment();
+                break;
+            case 3:
+                fragment = new StepYearFragment();
+                break;
+            default:
+                fragment = new StepDayFragment();
+                break;
         }
+
+        Bundle args = new Bundle();
+        args.putInt("idTaiKhoan", idTaiKhoan);
+        fragment.setArguments(args);
+
+        return fragment;
     }
 
     @Override

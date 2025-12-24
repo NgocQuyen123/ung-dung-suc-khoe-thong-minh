@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.adapters.StepsPagerAdapter;
+import admin.example.ungdungsuckhoethongminh.steps.session.StepsUserSession;
 
 public class DashboardStepActivity extends AppCompatActivity {
 
@@ -25,24 +26,42 @@ public class DashboardStepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_step);
 
-        // Ánh xạ các view
         btnBack = findViewById(R.id.btnBack);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
 
-        // Xử lý nút quay lại
-        btnBack.setOnClickListener(v -> finish()); // Kết thúc StepsActivity, quay lại màn hình trước
+        btnBack.setOnClickListener(v -> finish());
 
-        // Thiết lập ViewPager và TabLayout
-        viewPager.setAdapter(new StepsPagerAdapter(this));
+        // Resolve current idTaiKhoan:
+        // - prefer intent extras if caller provides
+        // - otherwise use saved session
+        int idFromIntent = getIntent().getIntExtra("idTaiKhoan", -1);
+        if (idFromIntent == -1) {
+            // some screens in project use key "id"
+            idFromIntent = getIntent().getIntExtra("id", -1);
+        }
+        if (idFromIntent > 0) {
+            StepsUserSession.setIdTaiKhoan(this, idFromIntent);
+        }
+        int idTaiKhoan = StepsUserSession.getIdTaiKhoan(this);
+
+        viewPager.setAdapter(new StepsPagerAdapter(this, idTaiKhoan));
 
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             String title = "";
             switch (position) {
-                case 0: title = "Ngày"; break;
-                case 1: title = "Tuần"; break;
-                case 2: title = "Tháng"; break;
-                case 3: title = "Năm"; break;
+                case 0:
+                    title = "Ngày";
+                    break;
+                case 1:
+                    title = "Tuần";
+                    break;
+                case 2:
+                    title = "Tháng";
+                    break;
+                case 3:
+                    title = "Năm";
+                    break;
             }
 
             LinearLayout tabView = (LinearLayout) getLayoutInflater()
@@ -81,7 +100,8 @@ public class DashboardStepActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) { }
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
         });
     }
 }
