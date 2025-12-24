@@ -31,32 +31,32 @@ public class BuocChanServiceImpl implements BuocChanService {
        ========================= */
 
     @Override
-    public List<BuocChanNgayPointDTO> getDay(Integer idTaiKhoan, LocalDate date) {
-        List<BuocChanNgaySoBuocProjection> rows = buocChanNgayRepository.findSoBuocTheoKhoangNgay(idTaiKhoan, date, date);
+    public List<BuocChanNgayPointDTO> getDay(Integer idTaiKhoan, LocalDate ngay) {
+        List<BuocChanNgaySoBuocProjection> rows = buocChanNgayRepository.findSoBuocTheoKhoangNgay(idTaiKhoan, ngay, ngay);
         int steps = rows.isEmpty() || rows.get(0).getSoBuoc() == null ? 0 : rows.get(0).getSoBuoc();
-        return List.of(new BuocChanNgayPointDTO(date, steps));
+        return List.of(new BuocChanNgayPointDTO(ngay, steps));
     }
 
     @Override
-    public List<BuocChanNgayPointDTO> getWeek(Integer idTaiKhoan, LocalDate anyDateInWeek) {
+    public List<BuocChanNgayPointDTO> getWeek(Integer idTaiKhoan, LocalDate ngayBatKyTrongTuan) {
         // Week chuẩn ISO: Thứ 2 -> Chủ nhật
-        LocalDate start = anyDateInWeek.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-        LocalDate end = anyDateInWeek.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+        LocalDate start = ngayBatKyTrongTuan.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        LocalDate end = ngayBatKyTrongTuan.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
         return getRangeDaysZeroFill(idTaiKhoan, start, end);
     }
 
     @Override
-    public List<BuocChanNgayPointDTO> getMonth(Integer idTaiKhoan, int year, int month) {
-        YearMonth ym = YearMonth.of(year, month);
+    public List<BuocChanNgayPointDTO> getMonth(Integer idTaiKhoan, int nam, int thang) {
+        YearMonth ym = YearMonth.of(nam, thang);
         LocalDate start = ym.atDay(1);
         LocalDate end = ym.atEndOfMonth();
         return getRangeDaysZeroFill(idTaiKhoan, start, end);
     }
 
     @Override
-    public List<BuocChanThangPointDTO> getYear(Integer idTaiKhoan, int year) {
-        LocalDate start = LocalDate.of(year, 1, 1);
-        LocalDate end = LocalDate.of(year, 12, 31);
+    public List<BuocChanThangPointDTO> getYear(Integer idTaiKhoan, int nam) {
+        LocalDate start = LocalDate.of(nam, 1, 1);
+        LocalDate end = LocalDate.of(nam, 12, 31);
 
         List<BuocChanThangSoBuocProjection> rows = buocChanNgayRepository.tongSoBuocTheoThangTrongNam(idTaiKhoan, start, end);
         Map<Integer, Long> thangToSteps = new HashMap<>();

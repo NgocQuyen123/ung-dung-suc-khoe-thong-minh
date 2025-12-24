@@ -4,26 +4,26 @@ import java.time.LocalDate;
 
 /**
  * Response DTO cho biểu đồ theo ngày.
- * Format giữ đơn giản để không phá frontend: { "date": "YYYY-MM-DD", "soBuoc": number }
+ * Format giữ đơn giản để không phá frontend: { "ngay": "YYYY-MM-DD", "soBuoc": number }
  */
 public class BuocChanNgayPointDTO {
-    private LocalDate date;
+    private LocalDate ngay;
     private Integer soBuoc;
 
     public BuocChanNgayPointDTO() {
     }
 
-    public BuocChanNgayPointDTO(LocalDate date, Integer soBuoc) {
-        this.date = date;
+    public BuocChanNgayPointDTO(LocalDate ngay, Integer soBuoc) {
+        this.ngay = ngay;
         this.soBuoc = soBuoc;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getNgay() {
+        return ngay;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setNgay(LocalDate ngay) {
+        this.ngay = ngay;
     }
 
     public Integer getSoBuoc() {

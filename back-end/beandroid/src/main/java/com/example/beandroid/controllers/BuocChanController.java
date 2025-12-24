@@ -22,34 +22,34 @@ public class BuocChanController {
         this.buocChanService = buocChanService;
     }
 
-    @GetMapping(value = "/{idTaiKhoan}", params = "type")
+    @GetMapping(value = "/{idTaiKhoan}", params = "loai")
     public Object getByTime(
             @PathVariable Integer idTaiKhoan,
-            @RequestParam String type,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestParam(required = false) Integer year,
-            @RequestParam(required = false) Integer month
+            @RequestParam String loai,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate ngay,
+            @RequestParam(required = false) Integer nam,
+            @RequestParam(required = false) Integer thang
     ) {
         // Dùng Object để trả về 2 dạng list: list theo ngày hoặc list theo tháng.
-        String t = type == null ? "" : type.trim().toLowerCase();
+        String t = loai == null ? "" : loai.trim().toLowerCase();
         return switch (t) {
-            case "day" -> {
-                require(date != null, "Missing query param: date (YYYY-MM-DD) for type=day");
-                yield buocChanService.getDay(idTaiKhoan, date);
+            case "ngay" -> {
+                require(ngay != null, "Missing query param: ngay (YYYY-MM-DD) for loai=ngay");
+                yield buocChanService.getDay(idTaiKhoan, ngay);
             }
-            case "week" -> {
-                require(date != null, "Missing query param: date (YYYY-MM-DD) for type=week");
-                yield buocChanService.getWeek(idTaiKhoan, date);
+            case "tuan" -> {
+                require(ngay != null, "Missing query param: ngay (YYYY-MM-DD) for loai=tuan");
+                yield buocChanService.getWeek(idTaiKhoan, ngay);
             }
-            case "month" -> {
-                require(year != null && month != null, "Missing query params: year & month for type=month");
-                yield buocChanService.getMonth(idTaiKhoan, year, month);
+            case "thang" -> {
+                require(nam != null && thang != null, "Missing query params: nam & thang for loai=thang");
+                yield buocChanService.getMonth(idTaiKhoan, nam, thang);
             }
-            case "year" -> {
-                require(year != null, "Missing query param: year for type=year");
-                yield buocChanService.getYear(idTaiKhoan, year);
+            case "nam" -> {
+                require(nam != null, "Missing query param: nam for loai=nam");
+                yield buocChanService.getYear(idTaiKhoan, nam);
             }
-            default -> throw new BadRequestException("Invalid type. Allowed: day|week|month|year");
+            default -> throw new BadRequestException("Invalid loai. Allowed: ngay|tuan|thang|nam");
         };
     }
 
