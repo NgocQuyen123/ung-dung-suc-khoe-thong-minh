@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.info.util.InfoManager;
+import admin.example.ungdungsuckhoethongminh.model.TaiKhoanInfo;
 
 public class InfoProfileActivity extends AppCompatActivity {
 
@@ -26,7 +28,7 @@ public class InfoProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        // ===== init view =====
+        // ===== INIT VIEW =====
         btnEditName = findViewById(R.id.btnEditName);
         btnEditPhone = findViewById(R.id.btnEditPhone);
         btnEditGender = findViewById(R.id.btnEditGender);
@@ -66,15 +68,32 @@ public class InfoProfileActivity extends AppCompatActivity {
     }
 
     private void loadUserInfo() {
-        // ví dụ userId = 1 (thường lấy từ login)
+
+        // 👉 Thực tế userId nên lấy từ Login hoặc Session
         int userId = 1;
 
-        infoManager.loadUser(userId, user -> {
-            txtName.setText(user.getTenTK());
-            txtEmail.setText(user.getEmail());
-            txtGender.setText(user.getGioiTinh());
-            txtHeight.setText(user.getChieuCao() + " cm");
-            txtBirth.setText(String.valueOf(user.getNamSinh()));
+        infoManager.loadUser(userId, new InfoManager.OnUserLoaded() {
+            @Override
+            public void onSuccess(TaiKhoanInfo user) {
+                txtName.setText(user.getTenTK());
+                txtEmail.setText(user.getEmail());
+                txtGender.setText(user.getGioiTinh());
+                txtHeight.setText(user.getChieuCao() + " cm");
+                txtBirth.setText(String.valueOf(user.getNamSinh()));
+            }
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(InfoProfileActivity.this,
+                        message, Toast.LENGTH_SHORT).show();
+            }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Load lại khi quay về từ màn hình chỉnh sửa
+        loadUserInfo();
     }
 }
