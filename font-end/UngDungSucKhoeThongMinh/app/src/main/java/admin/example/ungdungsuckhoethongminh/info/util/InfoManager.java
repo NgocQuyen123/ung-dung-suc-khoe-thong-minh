@@ -3,7 +3,6 @@ package admin.example.ungdungsuckhoethongminh.info.util;
 import android.content.Context;
 import android.util.Log;
 
-import admin.example.ungdungsuckhoethongminh.info.repository.InfoRepository;
 import admin.example.ungdungsuckhoethongminh.info.session.UserSession;
 import admin.example.ungdungsuckhoethongminh.model.TaiKhoan;
 import retrofit2.Call;
