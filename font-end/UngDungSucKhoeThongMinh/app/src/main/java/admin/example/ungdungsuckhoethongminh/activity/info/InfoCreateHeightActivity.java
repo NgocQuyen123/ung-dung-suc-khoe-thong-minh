@@ -1,6 +1,7 @@
 package admin.example.ungdungsuckhoethongminh.activity.info;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -117,10 +118,17 @@ public class InfoCreateHeightActivity extends AppCompatActivity {
 
         // Lưu và chuyển màn hình
         btnSave.setOnClickListener(v -> {
+            // Lưu currentHeight vào SharedPreferences
+            SharedPreferences prefs = getSharedPreferences("MyAppData", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt("height", currentHeight); // lưu kiểu int
+            editor.apply(); // commit dữ liệu
+
+            // Chuyển sang màn hình tiếp theo
             Intent intent = new Intent(InfoCreateHeightActivity.this, InfoCreateYearActivity.class);
-            intent.putExtra("height", currentHeight);
             startActivity(intent);
         });
+
 
         // Cập nhật vị trí ban đầu
         heightScaleContainer.post(new Runnable() {

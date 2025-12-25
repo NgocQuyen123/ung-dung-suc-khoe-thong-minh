@@ -3,4 +3,6 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">192.168.1.99</domain> <!-- Địa chỉ IP cục bộ của máy tính -->
     </domain-config>
+    <!-- Cho phép tất cả cleartext (HTTP) -->
+    <base-config cleartextTrafficPermitted="true" />
 </network-security-config>
