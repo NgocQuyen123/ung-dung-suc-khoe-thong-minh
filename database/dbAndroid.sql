@@ -314,4 +314,88 @@ END
 CLOSE user_cursor;
 DEALLOCATE user_cursor;
 GO
+/* =====================================================
+   DỮ LIỆU BỔ SUNG PHỤC VỤ API GIẤC NGỦ
+   ===================================================== */
+USE QLSUCKHOE;
+GO
+
+DECLARE @StartDateSleep DATE = '2025-01-01';
+DECLARE @EndDateSleep   DATE = '2025-12-31';
+
+DECLARE @UserIdSleep INT;
+DECLARE @CurrentDateSleep DATE;
+
+DECLARE sleep_cursor CURSOR FOR
+SELECT id FROM TaiKhoan;
+
+OPEN sleep_cursor;
+FETCH NEXT FROM sleep_cursor INTO @UserIdSleep;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    SET @CurrentDateSleep = @StartDateSleep;
+
+    WHILE @CurrentDateSleep <= @EndDateSleep
+    BEGIN
+        IF NOT EXISTS (
+            SELECT 1 FROM SleepNgay
+            WHERE idTaiKhoan = @UserIdSleep
+              AND ngay = @CurrentDateSleep
+        )
+        BEGIN
+            -- Tổng thời gian ngủ: 4–9 tiếng (giây)
+            DECLARE @TongNgu INT =
+                14400 + ABS(CHECKSUM(NEWID())) % 18000;
+
+            -- Phân bổ thời gian ngủ
+            DECLARE @NguSau INT  = @TongNgu * 35 / 100;
+            DECLARE @NguREM INT  = @TongNgu * 25 / 100;
+            DECLARE @NguNhe INT  = @TongNgu * 30 / 100;
+            DECLARE @Thuc  INT   = @TongNgu - (@NguSau + @NguREM + @NguNhe);
+
+            -- Giờ ngủ (22:00 – 00:00)
+            DECLARE @GioBatDau DATETIME =
+                DATEADD(MINUTE,
+                        ABS(CHECKSUM(NEWID())) % 120,
+                        CAST(@CurrentDateSleep AS DATETIME) + '22:00');
+
+            DECLARE @GioKetThuc DATETIME =
+                DATEADD(SECOND, @TongNgu, @GioBatDau);
+
+            INSERT INTO SleepNgay
+            (
+                idTaiKhoan,
+                ngay,
+                tongThoiGianNgu,
+                thoiGianNguSau,
+                thoiGianNguNhe,
+                thoiGianNguREM,
+                thoiGianThuc,
+                gioBatDau,
+                gioKetThuc
+            )
+            VALUES
+            (
+                @UserIdSleep,
+                @CurrentDateSleep,
+                @TongNgu,
+                @NguSau,
+                @NguNhe,
+                @NguREM,
+                @Thuc,
+                @GioBatDau,
+                @GioKetThuc
+            );
+        END
+
+        SET @CurrentDateSleep = DATEADD(DAY, 1, @CurrentDateSleep);
+    END
+
+    FETCH NEXT FROM sleep_cursor INTO @UserIdSleep;
+END
+
+CLOSE sleep_cursor;
+DEALLOCATE sleep_cursor;
+GO
 
