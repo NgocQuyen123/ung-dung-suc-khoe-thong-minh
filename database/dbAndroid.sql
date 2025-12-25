@@ -41,12 +41,13 @@ GO
 
 CREATE TABLE ThongTinCanNang (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    idTKCanNangMT INT NOT NULL,
+    idTK INT NOT NULL,
+    CanNangMucTieu FLOAT NOT NULL,
     idMDHD INT NOT NULL,
     idNDHD INT NOT NULL,
     CanNangTheoNgay FLOAT NOT NULL,
     NgayThietLap DATE NOT NULL,
-    CONSTRAINT FK_ThongTinCanNang_TaiKhoan FOREIGN KEY (idTKCanNangMT)
+    CONSTRAINT FK_ThongTinCanNang_TaiKhoan FOREIGN KEY (idTK)
         REFERENCES TaiKhoan(id),
     CONSTRAINT FK_ThongTinCanNang_MucDoHoatDong FOREIGN KEY (idMDHD)
         REFERENCES MucDoHoatDong(id),
@@ -125,14 +126,14 @@ VALUES
 (N'Tăng cân', 500);
 GO
 
-INSERT INTO ThongTinCanNang 
-(idTKCanNangMT, idMDHD, idNDHD, CanNangTheoNgay, NgayThietLap)
+INSERT INTO ThongTinCanNang
+(idTK, CanNangMucTieu, idMDHD, idNDHD, CanNangTheoNgay, NgayThietLap)
 VALUES
-(1, 2, 1, 65.0, '2025-01-01'),
-(2, 3, 2, 50.5, '2025-01-02'),
-(3, 4, 3, 70.2, '2025-01-03'),
-(4, 1, 4, 48.0, '2025-01-04'),
-(5, 5, 5, 78.3, '2025-01-05');
+(1, 65.0, 2, 1, 65.0, '2025-01-01'),
+(2, 50.0, 3, 2, 50.5, '2025-01-02'),
+(3, 70.0, 4, 3, 70.2, '2025-01-03'),
+(4, 48.0, 1, 4, 48.0, '2025-01-04'),
+(5, 78.0, 5, 5, 78.3, '2025-01-05');
 GO
 
 INSERT INTO BuocChanNgay
@@ -154,3 +155,53 @@ VALUES
 (4, '2025-01-02', 21600, 7200, 9600, 4800, 2400, '2025-01-02 23:30:00', '2025-01-03 05:30:00'),
 (5, '2025-01-03', 27000, 10800, 10200, 6000, 1500, '2025-01-03 22:15:00', '2025-01-04 06:15:00');
 GO
+
+
+
+--------CÂN NẶNG----------
+INSERT INTO ThongTinCanNang
+(idTK, CanNangMucTieu, idMDHD, idNDHD, CanNangTheoNgay, NgayThietLap)
+VALUES
+(1, 64.0, 2, 4, 65.2, '2025-10-27'),
+(1, 64.0, 2, 4, 65.1, '2025-10-29'),
+(1, 64.0, 2, 4, 65.0, '2025-11-01'),
+(1, 64.0, 2, 4, 64.9, '2025-11-02');
+GO
+
+INSERT INTO ThongTinCanNang
+(idTK, CanNangMucTieu, idMDHD, idNDHD, CanNangTheoNgay, NgayThietLap)
+VALUES
+(1, 64.0, 2, 4, 64.8, '2025-11-03'),
+(1, 64.0, 2, 4, 64.7, '2025-11-05'),
+(1, 64.0, 2, 4, 64.6, '2025-11-07'),
+(1, 64.0, 2, 4, 64.5, '2025-11-09');
+GO
+
+INSERT INTO ThongTinCanNang
+(idTK, CanNangMucTieu, idMDHD, idNDHD, CanNangTheoNgay, NgayThietLap)
+VALUES
+(1, 64.0, 2, 4, 64.8, '2025-11-04'),
+(1, 64.0, 2, 4, 64.7, '2025-11-05'),
+(1, 64.0, 2, 4, 64.6, '2025-11-07'),
+(1, 64.0, 2, 4, 64.5, '2025-11-09');
+GO
+
+INSERT INTO ThongTinCanNang
+(idTK, CanNangMucTieu, idMDHD, idNDHD, CanNangTheoNgay, NgayThietLap)
+VALUES
+(1, 63.5, 3, 4, 64.0, '2025-12-15'),
+(1, 63.5, 3, 4, 63.9, '2025-12-17'),
+(1, 63.5, 3, 4, 63.8, '2025-12-19'),
+(1, 63.5, 3, 4, 63.7, '2025-12-21');
+GO
+
+INSERT INTO ThongTinCanNang
+(idTK, CanNangMucTieu, idMDHD, idNDHD, CanNangTheoNgay, NgayThietLap)
+VALUES
+(1, 63.0, 2, 4, 63.5, '2026-01-05'),
+(1, 63.0, 2, 4, 63.3, '2026-02-10'),
+(1, 63.0, 2, 4, 63.0, '2026-03-15');
+GO
+
+
+

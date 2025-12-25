@@ -52,7 +52,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
             <Button
-                android:id="@+id/btnTabWeek"
+                android:id="@+id/btnTabTuan"
                 style="@style/MyFlatButton"
                 android:layout_width="121dp"
                 android:layout_height="52dp"
@@ -64,7 +64,8 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnTabMonth"
+                android:id="@+id/btnTabThang"
+                style="@style/MyFlatButton"
                 android:layout_width="121dp"
                 android:layout_height="52dp"
                 android:background="@android:color/transparent"
@@ -75,7 +76,8 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/btnTabYear"
+                android:id="@+id/btnTabNam"
+                style="@style/MyFlatButton"
                 android:layout_width="121dp"
                 android:layout_height="52dp"
                 android:background="@android:color/transparent"
@@ -101,6 +103,9 @@
                 android:id="@+id/ivPrevWeek"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:contentDescription="Tuần trước"
                 android:rotation="180"
                 android:src="@drawable/ic_arrow_forward"
@@ -109,23 +114,27 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvWeekLabel"
+                android:id="@+id/tvThoiGianCanNang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:text="Tuần này"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivPrevWeek"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toStartOf="@id/ivNextWeek"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5" />
+
 
             <ImageView
                 android:id="@+id/ivNextWeek"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:contentDescription="Tuần sau"
                 android:src="@drawable/ic_arrow_forward"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -136,7 +145,7 @@
 
 
         <TextView
-            android:id="@+id/tvAverageTitle"
+            android:id="@+id/tvCanNangTrungBinhTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TRUNG BÌNH TUẦN"
@@ -147,7 +156,7 @@
             app:layout_constraintTop_toBottomOf="@id/clWeekSummary"/>
 
         <TextView
-            android:id="@+id/tvAverageWeight"
+            android:id="@+id/tvCanNangTrungBinh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="65 kg"
@@ -156,7 +165,7 @@
             android:textColor="@android:color/black"
             android:layout_marginTop="4dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvAverageTitle"/>
+            app:layout_constraintTop_toBottomOf="@id/tvCanNangTrungBinhTitle"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clWeightInput"
@@ -169,9 +178,9 @@
             android:paddingVertical="8dp"
             android:paddingStart="12dp"
             android:paddingEnd="4dp"
-            app:layout_constraintBottom_toBottomOf="@id/tvAverageWeight"
+            app:layout_constraintBottom_toBottomOf="@id/tvCanNangTrungBinh"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvAverageTitle">
+            app:layout_constraintTop_toTopOf="@id/tvCanNangTrungBinhTitle">
 
             <ImageView
                 android:id="@+id/ivFlag"
@@ -184,7 +193,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvCurrentWeight"
+                android:id="@+id/tvCanNangMucTieu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -205,28 +214,19 @@
                 android:src="@drawable/ic_arrow_forward"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tvCurrentWeight"
+                app:layout_constraintStart_toEndOf="@id/tvCanNangMucTieu"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <LinearLayout
-            android:id="@+id/llDays"
-            android:layout_width="0dp"
+            android:id="@+id/thoiGianChiTiet"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="horizontal"
-            android:weightSum="7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvAverageWeight">
+            app:layout_constraintTop_toBottomOf="@id/tvCanNangTrungBinh"/>
 
-            <TextView style="@style/DayLabel" android:text="T2" android:layout_weight="1"/>
-            <TextView style="@style/DayLabel" android:text="T3" android:layout_weight="1"/>
-            <TextView style="@style/DayLabel" android:text="T4" android:layout_weight="1"/>
-            <TextView style="@style/DayLabel" android:text="T5" android:layout_weight="1"/>
-            <TextView style="@style/DayLabel" android:text="T6" android:layout_weight="1"/>
-            <TextView style="@style/DayLabel" android:text="T7" android:layout_weight="1"/>
-            <TextView style="@style/DayLabel" android:text="CN" android:layout_weight="1"/>
-        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/chart_container"
@@ -234,13 +234,15 @@
             android:layout_height="250dp" android:layout_marginTop="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llDays">
+            app:layout_constraintTop_toBottomOf="@id/thoiGianChiTiet">
 
-            <View
-                android:layout_width="380dp"
-                android:layout_height="match_parent"
+            <admin.example.ungdungsuckhoethongminh.view.WeightChartView
+                android:id="@+id/weightChart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 android:layout_marginTop="8dp"
-                android:background="#E8F5E9" />
+                android:background="#E8F5E9"/>
+
         </FrameLayout>
 
         <LinearLayout
@@ -266,7 +268,7 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/tvBmiValue"
+                    android:id="@+id/tvBMI"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -287,7 +289,7 @@
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvBmiValue" />
+                    app:layout_constraintTop_toBottomOf="@id/tvBMI" />
 
                 <ImageView
                     android:id="@+id/imageView3"
