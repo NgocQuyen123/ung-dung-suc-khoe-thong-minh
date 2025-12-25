@@ -11,4 +11,7 @@ public class LeverModel {
         this.moTa = moTa;
         this.caloHoatDong = caloHoatDong;
     }
+    public Integer getId() {
+        return id; // hoặc tên biến id của bạn
+    }
 }

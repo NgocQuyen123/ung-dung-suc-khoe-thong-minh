@@ -16,28 +16,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Arrays;
 import java.util.List;
 
+
 import admin.example.ungdungsuckhoethongminh.activity.weight.WeightHeaderActivity;
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.adapters.ActivityPagerAdapter;
 import admin.example.ungdungsuckhoethongminh.model.LeverModel;
+import admin.example.ungdungsuckhoethongminh.model.MucDoHoatDongModel;
+import admin.example.ungdungsuckhoethongminh.network.ApiClient;
+import admin.example.ungdungsuckhoethongminh.network.CanNangApi;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class WeightActivityLeverFragment extends Fragment {
 
     private final int MOCK_ACTIVITY_ID = 2;
 
-    private final int SELECTED_ACTIVITY_ID = 2;
+    private int selectedActivityId = 2;
     private RecyclerView rv;
     private ActivityPagerAdapter adapter;
     private Button btnNext;
 
-    private List<LeverModel> getActivities() {
-        return Arrays.asList(
-                new LeverModel(1, "Rất năng động", "Tập luyện trên 7 giờ mỗi tuần", 785),
-                new LeverModel(2, "Hoạt động trung bình", "Tập luyện 4 - 6 giờ mỗi tuần", 471),
-                new LeverModel(3, "Ít hoạt động", "Tập luyện 2 - 3 giờ mỗi tuần", 235),
-                new LeverModel(4, "Thụ động", "Ít hoặc không tập thể dục", 118)
-        );
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,28 +46,51 @@ public class WeightActivityLeverFragment extends Fragment {
         btnNext = root.findViewById(R.id.btnNext);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<LeverModel> activities = getActivities();
-
-        adapter = new ActivityPagerAdapter(activities, selected -> {
-        });
-        rv.setAdapter(adapter);
-
-        adapter.setSelectedId(SELECTED_ACTIVITY_ID);
+        loadActivities(); // load dữ liệu từ BE
 
         btnNext.setOnClickListener(v -> {
-//            if (adapter != null && adapter.getSelectedId() != -1) {
-//                if (getActivity() instanceof WeightHeaderActivity) {
-//                    ((WeightHeaderActivity)getActivity()).navigateTo(new WeightPaceFragment(), true);
-//                }
-//            }
-//            else {
-//                Toast.makeText(getContext(), "Vui lòng chọn mức độ hoạt động.", Toast.LENGTH_SHORT).show();
-//            }
-            if (getActivity() instanceof WeightHeaderActivity) {
-                ((WeightHeaderActivity)getActivity()).navigateTo(new WeightPaceFragment(), true);
+            if (adapter != null && selectedActivityId != 2) {
+                if (getActivity() instanceof WeightHeaderActivity) {
+                    Bundle oldArgs = getArguments();
+                    double currentWeight = oldArgs != null ? oldArgs.getDouble("CURRENT_WEIGHT") : 65.0;
+                    double targetWeight = oldArgs != null ? oldArgs.getDouble("TARGET_WEIGHT") : 60.0;
+                    WeightPaceFragment fragment = new WeightPaceFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putDouble("CURRENT_WEIGHT", currentWeight);
+                    bundle.putDouble("TARGET_WEIGHT", targetWeight);
+                    bundle.putInt("ACTIVITY_ID", selectedActivityId);
+                    fragment.setArguments(bundle);
+
+                    ((WeightHeaderActivity)getActivity()).navigateTo(fragment, true);
+
+                }
+            } else {
+                Toast.makeText(getContext(), "Vui lòng chọn mức độ hoạt động.", Toast.LENGTH_SHORT).show();
             }
         });
 
         return root;
+    }
+    private void loadActivities() {
+        CanNangApi api = ApiClient.getCanNangApi();
+        api.getAllMucDoHoatDong().enqueue(new Callback<List<MucDoHoatDongModel>>() {
+            @Override
+            public void onResponse(Call<List<MucDoHoatDongModel>> call, Response<List<MucDoHoatDongModel>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<MucDoHoatDongModel> activities = response.body();
+                    adapter = new ActivityPagerAdapter(activities, selected -> {
+                        selectedActivityId = selected.getId(); // lưu ID được chọn
+                    });
+                    rv.setAdapter(adapter);
+                } else {
+                    Toast.makeText(getContext(), "Không có dữ liệu mức độ hoạt động", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<MucDoHoatDongModel>> call, Throwable t) {
+                Toast.makeText(getContext(), "Không thể tải dữ liệu mức độ hoạt động", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

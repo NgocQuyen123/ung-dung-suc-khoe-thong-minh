@@ -23,24 +23,32 @@ public class WeightHostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weight_host);
 
         btnBackHost = findViewById(R.id.btn_back_host);
-
         btnBackHost.setOnClickListener(v -> onActivityBackClicked());
 
-        getSupportFragmentManager().addOnBackStackChangedListener(this::updateBackButtonVisibility);
-
-        // Thay thế onBackPressed() bằng OnBackPressedCallback
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+        // Đăng ký callback cho nút back hệ thống
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
-            public void handleOnBackPressed() {
-                onActivityBackClicked();
-            }
-        };
-        getOnBackPressedDispatcher().addCallback(this, callback);
+            public void handleOnBackPressed() { onActivityBackClicked(); }
+        });
 
         if (savedInstanceState == null) {
-            navigateTo(new WeightOverviewFragment(), false);
+            // CHỈ THỰC HIỆN TRONG NÀY
+            // 1. Lấy dữ liệu từ Intent gửi từ WeighTargetCaloFragment
+            double targetWeight = getIntent().getDoubleExtra("TARGET_WEIGHT", 0.0);
+
+            // 2. Đóng gói vào Bundle
+            Bundle bundle = new Bundle();
+            bundle.putDouble("TARGET_WEIGHT", targetWeight);
+
+            // 3. Khởi tạo và gắn dữ liệu cho Fragment
+            WeightOverviewFragment overviewFragment = new WeightOverviewFragment();
+            overviewFragment.setArguments(bundle);
+
+            // 4. Chuyển màn hình
+            navigateTo(overviewFragment, false);
         }
 
+        getSupportFragmentManager().addOnBackStackChangedListener(this::updateBackButtonVisibility);
         updateBackButtonVisibility();
     }
 
