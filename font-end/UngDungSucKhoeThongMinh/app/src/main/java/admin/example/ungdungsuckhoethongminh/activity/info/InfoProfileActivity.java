@@ -1,7 +1,9 @@
 package admin.example.ungdungsuckhoethongminh.activity.info;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,13 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.info.util.InfoManager;
+import admin.example.ungdungsuckhoethongminh.model.TaiKhoan;
 
 public class InfoProfileActivity extends AppCompatActivity {
 
     private LinearLayout btnEditName, btnEditPhone, btnEditGender, btnEditHeight, btnEditBirth;
     private ImageView btnBack;
 
-    private TextView txtName, txtEmail, txtGender, txtHeight, txtBirth;
+    private TextView txtName, txtSdt, txtGender, txtHeight, txtBirth;
 
     private InfoManager infoManager;
 
@@ -37,7 +40,7 @@ public class InfoProfileActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
 
         txtName = findViewById(R.id.txtName);
-        txtEmail = findViewById(R.id.txtSdt);
+        txtSdt = findViewById(R.id.txtSdt);
         txtGender = findViewById(R.id.txtGender);
         txtHeight = findViewById(R.id.txtHeight);
         txtBirth = findViewById(R.id.txtBirth);
@@ -69,7 +72,11 @@ public class InfoProfileActivity extends AppCompatActivity {
     private void loadUserInfo() {
 
         // 👉 Thực tế userId nên lấy từ Login hoặc Session
-        int userId = 1;
+//        int userId = 1;
+        SharedPreferences prefs = getSharedPreferences("MyAppData", MODE_PRIVATE);
+        int userId = prefs.getInt("userId", 1);
+
+        Log.d("USER_ID", "ID tài khoản: " + userId);
 
         infoManager.loadUser(userId, new InfoManager.OnUserLoaded() {
             @Override

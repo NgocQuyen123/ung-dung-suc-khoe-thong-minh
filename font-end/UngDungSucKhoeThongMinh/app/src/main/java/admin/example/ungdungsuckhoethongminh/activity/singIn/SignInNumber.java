@@ -2,11 +2,13 @@ package admin.example.ungdungsuckhoethongminh.activity.singIn;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -133,24 +135,9 @@ public class SignInNumber extends AppCompatActivity {
                 btnNext.setEnabled(s.length() >= 9);
             }
         });
-
-        // Nhấn Tiếp theo
-//        btnNext.setOnClickListener(v -> {
-//            String phone = edtPhone.getText().toString().trim();
-//
-//            if (phone.length() < 9) {
-//                Toast.makeText(this, "Số điện thoại không hợp lệ!", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
-//
-//            Intent intent = new Intent(SignInNumber.this, SignInPhoneActivity.class);
-//            intent.putExtra("phoneNumber", phone);
-//            startActivity(intent);
-//
-//            overridePendingTransition(R.anim.slide_in_right, R.anim.fade_out);
-//        });
         btnNext.setOnClickListener(v -> {
             String phone = edtPhone.getText().toString().trim();
+            Log.d("PhoneNumber", "Số điện thoại: " + phone);
 
             if (phone.length() < 9) {
                 Toast.makeText(this, "Số điện thoại không hợp lệ!", Toast.LENGTH_SHORT).show();
@@ -169,6 +156,11 @@ public class SignInNumber extends AppCompatActivity {
                         if (loginResponse.isSuccess()) {
                             TaiKhoan user = loginResponse.getTaiKhoan();
                             Toast.makeText(SignInNumber.this, "Đăng nhập thành công: " + user.getTenTK(), Toast.LENGTH_SHORT).show();
+
+                            SharedPreferences prefs = getSharedPreferences("MyAppData", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.putInt("userId", user.getId()); // lưu ID
+                            editor.apply(); // hoặc editor.commit();
 
                             // Chuyển sang màn hình tiếp theo
                             Intent intent = new Intent(SignInNumber.this, SignInPhoneActivity.class);

@@ -86,7 +86,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ngô Tùng Dương"
+                android:text=""
                 android:textSize="18sp"/>
         </LinearLayout>
 
@@ -113,7 +113,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="03854898"
+                android:text=""
                 android:textSize="18sp"/>
         </LinearLayout>
 
@@ -140,7 +140,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nam"
+                android:text=""
                 android:textSize="18sp"/>
         </LinearLayout>
 
@@ -167,7 +167,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="178"
+                android:text=""
                 android:textSize="18sp"/>
         </LinearLayout>
 
@@ -194,7 +194,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2005"
+                android:text=""
                 android:textSize="18sp"/>
         </LinearLayout>
 
