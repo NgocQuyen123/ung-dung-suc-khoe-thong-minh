@@ -88,7 +88,7 @@
                     android:id="@+id/txtTotalSteps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="51"
+                    android:text="--"
                     android:textSize="34sp"
                     android:textStyle="bold" />
 
@@ -142,7 +142,7 @@
                     android:id="@+id/bar1Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="--"
                     android:textColor="#8890EA"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -175,7 +175,7 @@
                     android:id="@+id/bar2Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="--"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -207,7 +207,7 @@
                     android:id="@+id/bar3Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="--"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -239,7 +239,7 @@
                     android:id="@+id/bar4Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="--"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -271,7 +271,7 @@
                     android:id="@+id/bar5Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="--"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -302,7 +302,7 @@
                     android:id="@+id/bar6Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="--"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -334,7 +334,7 @@
                     android:id="@+id/bar7Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="439"
+                    android:text="--"
                     android:textColor="#A0A0A0"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp" />
@@ -374,12 +374,13 @@
                     android:id="@+id/txtSleepDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4g 42p"
+                    android:text="--"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="6dp" />
 
                 <TextView
+                    android:id="@+id/txtSleepQuality"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rất ngắn"
@@ -451,7 +452,7 @@
                     android:id="@+id/txtBedtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1:13"
+                    android:text="--:--"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="6dp" />
@@ -477,7 +478,7 @@
                     android:id="@+id/txtWakeTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="6:11"
+                    android:text="--:--"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="6dp" />

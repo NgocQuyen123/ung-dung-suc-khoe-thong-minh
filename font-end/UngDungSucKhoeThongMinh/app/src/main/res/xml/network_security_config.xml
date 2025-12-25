@@ -6,4 +6,8 @@
 <!--        <domain includeSubdomains="true">192.168.1.99</domain> &lt;!&ndash; Địa chỉ IP cục bộ của máy tính &ndash;&gt;-->
         <domain includeSubdomains="true">http://10.0.2.2:8080/</domain>
     </domain-config>
+
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">192.168.1.171</domain> <!-- Địa chỉ IP cục bộ của máy tính -->
+    </domain-config>
 </network-security-config>

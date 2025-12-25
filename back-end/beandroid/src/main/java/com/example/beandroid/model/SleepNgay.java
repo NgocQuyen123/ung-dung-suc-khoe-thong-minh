@@ -45,5 +45,108 @@ public class SleepNgay {
         }
     }
 
-    // getters & setters
+    // Getters and Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public TaiKhoan getTaiKhoan() {
+        return taiKhoan;
+    }
+
+    public void setTaiKhoan(TaiKhoan taiKhoan) {
+        this.taiKhoan = taiKhoan;
+    }
+
+    public LocalDate getNgay() {
+        return ngay;
+    }
+
+    public void setNgay(LocalDate ngay) {
+        this.ngay = ngay;
+    }
+
+    public Integer getTongThoiGianNgu() {
+        return tongThoiGianNgu;
+    }
+
+    public void setTongThoiGianNgu(Integer tongThoiGianNgu) {
+        this.tongThoiGianNgu = tongThoiGianNgu;
+    }
+
+    public Integer getThoiGianNguSau() {
+        return thoiGianNguSau;
+    }
+
+    public void setThoiGianNguSau(Integer thoiGianNguSau) {
+        this.thoiGianNguSau = thoiGianNguSau;
+    }
+
+    public Integer getThoiGianNguNhe() {
+        return thoiGianNguNhe;
+    }
+
+    public void setThoiGianNguNhe(Integer thoiGianNguNhe) {
+        this.thoiGianNguNhe = thoiGianNguNhe;
+    }
+
+    public Integer getThoiGianNguREM() {
+        return thoiGianNguREM;
+    }
+
+    public void setThoiGianNguREM(Integer thoiGianNguREM) {
+        this.thoiGianNguREM = thoiGianNguREM;
+    }
+
+    public Integer getThoiGianThuc() {
+        return thoiGianThuc;
+    }
+
+    public void setThoiGianThuc(Integer thoiGianThuc) {
+        this.thoiGianThuc = thoiGianThuc;
+    }
+
+    public LocalDateTime getGioBatDau() {
+        return gioBatDau;
+    }
+
+    public void setGioBatDau(LocalDateTime gioBatDau) {
+        this.gioBatDau = gioBatDau;
+    }
+
+    public LocalDateTime getGioKetThuc() {
+        return gioKetThuc;
+    }
+
+    public void setGioKetThuc(LocalDateTime gioKetThuc) {
+        this.gioKetThuc = gioKetThuc;
+    }
+
+    public Integer getNam() {
+        return nam;
+    }
+
+    public void setNam(Integer nam) {
+        this.nam = nam;
+    }
+
+    public Integer getThang() {
+        return thang;
+    }
+
+    public void setThang(Integer thang) {
+        this.thang = thang;
+    }
+
+    public Integer getTuan() {
+        return tuan;
+    }
+
+    public void setTuan(Integer tuan) {
+        this.tuan = tuan;
+    }
 }
