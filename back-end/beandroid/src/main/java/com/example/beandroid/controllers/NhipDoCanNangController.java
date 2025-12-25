@@ -1,5 +1,6 @@
 package com.example.beandroid.controllers;
 
+import com.example.beandroid.DTO.NhipDoCanNangDTO;
 import com.example.beandroid.model.NhipDoCanNang;
 import com.example.beandroid.services.implementations.NhipDoCanNangService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class NhipDoCanNangController {
     }
 
     @GetMapping
-    public List<NhipDoCanNang> getAll() {
-        return service.getAll();
+    public List<NhipDoCanNangDTO> getAll() {
+        return service.getAllDTO();
     }
 }

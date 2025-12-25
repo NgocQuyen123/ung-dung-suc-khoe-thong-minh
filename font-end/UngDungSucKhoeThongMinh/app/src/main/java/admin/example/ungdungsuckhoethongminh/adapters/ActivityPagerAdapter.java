@@ -15,37 +15,18 @@ import java.util.List;
 
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.model.LeverModel;
+import admin.example.ungdungsuckhoethongminh.model.MucDoHoatDongModel;
 
 public class ActivityPagerAdapter extends RecyclerView.Adapter<ActivityPagerAdapter.VH> {
-    private List<LeverModel> items;
+    private List<MucDoHoatDongModel> items;
     private int selectedId = -1;
     private final OnItemClick listener;
 
-    public interface OnItemClick { void onClick(LeverModel item); }
+    public interface OnItemClick { void onClick(MucDoHoatDongModel item); }
 
-    public ActivityPagerAdapter(List<LeverModel> items, OnItemClick listener) {
+    public ActivityPagerAdapter(List<MucDoHoatDongModel> items, OnItemClick listener) {
         this.items = items;
         this.listener = listener;
-    }
-
-    public int getSelectedId() {
-        return selectedId;
-    }
-    public void setSelectedId(int id) {
-        int oldIndex = getIndexById(selectedId);
-        selectedId = id;
-        int newIndex = getIndexById(selectedId);
-
-        if (oldIndex != -1) notifyItemChanged(oldIndex);
-        if (newIndex != -1) notifyItemChanged(newIndex);
-        if (oldIndex == -1 && newIndex == -1) notifyDataSetChanged();
-    }
-
-    private int getIndexById(int id) {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).id == id) return i;
-        }
-        return -1;
     }
 
     @NonNull
@@ -57,42 +38,41 @@ public class ActivityPagerAdapter extends RecyclerView.Adapter<ActivityPagerAdap
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        LeverModel currentItem = items.get(position);
-        boolean isSelected = selectedId == currentItem.id;
+        MucDoHoatDongModel currentItem = items.get(position);
+        boolean isSelected = selectedId == currentItem.getId();
 
-        // Đặt Text
-        holder.tvActivityName.setText(currentItem.ten);
-        holder.tvActivityDescription.setText(currentItem.moTa);
+        holder.tvActivityName.setText(currentItem.getTenMDHD());
+        holder.tvActivityDescription.setText(currentItem.getMoTa());
 
-        // Đặt Icon
-        holder.ivActivityIcon.setImageResource(getIconResId(currentItem.id));
-
-        // Đặt trạng thái chọn (RadioButton và Viền)
         holder.rbActivitySelector.setChecked(isSelected);
         holder.clItemContainer.setActivated(isSelected);
 
-        // Xử lý click
         holder.clItemContainer.setOnClickListener(v -> {
-//            listener.onClick(currentItem);
-//            setSelectedId(currentItem.id);
+            listener.onClick(currentItem);
+            setSelectedId(currentItem.getId());
         });
     }
 
     @Override public int getItemCount() { return items.size(); }
 
-    private int getIconResId(int activityId) {
-        switch (activityId) {
-            case 1: return R.drawable.active;
-            case 2: return R.drawable.lifting;
-            case 3: return R.drawable.walking;
-            case 4: return R.drawable.sitting;
-            default: return R.drawable.active;
+    public void setSelectedId(int id) {
+        int oldIndex = getIndexById(selectedId);
+        selectedId = id;
+        int newIndex = getIndexById(selectedId);
+        if (oldIndex != -1) notifyItemChanged(oldIndex);
+        if (newIndex != -1) notifyItemChanged(newIndex);
+        if (oldIndex == -1 && newIndex == -1) notifyDataSetChanged();
+    }
+
+    private int getIndexById(int id) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId() == id) return i;
         }
+        return -1;
     }
 
     static class VH extends RecyclerView.ViewHolder {
         final ConstraintLayout clItemContainer;
-        final ImageView ivActivityIcon;
         final TextView tvActivityName;
         final TextView tvActivityDescription;
         final RadioButton rbActivitySelector;
@@ -100,7 +80,6 @@ public class ActivityPagerAdapter extends RecyclerView.Adapter<ActivityPagerAdap
         VH(@NonNull View itemView) {
             super(itemView);
             clItemContainer = itemView.findViewById(R.id.clItemContainer);
-            ivActivityIcon = itemView.findViewById(R.id.ivActivityIcon);
             tvActivityName = itemView.findViewById(R.id.tvActivityName);
             tvActivityDescription = itemView.findViewById(R.id.tvActivityDescription);
             rbActivitySelector = itemView.findViewById(R.id.rbActivitySelector);

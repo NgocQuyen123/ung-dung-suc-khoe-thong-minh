@@ -12,21 +12,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import admin.example.ungdungsuckhoethongminh.R;
+import admin.example.ungdungsuckhoethongminh.model.NhipDoCanNangModel;
 import admin.example.ungdungsuckhoethongminh.model.SpeedWeightModel;
 
 public class PacePagerAdapter extends RecyclerView.Adapter<PacePagerAdapter.VH>{
-    private List<SpeedWeightModel> items;
+    private List<NhipDoCanNangModel> items;
     private String selectedId = null;
     private final OnItemClick listener;
     private final boolean isLosingWeight;
 
-
-    public interface OnItemClick { void onClick(SpeedWeightModel item); }
+    public interface OnItemClick { void onClick(NhipDoCanNangModel item); }
 
     public String getSelectedId() {
         return selectedId;
     }
-    public PacePagerAdapter(List<SpeedWeightModel> items, OnItemClick listener, boolean isLosingWeight) {
+
+    public PacePagerAdapter(List<NhipDoCanNangModel> items, OnItemClick listener, boolean isLosingWeight) {
         this.items = items;
         this.listener = listener;
         this.isLosingWeight = isLosingWeight;
@@ -45,7 +46,7 @@ public class PacePagerAdapter extends RecyclerView.Adapter<PacePagerAdapter.VH>{
     private int getIndexById(String id) {
         if (id == null) return -1;
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).id.equals(id)) return i;
+            if (items.get(i).getId().toString().equals(id)) return i;
         }
         return -1;
     }
@@ -59,22 +60,22 @@ public class PacePagerAdapter extends RecyclerView.Adapter<PacePagerAdapter.VH>{
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        SpeedWeightModel t = items.get(position);
-        boolean isSelected = selectedId != null && selectedId.equals(t.id);
+        NhipDoCanNangModel item = items.get(position);
+        boolean isSelected = selectedId != null && selectedId.equals(item.getId().toString());
         Context context = holder.itemView.getContext();
 
-        // 1. LOGIC XỬ LÝ DẤU (+/-)
-        String paceValue = String.valueOf(t.tocDoKgTuan);
+        // Hiển thị tốc độ
+        String paceValue = String.valueOf(item.getTocDoKgTuan());
         if (isLosingWeight) {
             paceValue = "-" + paceValue;
         } else {
             paceValue = "+" + paceValue;
         }
 
-        // 2. Cập nhật Text
-        holder.tvPaceName.setText(t.ten);
-        holder.tvPaceRate.setText(paceValue + " kg/tuần");
+        holder.tvPaceName.setText(item.getTenNDCD());
+        holder.tvPaceRate.setText(item.getTocDoKgTuan() + " kg/tuần");
 
+        // Hiệu ứng chọn
         holder.clPaceContainer.setActivated(isSelected);
         holder.clPaceNameWrapper.setActivated(isSelected);
         if (isSelected) {
@@ -83,15 +84,17 @@ public class PacePagerAdapter extends RecyclerView.Adapter<PacePagerAdapter.VH>{
             holder.tvPaceName.setTextColor(context.getResources().getColor(android.R.color.black));
         }
 
-        // 4. Xử lý click
+        // Xử lý click
         holder.clPaceContainer.setOnClickListener(v -> {
-//            listener.onClick(t);
-//            setSelectedId(t.id);
+            listener.onClick(item);
+            setSelectedId(item.getId().toString());
         });
-
     }
 
-    @Override public int getItemCount() { return items.size(); }
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
 
     static class VH extends RecyclerView.ViewHolder {
         final ConstraintLayout clPaceContainer;
@@ -101,12 +104,10 @@ public class PacePagerAdapter extends RecyclerView.Adapter<PacePagerAdapter.VH>{
 
         VH(@NonNull View itemView) {
             super(itemView);
-            // Ánh xạ View mới
             clPaceContainer = itemView.findViewById(R.id.clPaceContainer);
             clPaceNameWrapper = itemView.findViewById(R.id.clPaceNameWrapper);
             tvPaceName = itemView.findViewById(R.id.tvPaceName);
             tvPaceRate = itemView.findViewById(R.id.tvPaceRate);
-
         }
     }
 }

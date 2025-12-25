@@ -24,7 +24,12 @@ import java.util.Optional;
 import admin.example.ungdungsuckhoethongminh.activity.weight.WeightHeaderActivity;
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.adapters.PacePagerAdapter;
+import admin.example.ungdungsuckhoethongminh.model.NhipDoCanNangModel;
 import admin.example.ungdungsuckhoethongminh.model.SpeedWeightModel;
+import admin.example.ungdungsuckhoethongminh.network.ApiClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Fragment để chọn tốc độ tăng/giảm cân.
@@ -42,16 +47,6 @@ public class WeightPaceFragment extends Fragment {
     private PacePagerAdapter adapter;
     private Button btnNext;
 
-    // Định nghĩa dữ liệu mẫu cho danh sách tốc độ
-    private List<SpeedWeightModel> getPaces() {
-        return Arrays.asList(
-                new SpeedWeightModel("1", "Dễ", 0.25, 275),
-                new SpeedWeightModel("2", "Vừa", 0.50, 550),
-                new SpeedWeightModel("3", "Khó", 0.75, 825),
-                new SpeedWeightModel("4", "Tối đa", 1.00, 1100)
-        );
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_weight_pace, container, false);
@@ -61,24 +56,11 @@ public class WeightPaceFragment extends Fragment {
         tvFinishDate = root.findViewById(R.id.tvFinishDate);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<SpeedWeightModel> paces = getPaces();
+        // 1. Load dữ liệu từ API
+        loadPacesFromApi();
 
-        adapter = new PacePagerAdapter(paces, item -> {
-            updateGoalDate(paces, CURRENT_WEIGHT, TARGET_WEIGHT, item.id);
-        }, IS_LOSING_WEIGHT);
-        rv.setAdapter(adapter);
-
-        adapter.setSelectedId(SELECTED_PACE_ID);
-        updateGoalDate(paces, CURRENT_WEIGHT, TARGET_WEIGHT, SELECTED_PACE_ID);
-
+        // 2. Next button
         btnNext.setOnClickListener(v -> {
-//            if (adapter != null && adapter.getSelectedId() != null) {
-//                if (getActivity() instanceof WeightHeaderActivity) {
-//                    ((WeightHeaderActivity) getActivity()).navigateTo(new WeighTargetCaloFragment(), true);
-//                }
-//            } else {
-//                Toast.makeText(getContext(), "Vui lòng chọn tốc độ cân nặng.", Toast.LENGTH_SHORT).show();
-//            }
             if (getActivity() instanceof WeightHeaderActivity) {
                 ((WeightHeaderActivity) getActivity()).navigateTo(new WeighTargetCaloFragment(), true);
             }
@@ -87,10 +69,35 @@ public class WeightPaceFragment extends Fragment {
         return root;
     }
 
-    private void updateGoalDate(List<SpeedWeightModel> paces, double currentWeight, double targetWeight, String selectedPaceId) {
+    private void loadPacesFromApi() {
+        ApiClient.getCanNangApi().getAllNhipDoCanNang().enqueue(new Callback<List<NhipDoCanNangModel>>() {
+            @Override
+            public void onResponse(Call<List<NhipDoCanNangModel>> call, Response<List<NhipDoCanNangModel>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<NhipDoCanNangModel> paces = response.body();
 
-        Optional<SpeedWeightModel> selectedPaceOpt = paces.stream()
-                .filter(p -> p.id.equals(selectedPaceId))
+                    adapter = new PacePagerAdapter(paces, item -> {
+                        updateGoalDate(paces, CURRENT_WEIGHT, TARGET_WEIGHT, item.getId().toString());
+                    }, IS_LOSING_WEIGHT);
+
+                    rv.setAdapter(adapter);
+                    adapter.setSelectedId(SELECTED_PACE_ID);
+                    updateGoalDate(paces, CURRENT_WEIGHT, TARGET_WEIGHT, SELECTED_PACE_ID);
+                } else {
+                    tvFinishDate.setText("---");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<NhipDoCanNangModel>> call, Throwable t) {
+                tvFinishDate.setText("---");
+            }
+        });
+    }
+
+    private void updateGoalDate(List<NhipDoCanNangModel> paces, double currentWeight, double targetWeight, String selectedPaceId) {
+        Optional<NhipDoCanNangModel> selectedPaceOpt = paces.stream()
+                .filter(p -> p.getId().toString().equals(selectedPaceId))
                 .findFirst();
 
         if (!selectedPaceOpt.isPresent()) {
@@ -98,10 +105,9 @@ public class WeightPaceFragment extends Fragment {
             return;
         }
 
-        SpeedWeightModel selectedPace = selectedPaceOpt.get();
-
+        NhipDoCanNangModel selectedPace = selectedPaceOpt.get();
         double totalWeightDiff = Math.abs(targetWeight - currentWeight);
-        double paceRate = Math.abs(selectedPace.tocDoKgTuan);
+        double paceRate = Math.abs(selectedPace.getTocDoKgTuan());
 
         if (paceRate <= 0 || totalWeightDiff == 0) {
             tvFinishDate.setText("Đã đạt mục tiêu");
@@ -112,10 +118,7 @@ public class WeightPaceFragment extends Fragment {
         long daysToAdd = Math.round(totalWeeks * 7);
 
         LocalDate goalDate = LocalDate.now().plusDays(daysToAdd);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d 'tháng' M, yyyy");
-        String formattedDate = goalDate.format(formatter);
-
-        tvFinishDate.setText(formattedDate);
+        tvFinishDate.setText(goalDate.format(DateTimeFormatter.ofPattern("d 'tháng' M, yyyy")));
     }
+
 }

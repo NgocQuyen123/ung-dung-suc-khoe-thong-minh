@@ -1,5 +1,6 @@
 package com.example.beandroid.controllers;
 
+import com.example.beandroid.DTO.MucDoHoatDongDTO;
 import com.example.beandroid.model.MucDoHoatDong;
 import com.example.beandroid.services.implementations.MucDoHoatDongService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class MucDoHoatDongController {
     }
 
     @GetMapping
-    public List<MucDoHoatDong> getAll() {
+    public List<MucDoHoatDongDTO> getAll() {
         return service.getAll();
     }
 }
