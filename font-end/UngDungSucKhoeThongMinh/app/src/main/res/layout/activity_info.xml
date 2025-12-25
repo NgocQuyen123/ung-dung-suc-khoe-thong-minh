@@ -101,11 +101,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Số điện thoại"
+                android:text="Sdt"
                 android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/txtPhone"
+                android:id="@+id/txtSdt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"/>

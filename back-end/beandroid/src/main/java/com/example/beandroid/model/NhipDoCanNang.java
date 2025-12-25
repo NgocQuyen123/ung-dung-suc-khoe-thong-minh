@@ -1,3 +1,4 @@
+
 package com.example.beandroid.model;
 
 import jakarta.persistence.*;
