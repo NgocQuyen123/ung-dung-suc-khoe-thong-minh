@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh.util;
+package admin.example.ungdungsuckhoethongminh.info.util;
 
 import android.content.Context;
 
@@ -6,8 +6,8 @@ import android.util.Log;
 import java.util.function.Consumer;
 
 import admin.example.ungdungsuckhoethongminh.model.TaiKhoanInfo;
-import admin.example.ungdungsuckhoethongminh.repository.InfoRepository;
-import admin.example.ungdungsuckhoethongminh.session.UserSession;
+import admin.example.ungdungsuckhoethongminh.info.repository.InfoRepository;
+import admin.example.ungdungsuckhoethongminh.info.session.UserSession;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

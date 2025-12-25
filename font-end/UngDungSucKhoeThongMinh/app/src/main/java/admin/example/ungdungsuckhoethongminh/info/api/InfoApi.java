@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh.api;
+package admin.example.ungdungsuckhoethongminh.info.api;
 
 
 import admin.example.ungdungsuckhoethongminh.model.TaiKhoanInfo;

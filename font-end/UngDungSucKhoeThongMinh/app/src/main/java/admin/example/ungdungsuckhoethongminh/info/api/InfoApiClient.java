@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh.api;
+package admin.example.ungdungsuckhoethongminh.info.api;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

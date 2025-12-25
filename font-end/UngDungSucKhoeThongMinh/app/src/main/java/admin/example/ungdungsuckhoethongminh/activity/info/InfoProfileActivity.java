@@ -10,8 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import admin.example.ungdungsuckhoethongminh.R;
-import admin.example.ungdungsuckhoethongminh.model.TaiKhoanInfo;
-import admin.example.ungdungsuckhoethongminh.util.InfoManager;
+import admin.example.ungdungsuckhoethongminh.info.util.InfoManager;
 
 public class InfoProfileActivity extends AppCompatActivity {
 

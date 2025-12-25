@@ -1,4 +1,4 @@
-package admin.example.ungdungsuckhoethongminh.session;
+package admin.example.ungdungsuckhoethongminh.info.session;
 
 import android.content.Context;
 import android.content.SharedPreferences;

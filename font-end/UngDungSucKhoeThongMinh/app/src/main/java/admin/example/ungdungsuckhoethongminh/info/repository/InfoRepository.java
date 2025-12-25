@@ -1,7 +1,7 @@
-package admin.example.ungdungsuckhoethongminh.repository;
+package admin.example.ungdungsuckhoethongminh.info.repository;
 
-import admin.example.ungdungsuckhoethongminh.api.InfoApi;
-import admin.example.ungdungsuckhoethongminh.api.InfoApiClient;
+import admin.example.ungdungsuckhoethongminh.info.api.InfoApi;
+import admin.example.ungdungsuckhoethongminh.info.api.InfoApiClient;
 import admin.example.ungdungsuckhoethongminh.model.TaiKhoanInfo;
 
 import retrofit2.Callback;
