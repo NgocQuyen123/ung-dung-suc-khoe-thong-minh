@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                android:text="50%"
+                android:text="--%"
                 android:textColor="#000000"
                 android:textSize="32sp"
                 android:textStyle="bold"
@@ -246,10 +246,11 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/txtYearSleepDuration"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="6g 3p"
+                            android:text="--"
                             android:textColor="#000000"
                             android:textSize="24sp"
                             android:textStyle="bold" />
@@ -346,10 +347,11 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/txtYearBedtime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="1:30"
+                            android:text="--:--"
                             android:textColor="#000000"
                             android:textSize="24sp"
                             android:textStyle="bold" />
@@ -380,10 +382,11 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/txtYearWakeTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="7:44"
+                            android:text="--:--"
                             android:textColor="#000000"
                             android:textSize="24sp"
                             android:textStyle="bold" />

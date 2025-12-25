@@ -20,7 +20,7 @@
 
         <!-- Flow Create -->
         <activity
-            android:name=".activity.auth.AuthActivity"
+            android:name=".activity.menu.MenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +40,7 @@
 
         <!-- Auth -->
         <activity
-            android:name=".activity.menu.MenuActivity"
+            android:name=".activity.auth.AuthActivity"
             android:exported="false" /> <!-- Dashboard -->
         <activity
             android:name=".activity.dashboard.DashboardCaloActivity"

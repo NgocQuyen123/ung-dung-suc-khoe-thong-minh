@@ -14,5 +14,5 @@ public final class StepsApiConfig {
     /**
      * Change this value depending on how you run the backend.
      */
-    public static final String BASE_URL = "http://192.168.1.99:8080/";
+    public static final String BASE_URL = "http://192.168.1.12:8080/";
 }

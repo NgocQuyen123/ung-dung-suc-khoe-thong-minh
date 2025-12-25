@@ -84,7 +84,7 @@
                         android:id="@+id/txtRecoveryPercent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="39%"
+                        android:text="--%"
                         android:textSize="48sp"
                         android:textStyle="bold" />
 
@@ -96,6 +96,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/txtRecoveryStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tệ"
@@ -135,12 +136,13 @@
                         android:id="@+id/txtSleepDuration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4g 42p"
+                        android:text="--"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_marginTop="6dp" />
 
                     <TextView
+                        android:id="@+id/txtSleepQuality"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rất ngắn"
@@ -212,7 +214,7 @@
                         android:id="@+id/txtBedtime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1:13"
+                        android:text="--:--"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_marginTop="6dp" />
@@ -238,7 +240,7 @@
                         android:id="@+id/txtWakeTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="6:11"
+                        android:text="--:--"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_marginTop="6dp" />
