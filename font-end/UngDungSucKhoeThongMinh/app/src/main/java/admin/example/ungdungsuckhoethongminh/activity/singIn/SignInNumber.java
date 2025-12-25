@@ -160,7 +160,8 @@ public class SignInNumber extends AppCompatActivity {
                             SharedPreferences prefs = getSharedPreferences("MyAppData", MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putInt("userId", user.getId()); // lưu ID
-                            editor.apply(); // hoặc editor.commit();
+                            editor.apply();
+                            Log.d("id đã đăng nhập", String.valueOf(user.getId()));
 
                             // Chuyển sang màn hình tiếp theo
                             Intent intent = new Intent(SignInNumber.this, SignInPhoneActivity.class);

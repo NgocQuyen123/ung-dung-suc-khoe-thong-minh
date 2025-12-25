@@ -33,7 +33,7 @@ public final class StepsUserSession {
 //    }
     public static int getIdTaiKhoan(@NonNull Context context) {
         SharedPreferences prefs = context.getSharedPreferences("MyAppData", MODE_PRIVATE);
-        return prefs.getInt("userId", -1); // -1 nếu chưa lưu ID
+        return prefs.getInt("userId", 1); // -1 nếu chưa lưu ID
     }
 
 }
