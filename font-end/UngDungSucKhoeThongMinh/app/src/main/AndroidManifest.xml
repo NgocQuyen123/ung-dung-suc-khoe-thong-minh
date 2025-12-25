@@ -22,10 +22,10 @@
         <activity
             android:name=".activity.auth.AuthActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity android:name=".activity.info.InfoCreatePhoneActivity" android:exported="false"/>
@@ -144,7 +144,12 @@
         <!--Weight-->
         <activity
             android:name=".activity.weight.WeightHeaderActivity"
-            android:exported="false" />
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <!--Chỉnh sửa kế hoạch tập luyện-->
         <activity android:name=".activity.plan.PlanGinalEdit"
             android:exported="false" />

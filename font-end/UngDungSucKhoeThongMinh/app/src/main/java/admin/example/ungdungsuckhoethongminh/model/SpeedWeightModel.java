@@ -11,4 +11,35 @@ public class SpeedWeightModel {
         this.tocDoKgTuan = tocDoKgTuan;
         this.caloThayDoiMoiNgay = caloThayDoiMoiNgay;
     }
+    // Getter & Setter cho id
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    // Getter & Setter cho ten
+    public String getTen() {
+        return ten;
+    }
+    public void setTen(String ten) {
+        this.ten = ten;
+    }
+
+    // Getter & Setter cho tocDoKgTuan
+    public double getTocDoKgTuan() {
+        return tocDoKgTuan;
+    }
+    public void setTocDoKgTuan(double tocDoKgTuan) {
+        this.tocDoKgTuan = tocDoKgTuan;
+    }
+
+    // Getter & Setter cho caloThayDoiMoiNgay
+    public int getCaloThayDoiMoiNgay() {
+        return caloThayDoiMoiNgay;
+    }
+    public void setCaloThayDoiMoiNgay(int caloThayDoiMoiNgay) {
+        this.caloThayDoiMoiNgay = caloThayDoiMoiNgay;
+    }
 }
