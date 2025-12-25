@@ -1,3 +1,4 @@
+
 package admin.example.ungdungsuckhoethongminh.activity.info;
 
 import android.app.Activity;
@@ -28,7 +29,7 @@ public class InfoEditNameActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         btnBack = findViewById(R.id.imgClose);
 
-        currentName = getIntent().getStringExtra("ten");
+        currentName = getIntent().getStringExtra("tenTK");
         if (currentName == null) currentName = "";
 
         edtName.setText(currentName);
@@ -39,7 +40,7 @@ public class InfoEditNameActivity extends AppCompatActivity {
             String newTen = edtName.getText().toString().trim();
 
             Intent data = new Intent();
-            data.putExtra("ten", newTen);
+            data.putExtra("tenTK", newTen);
             setResult(Activity.RESULT_OK, data);
 
             finish();

@@ -3,6 +3,7 @@ package admin.example.ungdungsuckhoethongminh.info.util;
 import android.content.Context;
 import android.util.Log;
 
+import admin.example.ungdungsuckhoethongminh.info.repository.InfoRepository;
 import admin.example.ungdungsuckhoethongminh.info.session.UserSession;
 import admin.example.ungdungsuckhoethongminh.model.TaiKhoan;
 import retrofit2.Call;
@@ -14,9 +15,15 @@ public class InfoManager {
     private final InfoRepository repository;
     private final UserSession session;
 
-    // Callback riêng cho Android (an toàn hơn Consumer)
+    // Callback khi load user
     public interface OnUserLoaded {
         void onSuccess(TaiKhoan user);
+        void onError(String message);
+    }
+
+    // Callback khi update user
+    public interface OnUserUpdated {
+        void onSuccess(TaiKhoan updatedUser);
         void onError(String message);
     }
 
@@ -42,9 +49,7 @@ public class InfoManager {
         // 🔹 Gọi API
         repository.fetchTaiKhoan(userId, new Callback<TaiKhoan>() {
             @Override
-            public void onResponse(Call<TaiKhoan> call,
-                                   Response<TaiKhoan> response) {
-
+            public void onResponse(Call<TaiKhoan> call, Response<TaiKhoan> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     TaiKhoan user = response.body();
                     session.saveUser(user);
@@ -58,6 +63,29 @@ public class InfoManager {
             public void onFailure(Call<TaiKhoan> call, Throwable t) {
                 Log.e("InfoManager", "API lỗi", t);
                 callback.onError("Lỗi kết nối server");
+            }
+        });
+    }
+
+    /**
+     * Cập nhật user và lưu lại session
+     */
+    public void updateUser(TaiKhoan user, OnUserUpdated callback) {
+        repository.updateTaiKhoan(user, new Callback<TaiKhoan>() {
+            @Override
+            public void onResponse(Call<TaiKhoan> call, Response<TaiKhoan> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    TaiKhoan updatedUser = response.body();
+                    session.saveUser(updatedUser); // cập nhật session
+                    callback.onSuccess(updatedUser);
+                } else {
+                    callback.onError("Cập nhật thất bại");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TaiKhoan> call, Throwable t) {
+                callback.onError("Lỗi kết nối server: " + t.getMessage());
             }
         });
     }
