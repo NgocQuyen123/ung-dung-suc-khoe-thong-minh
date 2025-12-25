@@ -1,51 +1,16 @@
-package com.example.beandroid.model;
+package com.example.beandroid.DTO;
 
-import jakarta.persistence.*;
-import java.util.List;
+public class TaiKhoanDTO {
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity
-@Table(name = "TaiKhoan")
-public class TaiKhoan {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-
-    @Column(name = "Email", length = 200, nullable = false)
+    private Integer id;         // ✨ thêm id
     private String email;
-
-    @Column(name = "TenTK", length = 100, nullable = false)
     private String tenTK;
-
-    @Column(name = "GioiTinh", length = 10)
     private String gioiTinh;
-
-    @Column(name = "ChieuCao")
     private Integer chieuCao;
-
-    @Column(name = "NamSinh")
     private Integer namSinh;
-
-    @Column(name = "CanNang")
     private Float canNang;
 
-    @OneToMany(mappedBy = "taiKhoan")
-    @JsonIgnore
-    private List<BuocChanNgay> buocChanNgays;
-
-    @OneToMany(mappedBy = "taiKhoan")
-    @JsonIgnore
-    private List<SleepNgay> sleepNgays;
-
-    @OneToMany(mappedBy = "taiKhoan")
-    @JsonIgnore
-    private List<ThongTinCanNang> thongTinCanNangs;
-
-    /* ================= GETTERS & SETTERS ================= */
-
+    // Getters & Setters
     public Integer getId() {
         return id;
     }
@@ -57,7 +22,6 @@ public class TaiKhoan {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -65,7 +29,6 @@ public class TaiKhoan {
     public String getTenTK() {
         return tenTK;
     }
-
     public void setTenTK(String tenTK) {
         this.tenTK = tenTK;
     }
@@ -73,7 +36,6 @@ public class TaiKhoan {
     public String getGioiTinh() {
         return gioiTinh;
     }
-
     public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
@@ -81,7 +43,6 @@ public class TaiKhoan {
     public Integer getChieuCao() {
         return chieuCao;
     }
-
     public void setChieuCao(Integer chieuCao) {
         this.chieuCao = chieuCao;
     }
@@ -89,7 +50,6 @@ public class TaiKhoan {
     public Integer getNamSinh() {
         return namSinh;
     }
-
     public void setNamSinh(Integer namSinh) {
         this.namSinh = namSinh;
     }
@@ -97,7 +57,6 @@ public class TaiKhoan {
     public Float getCanNang() {
         return canNang;
     }
-
     public void setCanNang(Float canNang) {
         this.canNang = canNang;
     }

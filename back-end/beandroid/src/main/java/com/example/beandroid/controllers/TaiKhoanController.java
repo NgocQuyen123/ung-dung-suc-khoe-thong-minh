@@ -1,24 +1,34 @@
 package com.example.beandroid.controllers;
 
 import com.example.beandroid.model.TaiKhoan;
-import com.example.beandroid.services.interfaces.ITaiKhoanService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import com.example.beandroid.DTO.TaiKhoanDTO;
+import com.example.beandroid.services.interfaces.ITaiKhoanService;
 
 @RestController
 @RequestMapping("/api/taikhoan")
 public class TaiKhoanController {
 
-    private final ITaiKhoanService taiKhoanService;
+    private final ITaiKhoanService service;
 
-    public TaiKhoanController(ITaiKhoanService taiKhoanService) {
-        this.taiKhoanService = taiKhoanService;
+    public TaiKhoanController(ITaiKhoanService service) {
+        this.service = service;
     }
 
-    // API TEST KẾT NỐI DATABASE
-    @GetMapping
-    public List<TaiKhoan> getAllTaiKhoan() {
-        return taiKhoanService.getAllTaiKhoan();
+    @GetMapping("/")
+    public List<TaiKhoan> getAll() {
+        return service.getAllTaiKhoan();
+    }
+
+    @GetMapping("/{id}")
+    public TaiKhoan getById(@PathVariable Integer id) {
+        return service.getTaiKhoanById(id);
+    }
+
+    @PutMapping("/")
+    public TaiKhoan update(@RequestBody TaiKhoanDTO taiKhoanDTO) {
+        return service.updateTaiKhoan(taiKhoanDTO);
     }
 }
