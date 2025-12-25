@@ -1,29 +1,32 @@
-package com.example.beandroid.DTO;
+package admin.example.ungdungsuckhoethongminh.DTO;
 
-public class TaiKhoanDTO {
+public class CreateTaiKhoanRequest {
 
-    private Integer id;         // ✨ thêm id
-    private String sdt;
+    private String sdt ;
     private String tenTK;
     private String gioiTinh;
     private Integer chieuCao;
     private Integer namSinh;
     private Float canNang;
 
-    // Getters & Setters
-    public Integer getId() {
-        return id;
-    }
+    // getters & setters
 
-    public void setId(Integer id) {
-        this.id = id;
+
+    public CreateTaiKhoanRequest(String sdt, String tenTK, String gioiTinh, Integer chieuCao, Integer namSinh, Float canNang) {
+        this.sdt = sdt;
+        this.tenTK = tenTK;
+        this.gioiTinh = gioiTinh;
+        this.chieuCao = chieuCao;
+        this.namSinh = namSinh;
+        this.canNang = canNang;
     }
 
     public String getSdt() {
         return sdt;
     }
+
     public void setSdt(String sdt) {
-        this.sdt = sdt;
+        sdt = sdt;
     }
 
     public String getTenTK() {

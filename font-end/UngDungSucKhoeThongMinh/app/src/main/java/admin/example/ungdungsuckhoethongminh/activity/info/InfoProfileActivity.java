@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import admin.example.ungdungsuckhoethongminh.R;
 import admin.example.ungdungsuckhoethongminh.info.util.InfoManager;
-import admin.example.ungdungsuckhoethongminh.model.TaiKhoanInfo;
 
 public class InfoProfileActivity extends AppCompatActivity {
 
@@ -38,7 +37,7 @@ public class InfoProfileActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
 
         txtName = findViewById(R.id.txtName);
-        txtEmail = findViewById(R.id.txtEmail);
+        txtEmail = findViewById(R.id.txtSdt);
         txtGender = findViewById(R.id.txtGender);
         txtHeight = findViewById(R.id.txtHeight);
         txtBirth = findViewById(R.id.txtBirth);
@@ -47,7 +46,7 @@ public class InfoProfileActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
 
-        // ===== LOAD USER INFO =====
+
         loadUserInfo();
 
         // ===== NAVIGATION =====
@@ -74,9 +73,9 @@ public class InfoProfileActivity extends AppCompatActivity {
 
         infoManager.loadUser(userId, new InfoManager.OnUserLoaded() {
             @Override
-            public void onSuccess(TaiKhoanInfo user) {
+            public void onSuccess(TaiKhoan user) {
                 txtName.setText(user.getTenTK());
-                txtEmail.setText(user.getEmail());
+                txtSdt.setText(user.getSdt());
                 txtGender.setText(user.getGioiTinh());
                 txtHeight.setText(user.getChieuCao() + " cm");
                 txtBirth.setText(String.valueOf(user.getNamSinh()));

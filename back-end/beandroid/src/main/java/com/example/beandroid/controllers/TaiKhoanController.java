@@ -1,5 +1,8 @@
 package com.example.beandroid.controllers;
 
+import com.example.beandroid.DTO.CreateTaiKhoanRequest;
+import com.example.beandroid.DTO.LoginRequest;
+import com.example.beandroid.DTO.LoginResponse;
 import com.example.beandroid.model.TaiKhoan;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -31,4 +34,16 @@ public class TaiKhoanController {
     public TaiKhoan update(@RequestBody TaiKhoanDTO taiKhoanDTO) {
         return service.updateTaiKhoan(taiKhoanDTO);
     }
+
+    @PostMapping
+    public TaiKhoan create(@RequestBody CreateTaiKhoanRequest request) {
+        return service.create(request);
+    }
+
+    @PostMapping("/login")
+    public LoginResponse login(@RequestBody LoginRequest request) {
+        String sdt = request.getSdt();
+        return service.loginBySdt(sdt);
+    }
+
 }

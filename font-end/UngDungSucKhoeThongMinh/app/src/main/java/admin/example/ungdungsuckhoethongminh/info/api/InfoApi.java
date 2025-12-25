@@ -1,6 +1,6 @@
 package admin.example.ungdungsuckhoethongminh.info.api;
 
-import admin.example.ungdungsuckhoethongminh.model.TaiKhoanInfo;
+import admin.example.ungdungsuckhoethongminh.model.TaiKhoan;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -9,13 +9,9 @@ import retrofit2.http.Path;
 
 public interface InfoApi {
 
-    // GET /api/taikhoan/{id}
     @GET("api/taikhoan/{id}")
-    Call<TaiKhoanInfo> getTaiKhoan(@Path("id") int id);
+    Call<TaiKhoan> getTaiKhoan(@Path("id") int id);
 
-    // PUT /api/taikhoan/
     @PUT("api/taikhoan/")
-    Call<TaiKhoanInfo> updateTaiKhoan(
-            @Body TaiKhoanInfo body
-    );
+    Call<TaiKhoan> updateTaiKhoan(@Body TaiKhoan body);
 }

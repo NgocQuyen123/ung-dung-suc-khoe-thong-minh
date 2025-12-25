@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 
-import admin.example.ungdungsuckhoethongminh.model.TaiKhoanInfo;
+import admin.example.ungdungsuckhoethongminh.model.TaiKhoan;
 
 public class UserSession {
 
@@ -18,19 +18,19 @@ public class UserSession {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    public void saveUser(TaiKhoanInfo user) {
+    public void saveUser(TaiKhoan user) {
         String json = new Gson().toJson(user);
         prefs.edit().putString(KEY_USER, json).apply();
     }
 
-    public TaiKhoanInfo getUser() {
+    public TaiKhoan getUser() {
         String json = prefs.getString(KEY_USER, null);
         if (json == null) return null;
-        return new Gson().fromJson(json, TaiKhoanInfo.class);
+        return new Gson().fromJson(json, TaiKhoan.class);
     }
 
     public Integer getUserId() {
-        TaiKhoanInfo u = getUser();
+        TaiKhoan u = getUser();
         return u != null ? u.getId() : null;
     }
 

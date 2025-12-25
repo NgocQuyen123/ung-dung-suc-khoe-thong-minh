@@ -2,7 +2,6 @@ package com.example.beandroid.model;
 
 import jakarta.persistence.*;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -14,8 +13,8 @@ public class TaiKhoan {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "Email", length = 200, nullable = false)
-    private String email;
+    @Column(name = "Sdt", length = 15, nullable = false)
+    private String sdt;
 
     @Column(name = "TenTK", length = 100, nullable = false)
     private String tenTK;
@@ -44,61 +43,37 @@ public class TaiKhoan {
     @JsonIgnore
     private List<ThongTinCanNang> thongTinCanNangs;
 
-    /* ================= GETTERS & SETTERS ================= */
+    // Default constructor
+    public TaiKhoan() {}
 
-    public Integer getId() {
-        return id;
-    }
+    // Getters & Setters
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public String getSdt() { return sdt; }
+    public void setSdt(String sdt) { this.sdt = sdt; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getTenTK() { return tenTK; }
+    public void setTenTK(String tenTK) { this.tenTK = tenTK; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getGioiTinh() { return gioiTinh; }
+    public void setGioiTinh(String gioiTinh) { this.gioiTinh = gioiTinh; }
 
-    public String getTenTK() {
-        return tenTK;
-    }
+    public Integer getChieuCao() { return chieuCao; }
+    public void setChieuCao(Integer chieuCao) { this.chieuCao = chieuCao; }
 
-    public void setTenTK(String tenTK) {
-        this.tenTK = tenTK;
-    }
+    public Integer getNamSinh() { return namSinh; }
+    public void setNamSinh(Integer namSinh) { this.namSinh = namSinh; }
 
-    public String getGioiTinh() {
-        return gioiTinh;
-    }
+    public Float getCanNang() { return canNang; }
+    public void setCanNang(Float canNang) { this.canNang = canNang; }
 
-    public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
+    public List<BuocChanNgay> getBuocChanNgays() { return buocChanNgays; }
+    public void setBuocChanNgays(List<BuocChanNgay> buocChanNgays) { this.buocChanNgays = buocChanNgays; }
 
-    public Integer getChieuCao() {
-        return chieuCao;
-    }
+    public List<SleepNgay> getSleepNgays() { return sleepNgays; }
+    public void setSleepNgays(List<SleepNgay> sleepNgays) { this.sleepNgays = sleepNgays; }
 
-    public void setChieuCao(Integer chieuCao) {
-        this.chieuCao = chieuCao;
-    }
-
-    public Integer getNamSinh() {
-        return namSinh;
-    }
-
-    public void setNamSinh(Integer namSinh) {
-        this.namSinh = namSinh;
-    }
-
-    public Float getCanNang() {
-        return canNang;
-    }
-
-    public void setCanNang(Float canNang) {
-        this.canNang = canNang;
-    }
+    public List<ThongTinCanNang> getThongTinCanNangs() { return thongTinCanNangs; }
+    public void setThongTinCanNangs(List<ThongTinCanNang> thongTinCanNangs) { this.thongTinCanNangs = thongTinCanNangs; }
 }

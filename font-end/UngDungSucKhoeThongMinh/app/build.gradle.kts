@@ -78,5 +78,9 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.google.api-client:google-api-client-android:1.34.0")
 
+    implementation("com.google.android.gms:play-services-fitness:21.3.0")
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
 
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }

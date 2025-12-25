@@ -5,7 +5,7 @@ import android.util.Log;
 
 import admin.example.ungdungsuckhoethongminh.info.repository.InfoRepository;
 import admin.example.ungdungsuckhoethongminh.info.session.UserSession;
-import admin.example.ungdungsuckhoethongminh.model.TaiKhoanInfo;
+import admin.example.ungdungsuckhoethongminh.model.TaiKhoan;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,7 +17,7 @@ public class InfoManager {
 
     // Callback riêng cho Android (an toàn hơn Consumer)
     public interface OnUserLoaded {
-        void onSuccess(TaiKhoanInfo user);
+        void onSuccess(TaiKhoan user);
         void onError(String message);
     }
 
@@ -34,20 +34,20 @@ public class InfoManager {
     public void loadUser(int userId, OnUserLoaded callback) {
 
         // 🔹 Lấy từ cache
-        TaiKhoanInfo cachedUser = session.getUser();
+        TaiKhoan cachedUser = session.getUser();
         if (cachedUser != null) {
             callback.onSuccess(cachedUser);
             return;
         }
 
         // 🔹 Gọi API
-        repository.fetchTaiKhoan(userId, new Callback<TaiKhoanInfo>() {
+        repository.fetchTaiKhoan(userId, new Callback<TaiKhoan>() {
             @Override
-            public void onResponse(Call<TaiKhoanInfo> call,
-                                   Response<TaiKhoanInfo> response) {
+            public void onResponse(Call<TaiKhoan> call,
+                                   Response<TaiKhoan> response) {
 
                 if (response.isSuccessful() && response.body() != null) {
-                    TaiKhoanInfo user = response.body();
+                    TaiKhoan user = response.body();
                     session.saveUser(user);
                     callback.onSuccess(user);
                 } else {
@@ -56,14 +56,14 @@ public class InfoManager {
             }
 
             @Override
-            public void onFailure(Call<TaiKhoanInfo> call, Throwable t) {
+            public void onFailure(Call<TaiKhoan> call, Throwable t) {
                 Log.e("InfoManager", "API lỗi", t);
                 callback.onError("Lỗi kết nối server");
             }
         });
     }
 
-    public TaiKhoanInfo getCurrentUser() {
+    public TaiKhoan getCurrentUser() {
         return session.getUser();
     }
 

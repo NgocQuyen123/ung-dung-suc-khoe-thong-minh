@@ -1,5 +1,7 @@
 package com.example.beandroid.services.implementations;
 
+import com.example.beandroid.DTO.CreateTaiKhoanRequest;
+import com.example.beandroid.DTO.LoginResponse;
 import com.example.beandroid.model.TaiKhoan;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +43,7 @@ public class TaiKhoanService implements ITaiKhoanService {
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy tài khoản"));
 
         // Ánh xạ từ DTO sang entity
-        taiKhoan.setEmail(taiKhoanDTO.getEmail());
+        taiKhoan.setSdt(taiKhoanDTO.getSdt());
         taiKhoan.setTenTK(taiKhoanDTO.getTenTK());
         taiKhoan.setGioiTinh(taiKhoanDTO.getGioiTinh());
         taiKhoan.setChieuCao(taiKhoanDTO.getChieuCao());
@@ -50,4 +52,30 @@ public class TaiKhoanService implements ITaiKhoanService {
 
         return repository.save(taiKhoan);
     }
+
+    @Override
+    public TaiKhoan create(CreateTaiKhoanRequest request) {
+
+        if (repository.existsBySdt(request.getSdt())) {
+            throw new RuntimeException("sdt đã tồn tại");
+        }
+
+        TaiKhoan tk = new TaiKhoan();
+        tk.setSdt(request.getSdt());
+        tk.setTenTK(request.getTenTK());
+        tk.setGioiTinh(request.getGioiTinh());
+        tk.setChieuCao(request.getChieuCao());
+        tk.setNamSinh(request.getNamSinh());
+        tk.setCanNang(request.getCanNang());
+
+        return repository.save(tk);
+    }
+
+    @Override
+    public LoginResponse loginBySdt(String sdt) {
+        return repository.findBySdt(sdt)
+                .map(taiKhoan -> new LoginResponse(true, "Đăng nhập thành công", taiKhoan))
+                .orElse(new LoginResponse(false, "Số điện thoại chưa đăng ký", null));
+    }
+
 }

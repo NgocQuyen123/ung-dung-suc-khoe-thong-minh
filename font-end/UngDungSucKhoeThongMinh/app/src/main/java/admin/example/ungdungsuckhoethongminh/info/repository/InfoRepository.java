@@ -2,7 +2,7 @@ package admin.example.ungdungsuckhoethongminh.info.repository;
 
 import admin.example.ungdungsuckhoethongminh.info.api.InfoApi;
 import admin.example.ungdungsuckhoethongminh.info.api.InfoApiClient;
-import admin.example.ungdungsuckhoethongminh.model.TaiKhoanInfo;
+import admin.example.ungdungsuckhoethongminh.model.TaiKhoan;
 import retrofit2.Callback;
 
 public class InfoRepository {
@@ -14,14 +14,14 @@ public class InfoRepository {
     }
 
     // ===== GET =====
-    public void fetchTaiKhoan(int id, Callback<TaiKhoanInfo> callback) {
+    public void fetchTaiKhoan(int id, Callback<TaiKhoan> callback) {
         api.getTaiKhoan(id).enqueue(callback);
     }
 
     // ===== PUT UPDATE =====
     public void updateTaiKhoan(
-            TaiKhoanInfo body,
-            Callback<TaiKhoanInfo> callback) {
+            TaiKhoan body,
+            Callback<TaiKhoan> callback) {
 
         api.updateTaiKhoan(body).enqueue(callback);
     }

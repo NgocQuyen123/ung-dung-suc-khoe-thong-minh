@@ -133,9 +133,10 @@
                 android:layout_marginStart="8dp"
                 android:background="@null"
                 android:cursorVisible="true"
-                android:focusable="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:hint="Số điện thoại"
-                android:inputType="none"
+                android:inputType="phone"
                 android:textColor="@android:color/black"
                 android:textColorHint="#B0B0B0"
                 android:textSize="16sp"
@@ -145,6 +146,7 @@
                 app:layout_constraintStart_toEndOf="@id/tvCountryCode"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.538" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
