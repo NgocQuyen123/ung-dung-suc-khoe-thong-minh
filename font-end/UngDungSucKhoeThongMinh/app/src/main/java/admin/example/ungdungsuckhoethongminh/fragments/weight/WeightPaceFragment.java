@@ -36,11 +36,6 @@ import retrofit2.Response;
  */
 public class WeightPaceFragment extends Fragment {
 
-    private final double CURRENT_WEIGHT = 65.0;
-    private final double TARGET_WEIGHT = 60.0;
-    private final String SELECTED_PACE_ID = "2";
-    private final boolean IS_LOSING_WEIGHT = TARGET_WEIGHT < CURRENT_WEIGHT;
-
     private TextView tvFinishLabel;
     private TextView tvFinishDate;
     private RecyclerView rv;
@@ -50,26 +45,38 @@ public class WeightPaceFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_weight_pace, container, false);
+
         rv = root.findViewById(R.id.recyclerPace);
         btnNext = root.findViewById(R.id.btnNext);
         tvFinishLabel = root.findViewById(R.id.tvTitle);
         tvFinishDate = root.findViewById(R.id.tvFinishDate);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // 1. Load dữ liệu từ API
-        loadPacesFromApi();
+        // Lấy dữ liệu từ Bundle
+        Bundle args = getArguments();
+        double currentWeight = args != null ? args.getDouble("CURRENT_WEIGHT", 65.0) : 65.0;
+        double targetWeight = args != null ? args.getDouble("TARGET_WEIGHT", 60.0) : 60.0;
+        final boolean isLosingWeight = targetWeight < currentWeight;
 
-        // 2. Next button
+        loadPacesFromApi(currentWeight, targetWeight, isLosingWeight);
+
         btnNext.setOnClickListener(v -> {
             if (getActivity() instanceof WeightHeaderActivity) {
-                ((WeightHeaderActivity) getActivity()).navigateTo(new WeighTargetCaloFragment(), true);
+                Bundle bundle = new Bundle();
+                bundle.putDouble("CURRENT_WEIGHT", currentWeight); // Cần đảm bảo biến này đã lấy từ args ở trên
+                bundle.putDouble("TARGET_WEIGHT", targetWeight);
+
+                WeighTargetCaloFragment targetFragment = new WeighTargetCaloFragment();
+                targetFragment.setArguments(bundle);
+
+                ((WeightHeaderActivity) getActivity()).navigateTo(targetFragment, true);
             }
         });
 
         return root;
     }
 
-    private void loadPacesFromApi() {
+    private void loadPacesFromApi(double currentWeight, double targetWeight, boolean isLosingWeight) {
         ApiClient.getCanNangApi().getAllNhipDoCanNang().enqueue(new Callback<List<NhipDoCanNangModel>>() {
             @Override
             public void onResponse(Call<List<NhipDoCanNangModel>> call, Response<List<NhipDoCanNangModel>> response) {
@@ -77,12 +84,12 @@ public class WeightPaceFragment extends Fragment {
                     List<NhipDoCanNangModel> paces = response.body();
 
                     adapter = new PacePagerAdapter(paces, item -> {
-                        updateGoalDate(paces, CURRENT_WEIGHT, TARGET_WEIGHT, item.getId().toString());
-                    }, IS_LOSING_WEIGHT);
+                        updateGoalDate(paces, currentWeight, targetWeight, item.getId().toString());
+                    }, isLosingWeight);
 
                     rv.setAdapter(adapter);
-                    adapter.setSelectedId(SELECTED_PACE_ID);
-                    updateGoalDate(paces, CURRENT_WEIGHT, TARGET_WEIGHT, SELECTED_PACE_ID);
+                    adapter.setSelectedId("2"); // default
+                    updateGoalDate(paces, currentWeight, targetWeight, "2");
                 } else {
                     tvFinishDate.setText("---");
                 }

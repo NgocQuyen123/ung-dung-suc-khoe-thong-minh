@@ -22,6 +22,7 @@ import admin.example.ungdungsuckhoethongminh.activity.weight.WeightHostActivity;
 
 public class WeighTargetCaloFragment extends Fragment {
 
+    private double targetWeight = 0.0;
     private final int BMR_CALORIES = 1586;
     private final int ACTIVITY_CALORIES = 471;
     private final int SIGNED_DEFICIT = -550;
@@ -37,6 +38,14 @@ public class WeighTargetCaloFragment extends Fragment {
     private ConstraintLayout itemActivityContainer;
     private ConstraintLayout itemDeficitContainer;
     private static final int FRAGMENT_CONTAINER_ID = R.id.container;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // NHẬN dữ liệu từ WeightPaceFragment
+        if (getArguments() != null) {
+            targetWeight = getArguments().getDouble("TARGET_WEIGHT", 0.0);
+        }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,7 +91,7 @@ public class WeighTargetCaloFragment extends Fragment {
             if (getActivity() != null) {
                 // 1. Tạo Intent để chuyển sang WeightHostActivity
                 Intent intent = new Intent(getActivity(), WeightHostActivity.class);
-
+                intent.putExtra("TARGET_WEIGHT", targetWeight);
                 // 2. Bắt đầu WeightHostActivity
                 startActivity(intent);
 

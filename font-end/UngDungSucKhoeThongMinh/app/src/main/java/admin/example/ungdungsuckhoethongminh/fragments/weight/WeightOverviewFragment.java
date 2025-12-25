@@ -41,6 +41,11 @@ import admin.example.ungdungsuckhoethongminh.network.CanNangApi;
 
 public class WeightOverviewFragment extends Fragment {
 
+    private double targetWeight;
+
+    public WeightOverviewFragment(double targetWeight) {
+        this.targetWeight = targetWeight;
+    }
     // ===== ENUM CHẾ ĐỘ =====
     private enum CheDo {
         TUAN, THANG, NAM
@@ -61,22 +66,45 @@ public class WeightOverviewFragment extends Fragment {
     private LinearLayout thoiGianChiTiet;
     private ConstraintLayout clWeightInput;
 
+    public WeightOverviewFragment() {
+    }
+    public static WeightOverviewFragment newInstance(double targetWeight) {
+        WeightOverviewFragment fragment = new WeightOverviewFragment();
+        Bundle args = new Bundle();
+        args.putDouble("TARGET_WEIGHT", targetWeight);
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_weight_overview, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Lấy dữ liệu từ Bundle (không dùng constructor)
+        if (getArguments() != null) {
+            targetWeight = getArguments().getDouble("TARGET_WEIGHT", 0.0);
+        }
+
+        // Ánh xạ View
+        TextView tvTarget = view.findViewById(R.id.tvCanNangMucTieu);
+        if (tvTarget != null) {
+            tvTarget.setText(String.format("%.1f kg", targetWeight));
+        }
+
         canNangApi = ApiClient.getCanNangApi();
         anhXa(view);
         xuLySuKien();
         capNhatTrangThaiTab();
-        taiDuLieu(); // mặc định TUẦN
+        taiDuLieu();
     }
+
 
     // ================= ÁNH XẠ =================
     private void anhXa(View view) {
@@ -183,130 +211,6 @@ public class WeightOverviewFragment extends Fragment {
         }
     }
 
-//    private void taiCanNangTheoTuan() {
-//        canNangApi.layCanNangTheoTuan(mocThoiGian.toString())
-//                .enqueue(new Callback<CanNangTuanModel>() {
-//                    @Override
-//                    public void onResponse(Call<CanNangTuanModel> call,
-//                                           Response<CanNangTuanModel> response) {
-//                        if (!isAdded() || response.body() == null) return;
-//                        View rootView = getView();
-//                        if (rootView == null) return;
-//                        CanNangTuanModel duLieu = response.body();
-//
-//                        tvThoiGianCanNang.setText(duLieu.label);
-//                        tvCanNangTrungBinhTitle.setText("TRUNG BÌNH TUẦN");
-//                        tvCanNangTrungBinh.setText(formatCanNang(duLieu.trungBinh));
-//
-//                        tvCanNangMucTieu.setText("-- kg"); // mục tiêu làm sau
-//                        WeightChartView chart = rootView.findViewById(R.id.weightChart);
-//                        List<String> labels = List.of("T2","T3","T4","T5","T6","T7","CN");
-//                        List<Double> values = new ArrayList<>();
-//                        values.add(60.0); values.add(60.0); values.add(60.0); values.add(60.0); values.add(60.0); values.add(60.0); values.add(60.0);
-//                        // Trục thời gian: luôn 7 ngày
-//                        capNhatThoiGianChiTiet(labels);
-//                        chart.setData(values, labels);
-//
-//                        // 👉 duLieu.ngay dùng để VẼ BIỂU ĐỒ NGÀY sau này
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<CanNangTuanModel> call, Throwable t) {
-//                        Log.e("API_DEBUG","TUAN API failure: " + t.getMessage(), t);
-//                        capNhatThoiGianChiTiet(List.of("T2","T3","T4","T5","T6","T7","CN"));
-//                    }
-//                });
-//    }
-//    private void taiCanNangTheoThang() {
-//        canNangApi.layCanNangTheoThang(
-//                mocThoiGian.getMonthValue(),
-//                mocThoiGian.getYear()
-//        ).enqueue(new Callback<CanNangThangModel>() {
-//            @Override
-//            public void onResponse(Call<CanNangThangModel> call,
-//                                   Response<CanNangThangModel> response) {
-//                Log.d("API_DEBUG", "TUAN response: " + response.body());
-//                if (!isAdded() || response.body() == null) {
-//                    Log.e("API_DEBUG","Body null hoặc fragment chưa attach");
-//                    return;
-//                }
-//
-//                CanNangThangModel duLieu = response.body();
-//
-//                tvThoiGianCanNang.setText(duLieu.label);
-//                tvCanNangTrungBinhTitle.setText("TRUNG BÌNH THÁNG");
-//                tvCanNangTrungBinh.setText(formatCanNang(duLieu.trungBinh));
-//
-//                // 👉 Trục thời gian: TUẦN
-//                List<String> labels = List.of("1","7","14","21","28");
-//                capNhatThoiGianChiTiet(labels);
-//
-//                // 👉 duLieu.tuan dùng để VẼ BIỂU ĐỒ TUẦN
-//            }
-//
-//            @Override
-//            public void onFailure(Call<CanNangThangModel> call, Throwable t) {
-//                capNhatThoiGianChiTiet(List.of("1","7","14","21","28"));
-//            }
-//        });
-//    }
-//    private void taiCanNangTheoNam() {
-//        canNangApi.layCanNangTheoNam(mocThoiGian.getYear())
-//                .enqueue(new Callback<CanNangNamModel>() {
-//                    @Override
-//                    public void onResponse(Call<CanNangNamModel> call,
-//                                           Response<CanNangNamModel> response) {
-//                        if (!isAdded() || response.body() == null) return;
-//
-//                        CanNangNamModel duLieu = response.body();
-//                        Log.d("DEBUG_NAM", "response.body() = " + duLieu);
-//                        if (duLieu != null) {
-//                            Log.d("DEBUG_NAM", "label = " + duLieu.label);
-//                            Log.d("DEBUG_NAM", "danhSachThang size = " + (duLieu.danhSachThang != null ? duLieu.danhSachThang.size() : "null"));
-//                            if (duLieu.danhSachThang != null) {
-//                                for (CanNangThangTrongNamModel thang : duLieu.danhSachThang) {
-//                                    Log.d("DEBUG_NAM", "thang: " + thang.thang + ", trungBinhThang: " + thang.trungBinhThang);
-//                                }
-//                            }
-//                        }
-//                        tvThoiGianCanNang.setText(duLieu.label);
-//                        tvCanNangTrungBinhTitle.setText("TRUNG BÌNH NĂM");
-//                        Double trungBinhNam = null;
-//                        if (duLieu.danhSachThang != null && !duLieu.danhSachThang.isEmpty()) {
-//                            double sum = 0;
-//                            int count = 0;
-//                            for (CanNangThangTrongNamModel thang : duLieu.danhSachThang) {
-//                                if (thang != null && thang.trungBinhThang != null) {
-//                                    sum += thang.trungBinhThang;
-//                                    count++;
-//                                }
-//                            }
-//                            trungBinhNam = count > 0 ? sum / count : null;
-//                        }
-//
-//                        tvCanNangTrungBinh.setText(formatCanNang(trungBinhNam));
-//
-//                        // 👉 Trục thời gian: THÁNG
-//                        // Trục thời gian: 12 tháng luôn
-//                        List<String> labels = new ArrayList<>();
-//                        for (int i = 1; i <= 12; i++) {
-//                            labels.add(String.valueOf(i));
-//                        }
-//                        capNhatThoiGianChiTiet(labels);
-//
-//                        // 👉 duLieu.thangTrongNam dùng để VẼ BIỂU ĐỒ THÁNG
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<CanNangNamModel> call, Throwable t) {
-//                        Log.e("API_DEBUG","NAM API failure: " + t.getMessage(), t);
-//                        // Nếu API fail, vẫn tạo trục mặc định
-//                        List<String> labels = new ArrayList<>();
-//                        for (int i = 1; i <= 12; i++) labels.add("T" + i);
-//                        capNhatThoiGianChiTiet(labels);
-//                    }
-//                });
-//    }
 private void taiCanNangTheoTuan() {
     canNangApi.layCanNangTheoTuan(mocThoiGian.toString())
             .enqueue(new Callback<CanNangTuanModel>() {

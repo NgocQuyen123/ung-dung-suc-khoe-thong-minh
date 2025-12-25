@@ -73,7 +73,7 @@ public class PacePagerAdapter extends RecyclerView.Adapter<PacePagerAdapter.VH>{
         }
 
         holder.tvPaceName.setText(item.getTenNDCD());
-        holder.tvPaceRate.setText(item.getTocDoKgTuan() + " kg/tuần");
+        holder.tvPaceRate.setText(paceValue  + " kg/tuần");
 
         // Hiệu ứng chọn
         holder.clPaceContainer.setActivated(isSelected);

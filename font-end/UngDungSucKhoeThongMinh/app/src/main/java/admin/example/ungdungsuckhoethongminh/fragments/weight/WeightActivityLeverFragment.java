@@ -51,7 +51,18 @@ public class WeightActivityLeverFragment extends Fragment {
         btnNext.setOnClickListener(v -> {
             if (adapter != null && selectedActivityId != 2) {
                 if (getActivity() instanceof WeightHeaderActivity) {
-                    ((WeightHeaderActivity)getActivity()).navigateTo(new WeightPaceFragment(), true);
+                    Bundle oldArgs = getArguments();
+                    double currentWeight = oldArgs != null ? oldArgs.getDouble("CURRENT_WEIGHT") : 65.0;
+                    double targetWeight = oldArgs != null ? oldArgs.getDouble("TARGET_WEIGHT") : 60.0;
+                    WeightPaceFragment fragment = new WeightPaceFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putDouble("CURRENT_WEIGHT", currentWeight);
+                    bundle.putDouble("TARGET_WEIGHT", targetWeight);
+                    bundle.putInt("ACTIVITY_ID", selectedActivityId);
+                    fragment.setArguments(bundle);
+
+                    ((WeightHeaderActivity)getActivity()).navigateTo(fragment, true);
+
                 }
             } else {
                 Toast.makeText(getContext(), "Vui lòng chọn mức độ hoạt động.", Toast.LENGTH_SHORT).show();
