@@ -34,10 +34,10 @@ GO
 
 CREATE TABLE NhipDoCanNang (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    TenNDCD NVARCHAR(100) NOT NULL,
-    NhipDoCanNang INT
+    TenNDCD NVARCHAR(50) NOT NULL,
+    TocDoKgTuan FLOAT NOT NULL,
+    CaloThayDoiMoiNgay INT NOT NULL
 );
-GO
 
 CREATE TABLE ThongTinCanNang (
     id INT IDENTITY(1,1) PRIMARY KEY,
@@ -110,20 +110,18 @@ GO
 
 INSERT INTO MucDoHoatDong (TenMDHD, MoTa, CaloHD)
 VALUES
-(N'Ít vận động', N'Làm việc văn phòng, ít đi lại', 1800),
-(N'Vận động nhẹ', N'Đi bộ nhẹ, sinh hoạt hằng ngày', 2000),
-(N'Vận động vừa', N'Tập thể dục 3–5 buổi mỗi tuần', 2300),
-(N'Vận động nhiều', N'Tập luyện cường độ cao hằng ngày', 2600),
-(N'Vận động rất nhiều', N'Lao động nặng hoặc vận động viên', 3000);
+(N'Thụ động', N'Ít hoặc không tập thể dục', 118),
+(N'Ít hoạt động', N'Tập luyện 2 - 3 giờ mỗi tuần', 235),
+(N'Hoạt động trung bình', N'Tập luyện 4 - 6 giờ mỗi tuần', 471),
+(N'Rất năng động', N'Tập luyện trên 7 giờ mỗi tuần', 785);
 GO
 
-INSERT INTO NhipDoCanNang (TenNDCD, NhipDoCanNang)
+INSERT INTO NhipDoCanNang (TenNDCD, TocDoKgTuan, CaloThayDoiMoiNgay)
 VALUES
-(N'Giảm cân chậm', -250),
-(N'Giảm cân vừa', -500),
-(N'Giảm cân nhanh', -750),
-(N'Giữ cân', 0),
-(N'Tăng cân', 500);
+(N'Dễ', 0.25, 275),
+(N'Vừa', 0.50, 550),
+(N'Khó', 0.75, 825),
+(N'Tối đa', 1.00, 1100);
 GO
 
 INSERT INTO ThongTinCanNang
@@ -133,7 +131,7 @@ VALUES
 (2, 50.0, 3, 2, 50.5, '2025-01-02'),
 (3, 70.0, 4, 3, 70.2, '2025-01-03'),
 (4, 48.0, 1, 4, 48.0, '2025-01-04'),
-(5, 78.0, 5, 5, 78.3, '2025-01-05');
+(5, 78.0, 3, 3, 78.3, '2025-01-05');
 GO
 
 INSERT INTO BuocChanNgay
