@@ -211,52 +211,52 @@ public class WeightOverviewFragment extends Fragment {
         }
     }
 
-private void taiCanNangTheoTuan() {
-    canNangApi.layCanNangTheoTuan(mocThoiGian.toString())
-            .enqueue(new Callback<CanNangTuanModel>() {
-                @Override
-                public void onResponse(Call<CanNangTuanModel> call, Response<CanNangTuanModel> response) {
-                    if (!isAdded()) return;
-                    View root = getView();
-                    WeightChartView chart = root != null ? root.findViewById(R.id.weightChart) : null;
-                    if (response.body() == null) return;
+    private void taiCanNangTheoTuan() {
+        canNangApi.layCanNangTheoTuan(mocThoiGian.toString())
+                .enqueue(new Callback<CanNangTuanModel>() {
+                    @Override
+                    public void onResponse(Call<CanNangTuanModel> call, Response<CanNangTuanModel> response) {
+                        if (!isAdded()) return;
+                        View root = getView();
+                        WeightChartView chart = root != null ? root.findViewById(R.id.weightChart) : null;
+                        if (response.body() == null) return;
 
-                    CanNangTuanModel duLieu = response.body();
-                    tvThoiGianCanNang.setText(duLieu.label);
-                    tvCanNangTrungBinh.setText(formatCanNang(duLieu.trungBinh));
+                        CanNangTuanModel duLieu = response.body();
+                        tvThoiGianCanNang.setText(duLieu.label);
+                        tvCanNangTrungBinh.setText(formatCanNang(duLieu.trungBinh));
 
-                    // 1. Luôn tạo 7 nhãn cố định
-                    List<String> labels = List.of("T2","T3","T4","T5","T6","T7","CN");
+                        // 1. Luôn tạo 7 nhãn cố định
+                        List<String> labels = List.of("T2","T3","T4","T5","T6","T7","CN");
 
-                    // 2. Khởi tạo mảng giá trị với 7 phần tử null
-                    List<Double> values = new ArrayList<>();
-                    for (int i = 0; i < 7; i++) values.add(null);
+                        // 2. Khởi tạo mảng giá trị với 7 phần tử null
+                        List<Double> values = new ArrayList<>();
+                        for (int i = 0; i < 7; i++) values.add(null);
 
-                    // 3. Đổ dữ liệu từ API vào đúng vị trí
-                    if (duLieu.danhSachNgay != null) {
-                        for (NgayCanNangModel item : duLieu.danhSachNgay) {
-                            try {
-                                LocalDate d = LocalDate.parse(item.ngay);
-                                // getDayOfWeek: Monday=1 ... Sunday=7
-                                int idx = d.getDayOfWeek().getValue() - 1;
-                                if (idx >= 0 && idx < 7) {
-                                    values.set(idx, item.canNang);
+                        // 3. Đổ dữ liệu từ API vào đúng vị trí
+                        if (duLieu.danhSachNgay != null) {
+                            for (NgayCanNangModel item : duLieu.danhSachNgay) {
+                                try {
+                                    LocalDate d = LocalDate.parse(item.ngay);
+                                    // getDayOfWeek: Monday=1 ... Sunday=7
+                                    int idx = d.getDayOfWeek().getValue() - 1;
+                                    if (idx >= 0 && idx < 7) {
+                                        values.set(idx, item.canNang);
+                                    }
+                                } catch (Exception e) {
+                                    Log.e("API_ERROR", "Parse error: " + item.ngay);
                                 }
-                            } catch (Exception e) {
-                                Log.e("API_ERROR", "Parse error: " + item.ngay);
                             }
                         }
-                    }
 
-                    capNhatThoiGianChiTiet(labels);
-                    if (chart != null) {
-                        chart.setData(values, labels);
+                        capNhatThoiGianChiTiet(labels);
+                        if (chart != null) {
+                            chart.setData(values, labels);
+                        }
                     }
-                }
-                @Override
-                public void onFailure(Call<CanNangTuanModel> call, Throwable t) {}
-            });
-}
+                    @Override
+                    public void onFailure(Call<CanNangTuanModel> call, Throwable t) {}
+                });
+    }
 
     private void taiCanNangTheoThang() {
         canNangApi.layCanNangTheoThang(mocThoiGian.getMonthValue(), mocThoiGian.getYear())

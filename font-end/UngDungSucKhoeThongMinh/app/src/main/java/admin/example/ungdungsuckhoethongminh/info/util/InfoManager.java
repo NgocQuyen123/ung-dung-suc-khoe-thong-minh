@@ -35,24 +35,23 @@ public class InfoManager {
     /**
      * Lấy user:
      * 1. Ưu tiên lấy từ Session
-     * 2. Nếu chưa có thì gọi API
+     * 2. Nếu chưa có thì gọi APIe
      */
     public void loadUser(int userId, OnUserLoaded callback) {
 
-        // 🔹 Lấy từ cache
         TaiKhoan cachedUser = session.getUser();
-        if (cachedUser != null) {
+
+        if (cachedUser != null && cachedUser.getId() == userId) {
             callback.onSuccess(cachedUser);
             return;
         }
 
-        // 🔹 Gọi API
         repository.fetchTaiKhoan(userId, new Callback<TaiKhoan>() {
             @Override
             public void onResponse(Call<TaiKhoan> call, Response<TaiKhoan> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     TaiKhoan user = response.body();
-                    session.saveUser(user);
+                    session.saveUser(user); // cập nhật cache
                     callback.onSuccess(user);
                 } else {
                     callback.onError("Không lấy được thông tin tài khoản");
@@ -61,7 +60,6 @@ public class InfoManager {
 
             @Override
             public void onFailure(Call<TaiKhoan> call, Throwable t) {
-                Log.e("InfoManager", "API lỗi", t);
                 callback.onError("Lỗi kết nối server");
             }
         });

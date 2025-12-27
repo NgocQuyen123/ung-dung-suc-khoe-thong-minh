@@ -60,7 +60,7 @@ public class TaiKhoanController {
     }
     @GetMapping("/{id}/can-nang-hien-tai")
     public ResponseEntity<CanNangHienTaiResponse> layCanNangHienTai(@PathVariable Integer id) {
-        CanNangHienTaiResponse res = taiKhoanService.layCanNangHienTai(id);
+        CanNangHienTaiResponse res = service.layCanNangHienTai(id);
         if (res == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(res);
     }
@@ -70,7 +70,7 @@ public class TaiKhoanController {
     public ResponseEntity<?> capNhatCanNangHienTai(@PathVariable Integer id,
                                                    @RequestBody CanNangHienTaiRequest req) {
         try {
-            CanNangHienTaiResponse res = taiKhoanService.capNhatCanNangHienTai(id, req);
+            CanNangHienTaiResponse res = service.capNhatCanNangHienTai(id, req);
             return ResponseEntity.ok(res);
         } catch (RuntimeException ex) {
             return ResponseEntity.status(404).body(ex.getMessage());

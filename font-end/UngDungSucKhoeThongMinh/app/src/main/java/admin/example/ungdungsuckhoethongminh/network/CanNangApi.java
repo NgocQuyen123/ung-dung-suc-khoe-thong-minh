@@ -37,7 +37,6 @@ public interface CanNangApi {
 
     @GET("api/taikhoan")
     Call<List<TaiKhoanModel>> getAllTaiKhoan();
-
     @GET("api/taikhoan/{id}/can-nang-hien-tai")
     Call<CanNangHienTaiResponse> getCanNangHienTai(@Path("id") int id);
 
